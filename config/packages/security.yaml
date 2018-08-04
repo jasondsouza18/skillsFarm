@@ -1,0 +1,38 @@
+security:
+    encoders:
+         \App\Entity\Jobseeker:
+            algorithm: bcrypt
+
+    providers:
+        jobseeker_provider:
+            entity:
+                class:  \App\Entity\Jobseeker
+                property: vc_login            
+      
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+           
+        jobseeker:
+            pattern: ^/
+            anonymous: true
+            provider: jobseeker_provider
+            form_login:
+                login_path: _home
+                check_path: _home
+                always_use_default_target_path: true
+                default_target_path: /jobseeker/home
+
+            logout:
+                path: _jobseeker_logout
+                target: _home
+                invalidate_session: true
+                   
+    access_control:  
+        - { path: ^/jobseeker/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/jobseeker/signup, roles: IS_AUTHENTICATED_ANONYMOUSLY }              
+        - { path: ^/jobseeker, roles: ROLE_JOBSEEKER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }        
+        - { path: ^/, roles: ROLE_JOBSEEKER }
