@@ -1,0 +1,36 @@
+
+/*--------  Breadcrumb style default  -----------*/
+.breadcrumbs-area h2.page-title {
+  color: #ffffff;
+  font-family: oswald;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.breadcrumbs-area {
+  *background: rgba(0, 0, 0, 0) url("../../img/bg/breadcrumb.jpg") no-repeat scroll 0 0;
+  padding: 120px 0;
+}
+
+.bg-fixed {
+  background-attachment: fixed;
+}
+.breadcrumb-opacity {
+    position: relative;
+}
+.breadcrumbs-area.solid-bg {
+  background: #f1f1f1 none repeat scroll 0 0;
+}
+.breadcrumb-opacity::before {
+    background: #000000 none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    opacity: 0.4;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
