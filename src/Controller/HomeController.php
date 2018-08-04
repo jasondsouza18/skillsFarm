@@ -39,20 +39,37 @@ class HomeController extends Controller
     /**
      * @Route("/aboutus", name="_aboutus")
      */
-    public function aboutus()
+    public function aboutus(\Swift_Mailer $mailer)
     {
-        return $this->render('home/aboutus.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
+        $name = 'jason';
+        $message = (new \Swift_Message('Hello Email'))
+        ->setFrom('jason.vinod@techjini.com')
+        ->setTo('jason.vinod@techjini.com')
+        ->setBody(
+            $this->renderView(
+                // templates/emails/registration.html.twig
+                'base.html.twig',
+                array('name' => $name)
+            ),
+            'text/html'
+        )
+        /*
+         * If you also want to include a plaintext version of the message
+        ->addPart(
+            $this->renderView(
+                'emails/registration.txt.twig',
+                array('name' => $name)
+            ),
+            'text/plain'
+        )
+        */
+    ;
 
-    
-    /**
-     * @Route("/job/details", name="_jobdetails")
-     */
-    public function jobdetails()
-    {
-        return $this->render('home/aboutus.html.twig', [
+     echo  $mailer->send($message);die;
+
+        echo "hi";
+        die;
+        return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
