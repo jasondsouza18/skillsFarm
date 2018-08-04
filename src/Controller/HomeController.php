@@ -6,6 +6,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Request;
+use App\Form\ContactUsType;
 
 
 
@@ -31,9 +32,10 @@ class HomeController extends Controller
      */
     public function contactus()
     {
-        return $this->render('home/contactus.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
+        $form = $this->createForm(ContactUsType::class);
+        return $this->render('home/contactus.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     /**

@@ -90,24 +90,24 @@
                 <div class="col-8 contact-right">
                     <div class="contact-form pt-60 pb-30 fix">
                         <h4>Get In Touch</h4>
-                        <form id="contact-form" action="mail.php" method="post">
+                        {{ form_start(form) }}
                             <div class="col-5 pr-6">
-                                <input type="text" name="name" id="name" class="pl-20" placeholder="Name">
+                             {{ form_widget(form.vc_name, { 'class':'pl-20','attr': {'placeholder': 'Name'} }) }}
                             </div>
                             <div class="col-5 pl-6">
-                                <input type="text" name="email" id="email" class="pl-20" placeholder="Email">
+                             {{ form_widget(form.vc_email, { 'class':'pl-20','attr': {'placeholder': 'Email'} }) }}
                             </div>
                             <div class="col-10">
-                                <input type="text" name="text" id="sub" class="pl-20" placeholder="Subject">
+                            {{ form_widget(form.vc_subject, { 'class':'pl-20','attr': {'placeholder': 'Subject'} }) }}
                             </div>
                             <div class="col-10">
-                                <textarea name="message" id="message" cols="30" rows="10" placeholder="Message" class="mb-10"></textarea>
+                             {{ form_widget(form.vc_message, { 'class':'mb-10','attr': {'placeholder': 'Message'} }) }}
                             </div>
                             <div class="col-10 fix">
                                 <button type="submit" class="button submit-btn">SUBMIT</button>
                             </div>
                             <p class="form-messege"></p>
-                        </form>
+                        {{ form_end(form) }}
                     </div>
                 </div>
             </div>
@@ -233,7 +233,6 @@
             });
         }
     </script>
-
     {% include "login.html.twig" %}
     {% include "register.html.twig" %}
 {% endblock %}
