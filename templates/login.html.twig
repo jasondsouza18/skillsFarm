@@ -1,11 +1,10 @@
-<!--Start of Login Form-->
 <div id="quickview-login">
     <!-- Modal -->
     {% if error is defined %}
-    {% if error is not null %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% if error is not null %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
     {% endif %}
-    {%  endif %}
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -21,9 +20,9 @@
                         </div>
                         <form action="{{ path('_home') }}" method="post">
                             <div class="form-box">
-                                <input type="text" id="username" name="_username"
-                                       value="{% if last_username is defined %}last_username{% endif %}"/>
-                                <input type="password" id="password" name="_password"/>
+                                <input type="text" id="username" name="_username" placeholder="Username"
+                                       value="{% if last_username is defined %}{{ last_username }}{% endif %}"/>
+                                <input type="password" id="password" name="_password" placeholder="Password"/>
                             </div>
                             <div class="fix ptb-30">
                                 <span class="remember pull-left"><input class="p-0 pull-left" type="checkbox">Remember Me</span>

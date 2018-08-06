@@ -97,10 +97,17 @@
                             </li>
                         </ul>
                     </nav>
+                    {% if app.user is defined and app.user is not null %}
+                        <div class="login-btn">
+                            <a class="modal-view button" href="{{ path('_jobseeker_home') }}">My Account</a>
+                            <a class="modal-view button" href="{{ path('_jobseeker_logout') }}">Logout</a>
+                        </div>
+                        {% else %}
                     <div class="login-btn">
                         <a class="modal-view button" href="#" data-toggle="modal" data-target="#register">Register</a>
                         <a class="modal-view button" href="#" data-toggle="modal" data-target="#productModal">Login</a>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

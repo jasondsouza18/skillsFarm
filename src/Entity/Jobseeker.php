@@ -6,9 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\JobseekerRepository")
+ * @UniqueEntity(fields="vc_email", message="Email already taken")
+ * @UniqueEntity(fields="vc_login", message="username already taken")
+ * @ORM\HasLifecycleCallbacks
  */
 class Jobseeker implements UserInterface, \Serializable
 {
@@ -350,6 +354,19 @@ class Jobseeker implements UserInterface, \Serializable
         return $this;
     }
 
+    /**
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+        $this->setUpdatedAt(new \DateTime('now'));
+        if ($this->getCreatedAt() == null) {
+            $this->setCreatedAt(new \DateTime('now'));
+        }
+    }
+
     public function getCreatedAt() : ? \DateTimeInterface
     {
         return $this->created_at;
@@ -450,5 +467,7 @@ class Jobseeker implements UserInterface, \Serializable
     {
         return $this->vc_password;
     }
+
+
 
 }
