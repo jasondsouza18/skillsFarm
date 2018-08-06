@@ -52,56 +52,60 @@
                                                                 {{ app.user.vcfirstname |capitalize }}&nbsp;
                                                                 {{ app.user.vcsurname |capitalize }}
                                                             </h6>
-                                                            <p>Publisher : Company Name</p>
-                                                            <p>In : Educational</p>
-                                                            <p>Date : 14.09.2018</p>
-                                                            <p>Location : Dhaka</p>
+                                                            <p>Location : {{ app.user.vclocation }}</p>
+                                                            <p>
+                                                                <button value="Contact him"></button>
+                                                            </p>
+                                                            <p>Member Since : {{ app.user.createdat|date("Y") }}</p>
                                                         </div>
-                                                        <div class="button-box"><a href="#" class="button button-black">APPLY
-                                                                NOW</a></div>
+                                                        <div class="button-box"><a href="#" class="button button-black">Edit</a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="title"><span>job description</span></div>
+                                                <div class="title"><span>Something about you</span></div>
                                                 <div class="single-job-form">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod
-                                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                                        minim veniam, quis nostrud exerc ullamco laboris nisi ut aliquip
-                                                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                                                        in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                        Excepteur sint occae cupidatat non proident, sunt in culpa qui
-                                                        officia deserunt mollit anim id est laborum. Sed ut perspiciatis
-                                                        unde omnis iste natus error sit voluptatem accusantium dolore
-                                                        laudantium, totam rem aperiam, eaque ipsa quae ab illo </p>
+                                                    <p>Describe yourself here....</p>
                                                 </div>
-                                                <div class="title"><span>Job Benefits</span></div>
+                                                <div class="title"><span>You key Points</span></div>
                                                 <div class="single-job-form">
                                                     <div class="single-info mb-14">
-                                                        <span class="mark-icon block pl-27">Some form,t the my have suffered alteration in some form,andomised words</span>
-                                                        <span class="mark-icon block pl-27">believable.available, but the majority have sufferederation in some</span>
-                                                        <span class="mark-icon block pl-27">There are many variations of passages of Lorem Ipsum available, but</span>
-                                                        <span class="mark-icon block pl-27">Some form,t the my have suffered alteration in some form,andomised words</span>
-                                                        <span class="mark-icon block pl-27">believable.available, but the majority have sufferederation in some</span>
-                                                        <span class="mark-icon block pl-27">There are many variations of passages of Lorem Ipsum available, but</span>
+                                                        {% for key in app.user.jobseekerKeyPoints %}
+                                                            <span class="mark-icon block pl-27">{{ key.vckeyname }}</span>
+                                                        {% endfor %}
                                                     </div>
                                                 </div>
-                                                <div class="title"><span>job Requirements</span></div>
+                                                <div class="title"><span>Education Details</span></div>
                                                 <div class="single-job-form">
-                                                    <div class="single-info mb-14">
-                                                        <span class="number block"><span>1.</span>Some form,t the my have suffered alteration in some form,andomised words</span>
-                                                        <span class="number block"><span>2.</span>believable.available, but the majority have sufferederation in some</span>
-                                                        <span class="number block"><span>3.</span>There are many variations of passages of Lorem Ipsum available, but</span>
-                                                        <span class="number block"><span>4.</span>Some form,t the my have suffered alteration in some form,andomised words</span>
-                                                        <span class="number block"><span>5.</span>believable.available, but the majority have sufferederation in some</span>
-                                                        <span class="number block"><span>6.</span>There are many variations of passages of Lorem Ipsum available, but</span>
-                                                    </div>
+                                                    <h4>School</h4>
+                                                    <br>
+                                                    <p>Name - </p>
+                                                    <p>Location - </p>
+                                                    <p>Percentage - </p>
                                                 </div>
-                                                <div class="title"><span>how to apply</span></div>
                                                 <div class="single-job-form">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod
-                                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                                        minim veniam, quis nostrud exerc ullamco laboris nisi ut aliquip
-                                                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                                                        in voluptate</p>
+                                                    <h4>College</h4>
+                                                    <br>
+                                                    <p>Name - </p>
+                                                    <p>Location - </p>
+                                                    <p>Percentage - </p>
+                                                </div>
+                                                <div class="single-job-form">
+                                                    <h4>Graduation</h4>
+                                                    <br>
+                                                    <p>Name - </p>
+                                                    <p>Location - </p>
+                                                    <p>Percentage - </p>
+                                                </div>
+                                                <div class="single-job-form">
+                                                    <h4>Post - Graduation</h4>
+                                                    <br>
+                                                    <p>Name - </p>
+                                                    <p>Location - </p>
+                                                    <p>Percentage - </p>
+                                                </div>
+                                                <div class="title"><span>Something good about me</span></div>
+                                                <div class="single-job-form">
+                                                    <p>This would be helpfull in finding a suitable job</p>
                                                 </div>
                                                 <div class="buttonback">
                                                     <a href="#" class="button button-large-box lg-btn mr-20">back</a>

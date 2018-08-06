@@ -128,9 +128,30 @@ class Jobseeker implements UserInterface, \Serializable
      */
     private $jobseekerResumes;
 
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $vc_headline;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dt_lastlogin;
+
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    private $vc_description;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\JobseekerKeyPoints", mappedBy="jobseeker")
+     */
+    private $jobseekerKeyPoints;
+
     public function __construct()
     {
         $this->jobseekerResumes = new ArrayCollection();
+        $this->jobseekerKeyPoints = new ArrayCollection();
     }
 
     public function getId()
@@ -466,6 +487,85 @@ class Jobseeker implements UserInterface, \Serializable
     public function getPassword()
     {
         return $this->vc_password;
+    }
+
+    public function getVcHeadline(): ?string
+    {
+        return $this->vc_headline;
+    }
+
+    public function setVcHeadline(?string $vc_headline): self
+    {
+        $this->vc_headline = $vc_headline;
+
+        return $this;
+    }
+
+    public function getVcLastlogin(): ?\DateTimeInterface
+    {
+        return $this->vc_lastlogin;
+    }
+
+    public function setVcLastlogin(?\DateTimeInterface $vc_lastlogin): self
+    {
+        $this->vc_lastlogin = $vc_lastlogin;
+
+        return $this;
+    }
+
+    public function getVcDescription(): ?string
+    {
+        return $this->vc_description;
+    }
+
+    public function setVcDescription(?string $vc_description): self
+    {
+        $this->vc_description = $vc_description;
+
+        return $this;
+    }
+
+    public function getDtLastlogin(): ?\DateTimeInterface
+    {
+        return $this->dt_lastlogin;
+    }
+
+    public function setDtLastlogin(?\DateTimeInterface $dt_lastlogin): self
+    {
+        $this->dt_lastlogin = $dt_lastlogin;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|JobseekerKeyPoints[]
+     */
+    public function getJobseekerKeyPoints(): Collection
+    {
+        return $this->jobseekerKeyPoints;
+    }
+
+    public function addJobseekerKeyPoint(JobseekerKeyPoints $jobseekerKeyPoint): self
+    {
+        if (!$this->jobseekerKeyPoints->contains($jobseekerKeyPoint)) {
+            $this->jobseekerKeyPoints[] = $jobseekerKeyPoint;
+            $jobseekerKeyPoint->setJobseeker($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobseekerKeyPoint(JobseekerKeyPoints $jobseekerKeyPoint): self
+    {
+        if ($this->jobseekerKeyPoints->contains($jobseekerKeyPoint)) {
+            $this->jobseekerKeyPoints->removeElement($jobseekerKeyPoint);
+            // set the owning side to null (unless already changed)
+            if ($jobseekerKeyPoint->getJobseeker() === $this) {
+                $jobseekerKeyPoint->setJobseeker(null);
+            }
+        }
+
+        return $this;
     }
 
 
