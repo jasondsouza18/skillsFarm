@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\EditProfileType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,22 +61,15 @@ class JobseekerController extends Controller
     /**
      * @Route("/profile/edit", name="_jobseeker_profile_edit")
      */
-    public function profileedit()
+    public function profileedit(Request $request)
     {
-        return $this->render('jobseeker/createprofile.html.twig', [
-            'controller_name' => 'JobseekerController',
+        $jobseeker = $this->getUser();
+        $editjobseeker = $this->createForm(EditProfileType::class, $jobseeker);
+        return $this->render('jobseeker/editProfile.html.twig', [
+          'form'  => $editjobseeker->createView(),
         ]);
     }
 
-    /**
-     * @Route("/profile", name="_jobseeker_profile")
-     */
-    public function profile()
-    {
-        return $this->render('jobseeker/createprofile.html.twig', [
-            'controller_name' => 'JobseekerController',
-        ]);
-    }
 
     /**
      * @Route("/logout", name="_jobseeker_logout")

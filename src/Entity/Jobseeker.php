@@ -148,10 +148,22 @@ class Jobseeker implements UserInterface, \Serializable
      */
     private $jobseekerKeyPoints;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\JobseekerEducation", mappedBy="jobseeker")
+     */
+    private $jobseekerEducation;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\JobseekerExperience", mappedBy="Jobseeker")
+     */
+    private $jobseekerExperiences;
+
     public function __construct()
     {
         $this->jobseekerResumes = new ArrayCollection();
         $this->jobseekerKeyPoints = new ArrayCollection();
+        $this->jobseekerEducation = new ArrayCollection();
+        $this->jobseekerExperiences = new ArrayCollection();
     }
 
     public function getId()
@@ -562,6 +574,68 @@ class Jobseeker implements UserInterface, \Serializable
             // set the owning side to null (unless already changed)
             if ($jobseekerKeyPoint->getJobseeker() === $this) {
                 $jobseekerKeyPoint->setJobseeker(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|JobseekerEducation[]
+     */
+    public function getJobseekerEducation(): Collection
+    {
+        return $this->jobseekerEducation;
+    }
+
+    public function addJobseekerEducation(JobseekerEducation $jobseekerEducation): self
+    {
+        if (!$this->jobseekerEducation->contains($jobseekerEducation)) {
+            $this->jobseekerEducation[] = $jobseekerEducation;
+            $jobseekerEducation->setJobseeker($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobseekerEducation(JobseekerEducation $jobseekerEducation): self
+    {
+        if ($this->jobseekerEducation->contains($jobseekerEducation)) {
+            $this->jobseekerEducation->removeElement($jobseekerEducation);
+            // set the owning side to null (unless already changed)
+            if ($jobseekerEducation->getJobseeker() === $this) {
+                $jobseekerEducation->setJobseeker(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|JobseekerExperience[]
+     */
+    public function getJobseekerExperiences(): Collection
+    {
+        return $this->jobseekerExperiences;
+    }
+
+    public function addJobseekerExperience(JobseekerExperience $jobseekerExperience): self
+    {
+        if (!$this->jobseekerExperiences->contains($jobseekerExperience)) {
+            $this->jobseekerExperiences[] = $jobseekerExperience;
+            $jobseekerExperience->setJobseeker($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobseekerExperience(JobseekerExperience $jobseekerExperience): self
+    {
+        if ($this->jobseekerExperiences->contains($jobseekerExperience)) {
+            $this->jobseekerExperiences->removeElement($jobseekerExperience);
+            // set the owning side to null (unless already changed)
+            if ($jobseekerExperience->getJobseeker() === $this) {
+                $jobseekerExperience->setJobseeker(null);
             }
         }
 

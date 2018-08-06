@@ -1,0 +1,194 @@
+{% extends "base.html.twig" %}
+{% block title %}Skills Farm{% endblock %}
+{% import _self as macroForm %}
+{% block body %}
+    {% macro education(type) %}
+        <div class="single-job-form">
+            <h4>{{ type }}</h4>
+            <div class="single-info mb-14">
+                <div class="form-box fix">
+                    <input type="text" id="{{ type }}_name" name="{{ type }}_name"
+                           placeholder="Please enter your school name">
+                </div>
+                <div class="form-box">
+                    <input type="text" id="{{ type }}_percentage" name="{{ type }}_percentage"
+                           placeholder="Enter your percentage" style="width: 50%;">
+                    <select name="{{ type }}_passoutyear" id="{{ type }}_passoutyear" style="width: 50%;">
+                        <option disabled selected value="default"> -- select an option --</option>
+                        <option value="1990">1990</option>
+                        <option value="1991">1991</option>
+                        <option value="1992">1992</option>
+                        <option value="1993">1993</option>
+                        <option value="1994">1994</option>
+                        <option value="1995">1995</option>
+                        <option value="1996">1996</option>
+                        <option value="1997">1997</option>
+                        <option value="1998">1998</option>
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.getElementById('{{ type }}_passoutyear').value = '1992';
+        </script>
+    {% endmacro %}
+    <!--Breadcrumb Banner Area Start-->
+    <div class="breadcrumb-banner-area pt-94 pb-85 bg-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-text">
+                        <h2 class="text-center">Create Resume</h2>
+                        <div class="breadcrumb-bar">
+                            <ul class="breadcrumb text-center m-0">
+                                <li><a href="index.html">Home</a></li>
+                                <li>Resume</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Breadcrumb Banner Area-->
+    <!--Start of Single Job Post Area-->
+    <div class="single-job-post-area ptb-130 ptb-sm-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mr-auto ml-auto">
+                    {{ form_start(form) }}
+                    <div class="single-job-content">
+                        <div class="title"><span>Profile</span></div>
+                        <div class="single-job-form">
+                            <div class="single-info mb-14 fix">
+                                <label class="uppercase pull-left m-0">photo</label>
+                                <div class="uploader fix pull-left fileupload">
+                                    <input id="fileupload" name="fileupload" type="file">
+                                    <span class="filename">Upload your photo</span>
+                                    <span class="action"><i class="zmdi zmdi-folder"></i>Browse</span>
+                                </div>
+                            </div>
+                            <div class="single-info pb-14">
+                                <label for="f_name" class="uppercase pull-left m-0">First Name</label>
+                                <div class="form-box fix">
+                                    {{ form_widget(form.vc_firstname, { 'attr': {'placeholder': 'First Name'} }) }}
+                                </div>
+                            </div>
+                            <div class="single-info pb-14">
+                                <label for="m_name" class="uppercase pull-left m-0">Middle name</label>
+                                <div class="form-box fix">
+                                    {{ form_widget(form.vc_secondname, { 'attr': {'placeholder': 'Second Name'} }) }}
+                                </div>
+                            </div>
+                            <div class="single-info">
+                                <label for="l_name" class="uppercase pull-left m-0">last name</label>
+                                <div class="form-box fix">
+                                    {{ form_widget(form.vc_surname, { 'attr': {'placeholder': 'Sur Name'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="title"><span>Contact Information</span></div>
+                        <div class="single-job-form">
+                            <div class="single-info mb-14">
+                                <label for="country" class="uppercase pull-left m-0">country</label>
+                                <div class="form-box fix">
+                                    {{ form_widget(form.vc_location, { 'attr': {'placeholder': 'Enter You location'} }) }}
+                                </div>
+                            </div>
+                            {{ form_widget(form.db_latitude) }}
+                            {{ form_widget(form.db_longitude) }}
+                            <div class="single-info mb-14">
+                                <label for="phone" class="uppercase pull-left m-0">phone</label>
+                                <div class="form-box fix">
+                                    {{ form_widget(form.vc_phone, { 'attr': {'placeholder': 'Phone number'} }) }}
+                                </div>
+                            </div>
+                            <div class="single-info mb-14">
+                                <label for="email" class="uppercase pull-left m-0">email</label>
+                                <div class="form-box fix">
+                                    {{ form_widget(form.vc_email, { 'attr': {'placeholder': 'Email addres'} }) }}
+                                </div>
+                            </div>
+                            <div class="single-info mb-14">
+                                <label for="website" class="uppercase pull-left m-0">Headline</label>
+                                <div class="form-box fix">
+                                    {{ form_widget(form.vc_headline, { 'attr': {'placeholder': 'Headline'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="title"><span>Biography</span></div>
+                        <div class="single-job-form">
+                            <div class="single-info mb-14 fix">
+                                <label class="uppercase pull-left m-0">description</label>
+                                <div class="desc fix">
+                                    {{ form_widget(form.vc_description, { 'attr': {'placeholder': 'description..'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="title"><span>Education</span></div>
+                        {{ macroForm.education("School") }}
+                        {{ macroForm.education("College") }}
+                        {{ macroForm.education("University") }}
+                        <div class="title"><span>Experience</span></div>
+                        <div class="single-job-form mb-0">
+                            <div class="single-info pb-14">
+                                <label for="title" class="uppercase pull-left m-0">Job Title</label>
+                                <div class="form-box fix">
+                                    <input type="text" id="title" name="title" placeholder="Enter your title">
+                                </div>
+                            </div>
+                            <div class="single-info mb-14">
+                                <label for="date_from" class="uppercase pull-left m-0">date from</label>
+                                <div class="form-box fix">
+                                    <input type="text" id="date_from" name="date_from"
+                                           placeholder="Please enter date">
+                                </div>
+                            </div>
+                            <div class="single-info mb-14">
+                                <label for="date_to" class="uppercase pull-left m-0">date to</label>
+                                <div class="form-box fix">
+                                    <input type="text" id="date_to" name="date_to" placeholder="Please enter date">
+                                </div>
+                            </div>
+                            <div class="single-info fix">
+                                <label class="uppercase pull-left m-0">description </label>
+                                <div class="desc fix">
+                                        <textarea name="textarea" class="fix small textarea" cols="30" rows="10"
+                                                  placeholder="Please enter description"></textarea>
+                                    <div class="resubtn mt-40">
+                                        <a href="#" class="button button-medium-box">save resume</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Single Job Post Area-->
+    <!--Start of Footer Widget-area-->
+
+
+{% endblock %}
