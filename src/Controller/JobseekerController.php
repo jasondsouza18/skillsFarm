@@ -65,8 +65,12 @@ class JobseekerController extends Controller
     {
         $jobseeker = $this->getUser();
         $editjobseeker = $this->createForm(EditProfileType::class, $jobseeker);
+        $editjobseeker->handleRequest($request);
+        if ($editjobseeker->isSubmitted() && $editjobseeker->isValid()) {echo "hi";
+                dump($editjobseeker->getData());die;
+        }
         return $this->render('jobseeker/editProfile.html.twig', [
-          'form'  => $editjobseeker->createView(),
+            'form' => $editjobseeker->createView(),
         ]);
     }
 
