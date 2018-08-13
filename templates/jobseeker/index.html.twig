@@ -22,210 +22,142 @@
             </div>
         </div>
     </div>
-    </div>
-    <div class="job-post-area ptb-130 ptb-sm-60">
-        <div class="container">
-            <div class="all-job-post">
-                <!-- Nav tabs -->
-                <div class="post-tab nav">
-                    <a class="nav-link active" data-toggle="tab" href="#profile">PROFILE</a>
-                    <a class="nav-link" data-toggle="tab" href="#recent_job">CVs</a>
-                    <a class="nav-link" data-toggle="tab" href="#featured">MANAGE JOBS</a>
-                    <a class="nav-link" data-toggle="tab" href="#recent_job">CONTACT US</a>
-                </div>
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div class="tab-pane active" id="profile">
-                        <div class="single-job-post-area ptb-130 ptb-sm-60" style="padding-top: 67px;padding-bottom: 67px;">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <form action="#">
-                                            <div class="single-job-content">
-                                                <div class="area-title">
-                                                    <div class="single-job-post">
-                                                        <div class="img-icon">
-                                                            <img src="images/company-logo/1.png" alt="">
-                                                        </div>
-                                                        <div class="address">
-                                                            <h6>
-                                                                {{ app.user.vcfirstname |capitalize }}&nbsp;
-                                                                {{ app.user.vcsurname |capitalize }}
-                                                            </h6>
-                                                            <p>Location : {{ app.user.vclocation }}</p>
-                                                            <p>
-                                                                <button value="Contact him"></button>
-                                                            </p>
-                                                            <p>Member Since : {{ app.user.createdat|date("Y") }}</p>
-                                                        </div>
-                                                        <div class="button-box"><a href="{{ path('_jobseeker_profile_edit') }}" class="button button-black">Edit</a>
-                                                        </div>
+</div>
+<div class="job-post-area ptb-130 ptb-sm-60">
+    <div class="container">
+        <div class="all-job-post">
+            <!-- Nav tabs -->
+            <div class="post-tab nav">
+                <a class="nav-link active" data-toggle="tab" href="#profile">PROFILE</a>
+                <a class="nav-link" data-toggle="tab" href="#cv_s">CVs</a>
+                <a class="nav-link" data-toggle="tab" href="#manage">MANAGE JOBS</a>
+                <a class="nav-link" data-toggle="tab" href="#contactus">CONTACT US</a>
+            </div>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="profile">
+                    <div class="single-job-post-area ptb-130 ptb-sm-60" style="padding-top: 67px;padding-bottom: 67px;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="#">
+                                        <div class="single-job-content">
+                                            <div class="area-title">
+                                                <div class="single-job-post">
+                                                    <div class="img-icon">
+                                                        <img src="images/company-logo/1.png" alt="">
                                                     </div>
-                                                </div>
-                                                <div class="title"><span>Something about you</span></div>
-                                                <div class="single-job-form">
-                                                    <p>Describe yourself here....</p>
-                                                </div>
-                                                <div class="title"><span>You key Points</span></div>
-                                                <div class="single-job-form">
-                                                    <div class="single-info mb-14">
-                                                        {% for key in app.user.jobseekerKeyPoints %}
-                                                            <span class="mark-icon block pl-27">{{ key.vckeyname }}</span>
-                                                        {% endfor %}
+                                                    <div class="address">
+                                                        <h6>
+                                                            {{ app.user.vcfirstname |capitalize }}&nbsp;
+                                                            {{ app.user.vcsurname |capitalize }}
+                                                        </h6>
+                                                        <p>Location :
+                                                            {{ app.user.vclocation }}</p>
+                                                        <p>
+                                                            <button value="Contact him"></button>
+                                                        </p>
+                                                        <p>Member Since :
+                                                            {{ app.user.createdat|date("Y") }}</p>
                                                     </div>
-                                                </div>
-                                                <div class="title"><span>Education Details</span></div>
-                                                <div class="single-job-form">
-                                                    <h4>School</h4>
-                                                    <br>
-                                                    <p>Name - </p>
-                                                    <p>Location - </p>
-                                                    <p>Percentage - </p>
-                                                </div>
-                                                <div class="single-job-form">
-                                                    <h4>College</h4>
-                                                    <br>
-                                                    <p>Name - </p>
-                                                    <p>Location - </p>
-                                                    <p>Percentage - </p>
-                                                </div>
-                                                <div class="single-job-form">
-                                                    <h4>Graduation</h4>
-                                                    <br>
-                                                    <p>Name - </p>
-                                                    <p>Location - </p>
-                                                    <p>Percentage - </p>
-                                                </div>
-                                                <div class="single-job-form">
-                                                    <h4>Post - Graduation</h4>
-                                                    <br>
-                                                    <p>Name - </p>
-                                                    <p>Location - </p>
-                                                    <p>Percentage - </p>
-                                                </div>
-                                                <div class="title"><span>Something good about me</span></div>
-                                                <div class="single-job-form">
-                                                    <p>This would be helpfull in finding a suitable job</p>
-                                                </div>
-                                                <div class="buttonback">
-                                                    <a href="#" class="button button-large-box lg-btn mr-20">back</a>
+                                                    <div class="button-box">
+                                                        <a href="{{ path('_jobseeker_profile_edit') }}" class="button button-black">Edit</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
+                                            <div class="title">
+                                                <span>Something about you</span></div>
+                                            <div class="single-job-form">
+                                                <p>Describe yourself here....</p>
+                                            </div>
+                                            <div class="title">
+                                                <span>You key Points</span></div>
+                                            <div class="single-job-form">
+                                                <div class="single-info mb-14">
+                                                    {% for key in app.user.jobseekerKeyPoints %}
+                                                        <span class="mark-icon block pl-27">{{ key.vckeyname }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="title">
+                                                <span>Education Details</span></div>
+                                            {% for key in app.user.jobseekerEducation %}
+                                                <div class="single-job-form">
+                                                    <h4>{{ key.mastereducation.getEducationInString }}</h4>
+                                                    <br>
+                                                    <p>Name -
+                                                        {{ key.mastereducation.vcName}}
+                                                    </p>
+                                                    <p>Location -{{ key.mastereducation.vclocationdetails}}
+                                                    </p>
+                                                    <p>Percentage -
+                                                        {{ key.itpercentage}}
+                                                    </p>
+                                                </div>
+                                            {% endfor %}
+                                            <div class="title">
+                                                <span>Something good about me</span></div>
+                                            <div class="single-job-form">
+                                                <p>This would be helpfull in finding a suitable job</p>
+                                            </div>
+                                            <div class="buttonback">
+                                                <a href="#" class="button button-large-box lg-btn mr-20">back</a>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <div class="tab-pane" id="recent_job">
+
+                </div>
+                <div class="tab-pane" id="cv_s">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="single-job-post">
+                                <div class="img-icon">
+                                    <img src="images/company-logo/1.png" alt="">
+                                </div>
+                                <div class="address">
+                                    <h6>Resume</h6>
+                                    <p>Active</p>
+                                    <p>Date uploaded: 18.05.2018</p>
+                                    <p>File name</p>
+                                </div>
+                                <div class="button-box">
+                                    <a href="#" class="button button-black">Download</a>&nbsp;&nbsp;&nbsp;
+
+                                    <a href="#" class="button button-black">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="contactus">
+                    <div class="container">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="single-job-post">
-                                    <div class="img-icon">
-                                        <img src="images/company-logo/1.png" alt="">
+                            <div class="col-md-12">
+                                <div class="single-job-content">
+                                    <div class="area-title">
+                                        <div class="single-job-post">
+                                            <div class="img-icon">
+                                                <img src="images/company-logo/1.png" alt="">
+                                            </div>
+                                            <div class="address">
+                                                <h6>
+                                                    Upload your resume and leave the rest to us to Search a job for you ..
+                                                </h6>
+                                                {# Write a form to upload a CV #}
+                                                <p></p>
+                                                <p></p>
+                                                <p></p>
+                                            </div>
+                                            <div class="button-box">
+                                                <a href="{{path('_contactus')}}" class="button button-black">Leave a message</a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="address">
-                                        <h6>Font-End Develper</h6>
-                                        <p>Publisher : Company Name</p>
-                                        <p>In : Web</p>
-                                        <p>Date : 18.05.2018</p>
-                                        <p>Location : Dhaka</p>
-                                    </div>
-                                    <div class="button-box">
-                                        <a href="#" class="button button-black">APPLY NOW</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="single-job-post">
-                                    <div class="img-icon">
-                                        <img src="images/company-logo/1.png" alt="">
-                                    </div>
-                                    <div class="address">
-                                        <h6>Senior Software Engineer</h6>
-                                        <p>Publisher : Company Name</p>
-                                        <p>In : Engineering</p>
-                                        <p>Date : 11.05.2018</p>
-                                        <p>Location : Dhaka</p>
-                                    </div>
-                                    <div class="button-box">
-                                        <a href="#" class="button button-black">APPLY NOW</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="single-job-post">
-                                    <div class="img-icon">
-                                        <img src="images/company-logo/1.png" alt="">
-                                    </div>
-                                    <div class="address">
-                                        <h6>Platform/Backend Engineer</h6>
-                                        <p>Publisher : Company Name</p>
-                                        <p>In : Engineering</p>
-                                        <p>Date : 09.02.2018</p>
-                                        <p>Location : Dhaka</p>
-                                    </div>
-                                    <div class="button-box">
-                                        <a href="#" class="button button-black">APPLY NOW</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="single-job-post">
-                                    <div class="img-icon">
-                                        <img src="images/company-logo/1.png" alt="">
-                                    </div>
-                                    <div class="address">
-                                        <h6>Social media Specialist</h6>
-                                        <p>Publisher : Company Name</p>
-                                        <p>In : Media</p>
-                                        <p>Date : 01.10.2018</p>
-                                        <p>Location : Dhaka</p>
-                                    </div>
-                                    <div class="button-box">
-                                        <a href="#" class="button button-black">APPLY NOW</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="single-job-post">
-                                    <div class="img-icon">
-                                        <img src="images/company-logo/1.png" alt="">
-                                    </div>
-                                    <div class="address">
-                                        <h6>Platform/Backend Engineer</h6>
-                                        <p>Publisher : Company Name</p>
-                                        <p>In : Engineering</p>
-                                        <p>Date : 09.02.2018</p>
-                                        <p>Location : Dhaka</p>
-                                    </div>
-                                    <div class="button-box">
-                                        <a href="#" class="button button-black">APPLY NOW</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="single-job-post">
-                                    <div class="img-icon">
-                                        <img src="images/company-logo/1.png" alt="">
-                                    </div>
-                                    <div class="address">
-                                        <h6>Hiring Online English Teachers</h6>
-                                        <p>Publisher : Company Name</p>
-                                        <p>In : Designer</p>
-                                        <p>Date : 14.09.2018</p>
-                                        <p>Location : Dhaka</p>
-                                    </div>
-                                    <div class="button-box">
-                                        <a href="#" class="button button-black">APPLY NOW</a>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -234,5 +166,6 @@
             </div>
         </div>
     </div>
-    <!-- End of Job Post Area -->
+</div>
+<!-- End of Job Post Area -->
 {% endblock %}

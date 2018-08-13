@@ -19,32 +19,19 @@ class JobseekerEducationRepository extends ServiceEntityRepository
         parent::__construct($registry, JobseekerEducation::class);
     }
 
-//    /**
-//     * @return JobseekerEducation[] Returns an array of JobseekerEducation objects
-//     */
-    /*
-    public function findByExampleField($value)
+    public function addintoEducation($result, $masterEducation, $jobseeker, $oldid)
     {
-        return $this->createQueryBuilder('j')
-            ->andWhere('j.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('j.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $dm = $this->getEntityManager();
+        $addEducation = self::findOneBy(array('jobseeker' => $jobseeker->getId(), 'mastereducation' => $oldid));
+        if (!($addEducation instanceof JobseekerEducation))
+            $addEducation = new JobseekerEducation();
+        $addEducation->setJobseeker($jobseeker);
+        $addEducation->setItPassedoutyear($result['passoutyear']);
+        $addEducation->setMastereducation($masterEducation);
+        $addEducation->setVcCoursename($result['coursename']);
+        $addEducation->setItPercentage($result['percentage']);
+        $dm->persist($addEducation);
+        $dm->flush($addEducation);
+        return $addEducation;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?JobseekerEducation
-    {
-        return $this->createQueryBuilder('j')
-            ->andWhere('j.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

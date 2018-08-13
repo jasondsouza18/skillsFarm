@@ -8,9 +8,15 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MasterEducationRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class MasterEducation
 {
+    const MASTER_EDUCATION_SCHOOL = 1;
+    const MASTER_EDUCATION_COLLEGE = 2;
+    const MASTER_EDUCATION_GRADUATION = 3;
+    const MASTER_EDUCATION_POSTGRADUATION = 4;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -74,84 +80,84 @@ class MasterEducation
         return $this->id;
     }
 
-    public function getItEducationtype(): ?int
+    public function getItEducationtype() : ? int
     {
         return $this->it_educationtype;
     }
 
-    public function setItEducationtype(int $it_educationtype): self
+    public function setItEducationtype(int $it_educationtype) : self
     {
         $this->it_educationtype = $it_educationtype;
 
         return $this;
     }
 
-    public function getVcName(): ?string
+    public function getVcName() : ? string
     {
         return $this->vc_name;
     }
 
-    public function setVcName(string $vc_name): self
+    public function setVcName(string $vc_name) : self
     {
         $this->vc_name = $vc_name;
 
         return $this;
     }
 
-    public function getVcLocationdetails(): ?string
+    public function getVcLocationdetails() : ? string
     {
         return $this->vc_locationdetails;
     }
 
-    public function setVcLocationdetails(string $vc_locationdetails): self
+    public function setVcLocationdetails(string $vc_locationdetails) : self
     {
         $this->vc_locationdetails = $vc_locationdetails;
 
         return $this;
     }
 
-    public function getDbLatitude(): ?float
+    public function getDbLatitude() : ? float
     {
         return $this->db_latitude;
     }
 
-    public function setDbLatitude(float $db_latitude): self
+    public function setDbLatitude(float $db_latitude) : self
     {
         $this->db_latitude = $db_latitude;
 
         return $this;
     }
 
-    public function getDbLongitude(): ?float
+    public function getDbLongitude() : ? float
     {
         return $this->db_longitude;
     }
 
-    public function setDbLongitude(float $db_longitude): self
+    public function setDbLongitude(float $db_longitude) : self
     {
         $this->db_longitude = $db_longitude;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt() : ? \DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTimeInterface $created_at) : self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt() : ? \DateTimeInterface
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface $updated_at) : self
     {
         $this->updated_at = $updated_at;
 
@@ -161,12 +167,12 @@ class MasterEducation
     /**
      * @return Collection|JobseekerEducation[]
      */
-    public function getJobseekerEducation(): Collection
+    public function getJobseekerEducation() : Collection
     {
         return $this->jobseekerEducation;
     }
 
-    public function addJobseekerEducation(JobseekerEducation $jobseekerEducation): self
+    public function addJobseekerEducation(JobseekerEducation $jobseekerEducation) : self
     {
         if (!$this->jobseekerEducation->contains($jobseekerEducation)) {
             $this->jobseekerEducation[] = $jobseekerEducation;
@@ -176,7 +182,7 @@ class MasterEducation
         return $this;
     }
 
-    public function removeJobseekerEducation(JobseekerEducation $jobseekerEducation): self
+    public function removeJobseekerEducation(JobseekerEducation $jobseekerEducation) : self
     {
         if ($this->jobseekerEducation->contains($jobseekerEducation)) {
             $this->jobseekerEducation->removeElement($jobseekerEducation);
@@ -192,12 +198,12 @@ class MasterEducation
     /**
      * @return Collection|JobseekerExperience[]
      */
-    public function getJobseekerExperiences(): Collection
+    public function getJobseekerExperiences() : Collection
     {
         return $this->jobseekerExperiences;
     }
 
-    public function addJobseekerExperience(JobseekerExperience $jobseekerExperience): self
+    public function addJobseekerExperience(JobseekerExperience $jobseekerExperience) : self
     {
         if (!$this->jobseekerExperiences->contains($jobseekerExperience)) {
             $this->jobseekerExperiences[] = $jobseekerExperience;
@@ -207,7 +213,7 @@ class MasterEducation
         return $this;
     }
 
-    public function removeJobseekerExperience(JobseekerExperience $jobseekerExperience): self
+    public function removeJobseekerExperience(JobseekerExperience $jobseekerExperience) : self
     {
         if ($this->jobseekerExperiences->contains($jobseekerExperience)) {
             $this->jobseekerExperiences->removeElement($jobseekerExperience);
@@ -218,5 +224,31 @@ class MasterEducation
         }
 
         return $this;
+    }
+
+
+    /**
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+        $this->setUpdatedAt(new \DateTime('now'));
+        if ($this->getCreatedAt() == null) {
+            $this->setCreatedAt(new \DateTime('now'));
+        }
+    }
+
+    public function getEducationInString()
+    {
+        if ($this->it_educationtype == MasterEducation::MASTER_EDUCATION_SCHOOL)
+            return "School";
+        if ($this->it_educationtype == MasterEducation::MASTER_EDUCATION_COLLEGE)
+            return "College";
+        if ($this->it_educationtype == MasterEducation::MASTER_EDUCATION_GRADUATION)
+            return "Graduation";
+        if ($this->it_educationtype == MasterEducation::MASTER_EDUCATION_POSTGRADUATION)
+            return "Post-Graduation";
     }
 }

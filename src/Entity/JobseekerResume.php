@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\JobseekerResumeRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class JobseekerResume
 {
@@ -57,84 +58,84 @@ class JobseekerResume
         return $this->id;
     }
 
-    public function getJobseeker(): ?jobseeker
+    public function getJobseeker() : ? jobseeker
     {
         return $this->jobseeker;
     }
 
-    public function setJobseeker(?jobseeker $jobseeker): self
+    public function setJobseeker(? jobseeker $jobseeker) : self
     {
         $this->jobseeker = $jobseeker;
 
         return $this;
     }
 
-    public function getVcCoverletter(): ?string
+    public function getVcCoverletter() : ? string
     {
         return $this->vc_coverletter;
     }
 
-    public function setVcCoverletter(?string $vc_coverletter): self
+    public function setVcCoverletter(? string $vc_coverletter) : self
     {
         $this->vc_coverletter = $vc_coverletter;
 
         return $this;
     }
 
-    public function getVcCvpath(): ?string
+    public function getVcCvpath() : ? string
     {
         return $this->vc_cvpath;
     }
 
-    public function setVcCvpath(string $vc_cvpath): self
+    public function setVcCvpath(string $vc_cvpath) : self
     {
         $this->vc_cvpath = $vc_cvpath;
 
         return $this;
     }
 
-    public function getItPriority(): ?int
+    public function getItPriority() : ? int
     {
         return $this->it_priority;
     }
 
-    public function setItPriority(int $it_priority): self
+    public function setItPriority(int $it_priority) : self
     {
         $this->it_priority = $it_priority;
 
         return $this;
     }
 
-    public function getItCvstatus(): ?int
+    public function getItCvstatus() : ? int
     {
         return $this->it_cvstatus;
     }
 
-    public function setItCvstatus(int $it_cvstatus): self
+    public function setItCvstatus(int $it_cvstatus) : self
     {
         $this->it_cvstatus = $it_cvstatus;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt() : ? \DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTimeInterface $created_at) : self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt() : ? \DateTimeInterface
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface $updated_at) : self
     {
         $this->updated_at = $updated_at;
 

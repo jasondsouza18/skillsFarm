@@ -96,7 +96,7 @@ class Jobseeker implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $vc_about;
+    private $vc_country;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -501,48 +501,48 @@ class Jobseeker implements UserInterface, \Serializable
         return $this->vc_password;
     }
 
-    public function getVcHeadline(): ?string
+    public function getVcHeadline() : ? string
     {
         return $this->vc_headline;
     }
 
-    public function setVcHeadline(?string $vc_headline): self
+    public function setVcHeadline(? string $vc_headline) : self
     {
         $this->vc_headline = $vc_headline;
 
         return $this;
     }
 
-    public function getVcLastlogin(): ?\DateTimeInterface
+    public function getVcLastlogin() : ? \DateTimeInterface
     {
         return $this->vc_lastlogin;
     }
 
-    public function setVcLastlogin(?\DateTimeInterface $vc_lastlogin): self
+    public function setVcLastlogin(? \DateTimeInterface $vc_lastlogin) : self
     {
         $this->vc_lastlogin = $vc_lastlogin;
 
         return $this;
     }
 
-    public function getVcDescription(): ?string
+    public function getVcDescription() : ? string
     {
         return $this->vc_description;
     }
 
-    public function setVcDescription(?string $vc_description): self
+    public function setVcDescription(? string $vc_description) : self
     {
         $this->vc_description = $vc_description;
 
         return $this;
     }
 
-    public function getDtLastlogin(): ?\DateTimeInterface
+    public function getDtLastlogin() : ? \DateTimeInterface
     {
         return $this->dt_lastlogin;
     }
 
-    public function setDtLastlogin(?\DateTimeInterface $dt_lastlogin): self
+    public function setDtLastlogin(? \DateTimeInterface $dt_lastlogin) : self
     {
         $this->dt_lastlogin = $dt_lastlogin;
 
@@ -552,12 +552,12 @@ class Jobseeker implements UserInterface, \Serializable
     /**
      * @return Collection|JobseekerKeyPoints[]
      */
-    public function getJobseekerKeyPoints(): Collection
+    public function getJobseekerKeyPoints() : Collection
     {
         return $this->jobseekerKeyPoints;
     }
 
-    public function addJobseekerKeyPoint(JobseekerKeyPoints $jobseekerKeyPoint): self
+    public function addJobseekerKeyPoint(JobseekerKeyPoints $jobseekerKeyPoint) : self
     {
         if (!$this->jobseekerKeyPoints->contains($jobseekerKeyPoint)) {
             $this->jobseekerKeyPoints[] = $jobseekerKeyPoint;
@@ -567,7 +567,7 @@ class Jobseeker implements UserInterface, \Serializable
         return $this;
     }
 
-    public function removeJobseekerKeyPoint(JobseekerKeyPoints $jobseekerKeyPoint): self
+    public function removeJobseekerKeyPoint(JobseekerKeyPoints $jobseekerKeyPoint) : self
     {
         if ($this->jobseekerKeyPoints->contains($jobseekerKeyPoint)) {
             $this->jobseekerKeyPoints->removeElement($jobseekerKeyPoint);
@@ -583,12 +583,12 @@ class Jobseeker implements UserInterface, \Serializable
     /**
      * @return Collection|JobseekerEducation[]
      */
-    public function getJobseekerEducation(): Collection
+    public function getJobseekerEducation() : Collection
     {
         return $this->jobseekerEducation;
     }
 
-    public function addJobseekerEducation(JobseekerEducation $jobseekerEducation): self
+    public function addJobseekerEducation(JobseekerEducation $jobseekerEducation) : self
     {
         if (!$this->jobseekerEducation->contains($jobseekerEducation)) {
             $this->jobseekerEducation[] = $jobseekerEducation;
@@ -598,7 +598,7 @@ class Jobseeker implements UserInterface, \Serializable
         return $this;
     }
 
-    public function removeJobseekerEducation(JobseekerEducation $jobseekerEducation): self
+    public function removeJobseekerEducation(JobseekerEducation $jobseekerEducation) : self
     {
         if ($this->jobseekerEducation->contains($jobseekerEducation)) {
             $this->jobseekerEducation->removeElement($jobseekerEducation);
@@ -614,12 +614,12 @@ class Jobseeker implements UserInterface, \Serializable
     /**
      * @return Collection|JobseekerExperience[]
      */
-    public function getJobseekerExperiences(): Collection
+    public function getJobseekerExperiences() : Collection
     {
         return $this->jobseekerExperiences;
     }
 
-    public function addJobseekerExperience(JobseekerExperience $jobseekerExperience): self
+    public function addJobseekerExperience(JobseekerExperience $jobseekerExperience) : self
     {
         if (!$this->jobseekerExperiences->contains($jobseekerExperience)) {
             $this->jobseekerExperiences[] = $jobseekerExperience;
@@ -629,7 +629,7 @@ class Jobseeker implements UserInterface, \Serializable
         return $this;
     }
 
-    public function removeJobseekerExperience(JobseekerExperience $jobseekerExperience): self
+    public function removeJobseekerExperience(JobseekerExperience $jobseekerExperience) : self
     {
         if ($this->jobseekerExperiences->contains($jobseekerExperience)) {
             $this->jobseekerExperiences->removeElement($jobseekerExperience);
@@ -638,6 +638,18 @@ class Jobseeker implements UserInterface, \Serializable
                 $jobseekerExperience->setJobseeker(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getVcCountry(): ?string
+    {
+        return $this->vc_country;
+    }
+
+    public function setVcCountry(?string $vc_country): self
+    {
+        $this->vc_country = $vc_country;
 
         return $this;
     }

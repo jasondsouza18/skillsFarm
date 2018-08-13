@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\JobseekerKeyPointsRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class JobseekerKeyPoints
 {
@@ -47,63 +48,76 @@ class JobseekerKeyPoints
         return $this->id;
     }
 
-    public function getJobseeker(): ?Jobseeker
+    public function getJobseeker() : ? Jobseeker
     {
         return $this->jobseeker;
     }
 
-    public function setJobseeker(?Jobseeker $jobseeker): self
+    public function setJobseeker(? Jobseeker $jobseeker) : self
     {
         $this->jobseeker = $jobseeker;
 
         return $this;
     }
 
-    public function getVcKeyname(): ?string
+    public function getVcKeyname() : ? string
     {
         return $this->vc_keyname;
     }
 
-    public function setVcKeyname(string $vc_keyname): self
+    public function setVcKeyname(string $vc_keyname) : self
     {
         $this->vc_keyname = $vc_keyname;
 
         return $this;
     }
 
-    public function getItStatus(): ?int
+    public function getItStatus() : ? int
     {
         return $this->it_status;
     }
 
-    public function setItStatus(int $it_status): self
+    public function setItStatus(int $it_status) : self
     {
         $this->it_status = $it_status;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt() : ? \DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTimeInterface $created_at) : self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt() : ? \DateTimeInterface
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface $updated_at) : self
     {
         $this->updated_at = $updated_at;
 
         return $this;
+    }
+
+    /**
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+        $this->setUpdatedAt(new \DateTime('now'));
+        if ($this->getCreatedAt() == null) {
+            $this->setCreatedAt(new \DateTime('now'));
+        }
     }
 }

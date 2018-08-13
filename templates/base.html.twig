@@ -1,59 +1,88 @@
 <html class="no-js" lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>
-        {% block title %}{% endblock %}
-    </title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/nice-select.css">
-    <link rel="stylesheet" href="/css/core.css">
-    <link rel="stylesheet" href="/css/shortcode/shortcodes.css">
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/css/plugins/color.css">
-    <link rel="stylesheet" href="/css/responsive.css">
-    <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
-    {% block stylesheets %}{% endblock %}
-</head>
-<body>
-<!--[if lt IE 8]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please upgrade
-    your browser</a> to improve your experience.</p>
-<![endif]-->
-<div class="as-mainwrapper">
-    {% include "header.html.twig" %}
-    {% block body %}{% endblock %}
-    {% include "footer.html.twig" %}
-</div>
-<button onclick="showNotice()" style="display: none">Show Snackbar</button>
-<div id="snackbar"></div>
-<script src="/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/popper.js"></script>
-<script src="/js/owl.carousel.min.js"></script>
-<script src="/js/jquery.nice-select.min.js"></script>
-<script src="/lib/nivo-slider/js/jquery.nivo.slider.js"></script>
-<script src="/lib/nivo-slider/home.js"></script>
-<script src="/js/plugins.js"></script>
-<script src="/js/jquery.mb.YTPlayer.js"></script>
-<script src="/js/ajax-mail.js"></script>
-<script src="/js/jquery.ajaxchimp.min.js"></script>
-<script src="/js/waypoints.min.js"></script>
-<script src="/js/main.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/nice-select.css">
+        <link rel="stylesheet" href="/css/core.css">
+        <link rel="stylesheet" href="/css/shortcode/shortcodes.css">
+        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/css/plugins/color.css">
+        <link rel="stylesheet" href="/css/responsive.css">
+        <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
+        {% block stylesheets %}{% endblock %}
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCAfdCCHwf-S-iZxXGyYpjnrxLbsFunSKc"></script>
 
-<script>
-    function showNotice() {
-        var x = document.getElementById("snackbar");
-        x.className = "show";
-        setTimeout(function () {
-            x.className = x.className.replace("show", "");
-        }, 3000);
-    }
-</script>
-{% block javascripts %}{% endblock %}
-</body>
+    </head>
+    <body>
+        <!--[if lt IE 8]> <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please upgrade your browser</a> to improve your experience.</p> <![endif]-->
+        <div class="as-mainwrapper">
+            {% include "header.html.twig" %}
+            {% block body %}{% endblock %}
+            {% include "footer.html.twig" %}
+        </div>
+        <button onclick="showNotice()" style="display: none">Show Snackbar</button>
+        <div id="snackbar"></div>
+        <script type="text/javascript">
+            function initMap(event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                    return false;
+                }
+                var options = {
+                    types: ["geocode"]
+                };
+                var input = document.getElementById('location');
+                var autocomplete = new google.maps.places.Autocomplete(input, options);
+                autocomplete.addListener('place_changed', function () {
+                    var place = autocomplete.getPlace();
+                    var latitude = place.geometry.location.lat();
+                    var longitude = place.geometry.location.lng();
+                    document.getElementById("latitude").value = latitude;
+                    document.getElementById("longitude").value = longitude;
+                    var country = place.address_components;
+                    if ((country[country.length - 1].types[0] == "country") && (country[country.length - 1].types[1] == "political")) {
+                        document.getElementById("country").value = country[country.length - 1].long_name;
+                    } else {
+                        document.getElementById("country").value = country[country.length - 2].long_name;
+                    }
+                    if (!place.geometry) {
+                        window.alert("No details available for input: '" + place.name + "'");
+                        return;
+                    }
+                });
+            }
+        </script>
+        <script src="/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/popper.js"></script>
+        <script src="/js/owl.carousel.min.js"></script>
+        <script src="/js/jquery.nice-select.min.js"></script>
+        <script src="/lib/nivo-slider/js/jquery.nivo.slider.js"></script>
+        <script src="/lib/nivo-slider/home.js"></script>
+        <script src="/js/plugins.js"></script>
+        <script src="/js/jquery.mb.YTPlayer.js"></script>
+        <script src="/js/ajax-mail.js"></script>
+        <script src="/js/jquery.ajaxchimp.min.js"></script>
+        <script src="/js/waypoints.min.js"></script>
+        <script src="/js/main.js"></script>
+
+        <script>
+            function showNotice() {
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                setTimeout(function () {
+                    x.className = x.className.replace("show", "");
+                }, 3000);
+            }
+        </script>
+        {% block javascripts %}{% endblock %}
+    </body>
 </html>

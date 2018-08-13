@@ -19,32 +19,20 @@ class MasterEducationRepository extends ServiceEntityRepository
         parent::__construct($registry, MasterEducation::class);
     }
 
-//    /**
-//     * @return MasterEducation[] Returns an array of MasterEducation objects
-//     */
-    /*
-    public function findByExampleField($value)
+    public function addintoMasterEducation($result)
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $dm = $this->getEntityManager();
+        $masterEducation = self::findOneBy(['vc_name' => $result['name'], 'vc_locationdetails' => $result['location'], 'it_educationtype' => $result['type']]);
+        if ($masterEducation instanceof MasterEducation)
+            return $masterEducation;
+        $masterEducation = new MasterEducation();
+        $masterEducation->setItEducationtype($result['type']);
+        $masterEducation->setVcName($result['name']);
+        $masterEducation->setDbLatitude($result['latitude']);
+        $masterEducation->setDbLongitude($result['longitude']);
+        $masterEducation->setVcLocationdetails($result['location']);
+        $dm->persist($masterEducation);
+        $dm->flush($masterEducation);
+        return $masterEducation;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?MasterEducation
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

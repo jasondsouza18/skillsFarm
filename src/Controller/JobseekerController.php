@@ -7,6 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Jobseeker;
+use App\Entity\JobseekerEducation;
+use App\Entity\MasterEducation;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
@@ -53,6 +55,7 @@ class JobseekerController extends Controller
      */
     public function index()
     {
+        $jobseeker = $this->getUser();
         return $this->render('jobseeker/index.html.twig', [
             'controller_name' => 'JobseekerController',
         ]);
@@ -64,16 +67,35 @@ class JobseekerController extends Controller
     public function profileedit(Request $request)
     {
         $jobseeker = $this->getUser();
+        $entityManager = $this->getDoctrine()->getManager();
         $editjobseeker = $this->createForm(EditProfileType::class, $jobseeker);
         $editjobseeker->handleRequest($request);
-        if ($editjobseeker->isSubmitted() && $editjobseeker->isValid()) {echo "hi";
-                dump($editjobseeker->getData());die;
+        if ($editjobseeker->isSubmitted() && $editjobseeker->isValid()) {
+            $entityManager->persist($jobseeker);
+            $entityManager->flush();
         }
         return $this->render('jobseeker/editProfile.html.twig', [
             'form' => $editjobseeker->createView(),
         ]);
     }
 
+    /**
+     * @Route("/profile/edit/education", name="_jobseeker_profile_edit_education")
+     */
+    public function profileeditEducation(Request $request)
+    {
+        $jobseeker = $this->getUser();
+        if ($request->getMethod() == 'POST') {
+            $request = $request->request->all();
+            $oldID = $request['id'];
+            $masterEducation = $this->getDoctrine()->getRepository(MasterEducation::class)->addintoMasterEducation($request);
+            $jobseekerEducation = $this->getDoctrine()->getRepository(JobseekerEducation::class)->addintoEducation($request, $masterEducation, $jobseeker, $oldID);
+        }
+        $education = $this->getDoctrine()->getRepository(JobseekerEducation::class)->findBy(['jobseeker' => $jobseeker->getId()]);
+        return $this->render('jobseeker/editEducation.html.twig', array(
+            'education' => $education
+        ));
+    }
 
     /**
      * @Route("/logout", name="_jobseeker_logout")
@@ -81,6 +103,18 @@ class JobseekerController extends Controller
      */
     public function logout(Request $request)
     {
+    }
+
+    /**
+     * @Route("/profile/resume", name="_jobseeker_profile_resume")
+     */
+    public function profileeresume(Request $request)
+    {
+        $jobseeker = $this->getUser();
+        $jobseekerresume = $this->getDoctrine()->getRepository(JobseekerResume::class)->findbyJobseeker($jobseeker->getId());
+        return $this->render('jobSeeker/viewResume.html.twig', array(
+            'resumes' => $jobseekerresume,
+        ));
     }
 
 }
