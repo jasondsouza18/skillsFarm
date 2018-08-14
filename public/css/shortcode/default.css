@@ -1225,14 +1225,14 @@ textarea:focus {
 .bg-1, .bg-2, .bg-3, .bg-4, .bg-5, .bg-6, .bg-7, .bg-8, .bg-9, .bg-10{
     background-attachment: fixed; background-clip: initial; background-color: rgba(0, 0, 0, 0); background-origin: initial; background-position: center center; background-repeat: no-repeat; background-size: cover; position: relative; z-index: 0;
 }
-.bg-1 { background: url(../../images/bg/1.jpg);}
-.bg-2 { background: url(../../images/bg/2.jpg);}
+.bg-1 { background: url(../../img/hand.jpg);}
+.bg-2 { background: url(../../img/hand.jpg);}
 .bg-3 {
   background: rgba(0, 0, 0, 0) url("../../images/bg/3.jpg") no-repeat scroll center top / cover ;
 }
 .bg-4 { background: url(../../images/bg/4.jpg);}
 .bg-5 {
-  background: rgba(0, 0, 0, 0) url("../../images/slider/1.jpg") repeat scroll 0 0 / cover ;
+  background: rgba(0, 0, 0, 0) url("../../img/slider1.jpg") repeat scroll 0 0 / cover ;
 }
 	
 /*pattern background*/
