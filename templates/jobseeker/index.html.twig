@@ -1,5 +1,6 @@
 {% extends "base.html.twig" %}
 {% block title %}Skills Farm{% endblock %}
+{% import _self as macroForm %}
 {% block body %}
     <div class="breadcrumb-banner-area pt-94 pb-85 bg-3">
         <div class="container">
@@ -109,31 +110,33 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="tab-pane" id="cv_s">
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="single-job-post">
-                                <div class="img-icon">
-                                    <img src="images/company-logo/1.png" alt="">
-                                </div>
-                                <div class="address">
-                                    <h6>Resume</h6>
-                                    <p>Active</p>
-                                    <p>Date uploaded: 18.05.2018</p>
-                                    <p>File name</p>
-                                </div>
-                                <div class="button-box">
-                                    <a href="#" class="button button-black">Download</a>&nbsp;&nbsp;&nbsp;
-
-                                    <a href="#" class="button button-black">Edit</a>
+                        {% for resume in app.user.jobseekerResumes %}
+                            <div class="col-md-6">
+                                <div class="single-job-post">
+                                    <div class="img-icon">
+                                        <img src="images/company-logo/1.png" alt="">
+                                    </div>
+                                    <div class="address">
+                                        <h6>{{resume.vccvname}}</h6>
+                                        <p>{{resume.getstatusinString}}</p>
+                                        <p>Date uploaded:
+                                            {{ resume.createdat|date("F jS Y")  }}</p>
+                                        <p>Path:
+                                            {{ resume.vccvpath}}</p>
+                                    </div>
+                                    <div class="button-box">
+                                        <a href="#" class="button button-black">Download</a>&nbsp;&nbsp;&nbsp;
+                                        <a href="" class="button button-black" data-toggle="modal" data-target="#myModal{{resume.id}}">Edit</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            {{ macroForm.editResumeMacro(resume.id,resume.vccvname,resume.vccvpath,resume.vccoverletter)}}
+                        {% endfor %}
                     </div>
                 </div>
-
                 <div class="tab-pane" id="contactus">
                     <div class="container">
                         <div class="row">
@@ -167,5 +170,38 @@
         </div>
     </div>
 </div>
+{% macro editResumeMacro(id, cvname, existingCV, coverletter) %}
+    <div class="modal fade" id="myModal{{id}}" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            <i class="zmdi zmdi-close"></i></span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-pop-up-content ptb-60 pl-60 pr-60">
+                        <form action="{{ path('_jobseeker_profile_resume') }}" method="post" enctype="multipart/form-data">
+                            <div class="form-box">
+                                <input type="hidden" name="cvid" value="{{id}}">
+                                <input type="text" name="cvname" placeholder="CV Name" class="mb-14" value="{{cvname}}">
+                                <input type="file" name="cvfile" class="mb-14">
+                                <input type="text" name="existingCV" placeholder="existing CV Name" readonly="readonly" value="{{existingCV}}">
+                                <input type="textarea" name="coverletter" placeholder="Enter cover letter" value="{{coverletter}}">
+                            </div>
+                            <br>
+                            <br>
+                            <div class="text-center">
+                                <button type="submit" class="text-uppercase">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
 <!-- End of Job Post Area -->
 {% endblock %}
+{% block javascripts %}{% endblock %}

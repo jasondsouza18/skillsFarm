@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\JobseekerResumeRepository")
@@ -29,7 +30,14 @@ class JobseekerResume
     private $vc_coverletter;
 
     /**
+     * @ORM\Column(type="string", length=100, nullable=false)
+     */
+    private $vc_cvname;
+
+    /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Please upload image")
+     * @Assert\File(mimeTypes={ "application/pdf" })
      */
     private $vc_cvpath;
 
@@ -153,5 +161,24 @@ class JobseekerResume
         if ($this->getCreatedAt() == null) {
             $this->setCreatedAt(new \DateTime('now'));
         }
+    }
+
+    public function getVcCvname() : ? string
+    {
+        return $this->vc_cvname;
+    }
+
+    public function setVcCvname(string $vc_cvname) : self
+    {
+        $this->vc_cvname = $vc_cvname;
+
+        return $this;
+    }
+
+    public function getstatusinString()
+    {
+        if ($this->it_cvstatus == 1)
+            return "Active";
+        else return "In-Active";
     }
 }

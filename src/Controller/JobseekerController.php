@@ -8,8 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Jobseeker;
 use App\Entity\JobseekerEducation;
+use App\Entity\JobseekResume;
 use App\Entity\MasterEducation;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Entity\JobseekerResume;
+use Symfony\Component\HttpKernel\Kernel;
 
 
 /**
@@ -111,8 +114,18 @@ class JobseekerController extends Controller
     public function profileeresume(Request $request)
     {
         $jobseeker = $this->getUser();
-        $jobseekerresume = $this->getDoctrine()->getRepository(JobseekerResume::class)->findbyJobseeker($jobseeker->getId());
-        return $this->render('jobSeeker/viewResume.html.twig', array(
+        $jobseekerresume = $this->getDoctrine()->getRepository(JobseekerResume::class)->findBy(['jobseeker' => $jobseeker->getId()]);
+        if ($request->getMethod() == 'POST') {
+            $projectRoot = $this->get('kernel')->getProjectDir();
+            $uploadsDirectory = $projectRoot . "/public/uploads/";
+            $file = $request->files->get('cvfile');
+            $fileName = $file->getClientOriginalName();
+            dump($file->move($uploadsDirectory, $fileName));
+            die;
+            $request = $request->request->all();
+            $jobseekerresume = $this->getDoctrine()->getRepository(JobseekerResume::class)->updateJobseekerResume($request, $jobseeker);
+        }
+        return $this->render('jobSeeker/index.html.twig', array(
             'resumes' => $jobseekerresume,
         ));
     }

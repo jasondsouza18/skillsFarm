@@ -19,32 +19,20 @@ class JobseekerResumeRepository extends ServiceEntityRepository
         parent::__construct($registry, JobseekerResume::class);
     }
 
-//    /**
-//     * @return JobseekerResume[] Returns an array of JobseekerResume objects
-//     */
-    /*
-    public function findByExampleField($value)
+    public function updateJobseekerResume($request, $jobseeker)
     {
-        return $this->createQueryBuilder('j')
-            ->andWhere('j.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('j.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $dm = $this->getEntityManager();
+        $jobseekerResume = self::find($request['cvid']);
+        if (!($jobseekerResume instanceof JobseekerResume))
+            $jobseekerResume = new JobseekerResume();
+        $jobseekerResume->setItPriority('1');
+        $jobseekerResume->setJobseeker($jobseeker);
+        $jobseekerResume->setVcCoverletter($request['coverletter']);
+        $jobseekerResume->setVcCvpath($request['existingCV']);
+        $jobseekerResume->setItCvstatus('1');
+        $jobseekerResume->setVcCvname($request['cvname']);
+        $dm->persist($jobseekerResume);
+        $dm->flush($jobseekerResume);
+        return $jobseekerResume;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?JobseekerResume
-    {
-        return $this->createQueryBuilder('j')
-            ->andWhere('j.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
