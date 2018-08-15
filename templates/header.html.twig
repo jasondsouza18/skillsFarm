@@ -52,40 +52,32 @@
                                 <a href="#">Jobs</a>
                             </li>
                             <li>
-                                <a href="{{path('_aboutus')}}">About Us</a>
+                                <a href="{{ path('_aboutus') }}">About Us</a>
                             </li>
                             <li>
                                 <a href="#">Services</a>
                                 <ul class="dropdown">
                                     <li>
-                                        <a href="current-jobs.html">Soft Skills</a>
+                                        <a href="{{ path('custom_softskills') }}">Soft Skills</a>
                                     </li>
                                     <li>
-                                        <a href="apply-job.html">Career counseling</a>
+                                        <a href="{{ path('custom_careercounselling') }}">Career counseling</a>
                                     </li>
                                     <li>
-                                        <a href="current-jobs.html">Communication skills</a>
+                                        <a href="{{ path('custom_communicationskills') }}">Communication skills</a>
                                     </li>
                                     <li>
-                                        <a href="apply-job.html">Psychological counseling</a>
+                                        <a href="{{ path('custom_psychologicalcounseling') }}">Psychological
+                                            counseling</a>
                                     </li>
                                     <li>
-                                        <a href="current-jobs.html">Faculty training</a>
+                                        <a href="{{ path('custom_facultytraining') }}">Faculty training</a>
                                     </li>
                                     <li>
-                                        <a href="apply-job.html">Placement services</a>
+                                        <a href="{{ path('custom_placementservices') }}">Placement services</a>
                                     </li>
                                     <li>
-                                        <a href="apply-job.html">Social media network marketing</a>
-                                    </li>
-                                    <li>
-                                        <a href="current-jobs.html">School Affiliation</a>
-                                    </li>
-                                    <li>
-                                        <a href="apply-job.html">Corporate training</a>
-                                    </li>
-                                    <li>
-                                        <a href="apply-job.html">Leadership training</a>
+                                        <a href="{{ path('custom_schoolaffiliation') }}">School Affiliation</a>
                                     </li>
                                 </ul>
                             </li>
@@ -93,7 +85,7 @@
                                 <a href="/blogs">Blog</a>
                             </li>
                             <li>
-                                <a href="{{path('_contactus')}}">Contact Us</a>
+                                <a href="{{ path('_contactus') }}">Contact Us</a>
                             </li>
                         </ul>
                     </nav>
@@ -102,11 +94,13 @@
                             <a class="modal-view button" href="{{ path('_jobseeker_home') }}">My Account</a>
                             <a class="modal-view button" href="{{ path('_jobseeker_logout') }}">Logout</a>
                         </div>
-                        {% else %}
-                    <div class="login-btn">
-                        <a class="modal-view button" href="#" data-toggle="modal" data-target="#register">Register</a>
-                        <a class="modal-view button" href="#" data-toggle="modal" data-target="#productModal">Login</a>
-                    </div>
+                    {% else %}
+                        <div class="login-btn">
+                            <a class="modal-view button" href="#" data-toggle="modal"
+                               data-target="#register">Register</a>
+                            <a class="modal-view button" href="#" data-toggle="modal"
+                               data-target="#productModal">Login</a>
+                        </div>
                     {% endif %}
                 </div>
             </div>
@@ -197,3 +191,4 @@
     </div>
     <!-- Mobile Menu Area end -->
 </header>
+
