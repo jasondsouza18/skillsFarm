@@ -49,3 +49,4 @@
 /.web-server-pid
 
 /public/uploads/*
+/public/blogs/*
