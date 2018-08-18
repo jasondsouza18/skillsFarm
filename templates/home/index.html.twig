@@ -1,19 +1,68 @@
 {% extends "base.html.twig" %}
-{% block title %}Skills Farm{% endblock %}
+{% block title %}SkillsFarm{% endblock %}
 {% block body %}
-    <div class="search-job-area bg-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-10 col-lg-12 ml-auto mr-auto">
-                    <div class="job-search-content text-center">
-                        <h4>Find your desire one in a minute</h4>
-                        <h2>Skills Farm...</h2>
+    <!--Start of Slider Area-->
+    <div class="slider-area">
+        <div class="preview-2">
+            <div id="nivoslider" class="slides">
+                <img src="/img/dream.jpg" alt="" title="#slider-1-caption1"/>
+                <img src="/img/startup.jpg" alt="" title="#slider-1-caption2"/>
+            </div>
+            <div id="slider-1-caption1" class="nivo-html-caption nivo-caption">
+                <div class="banner-content slider-1">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="text-content-wrapper">
+                                    <div class="text-content text-center">
+                                        <h4 class="title2 wow bounceInLeft text-white mb-16" data-wow-duration="3s"
+                                            data-wow-delay="0s">One million success stories</h4>
+                                        <h1 class="title1 wow bounceInRight text-white mb-16" data-wow-duration="3s"
+                                            data-wow-delay="0s">Find the best one for you</h1>
+                                        <p class="sub-title wow bounceInRight hidden-xs" data-wow-duration="3s"
+                                           data-wow-delay="1s"> Submit your resume<br>and let the job search for you<br>
+                                            at
+                                        </p>
+                                        <h1 style="color: white"><b>Skillsfarm...</b></h1>
+                                        <div class="banner-readmore wow bounceInUp mt-35" data-wow-duration="3s"
+                                             data-wow-delay="2s">
+                                            <a class="button slider-btn" href="#">Submit Resume</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="slider-1-caption2" class="nivo-html-caption nivo-caption">
+                <div class="banner-content slider-2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="text-content-wrapper">
+                                    <div class="text-content slide-2 text-center">
+                                        <h4 class="title2 wow bounceInLeft text-white mb-16" data-wow-duration="3s"
+                                            data-wow-delay="0s">At <b>Skillsfarm</b></h4>
+                                        <h1 class="title1 wow flipInX text-white mb-16" data-wow-duration="1s"
+                                            data-wow-delay="0s">Find the best of best jobs</h1>
+                                        <p class="sub-title wow lightSpeedIn hidden-xs" data-wow-duration="1s"
+                                           data-wow-delay=".2s">The best team would contact you <br> on submission of
+                                            your resume<br>You can fill the form and get started</p>
+                                        <div class="banner-readmore wow bounceInUp mt-35" data-wow-duration="1s"
+                                             data-wow-delay=".6s">
+                                            <a class="button slider-btn" href="#">Submit Resume</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Search Form End -->
+    <!--End of Slider Area-->
     <div class="job-categroy-area ptb-130 ptb-sm-60">
         <div class="container">
             <div class="row">
@@ -385,7 +434,7 @@
             <div class="row">
                 <div class="col-lg-8 ml-auto mr-auto">
                     <div class="section-title text-white">
-                        <h2>Client </h2>
+                        <h2>Our Clients</h2>
                         <p>Cheers to our clients</p>
                     </div>
                     <div class="testimonial-carousel carousel-style-one">
@@ -395,11 +444,9 @@
                                     all my confusion.Looking forward to studying in UK.</p>
                             </div>
                             <div class="testimonial-info">
-                                <span class="testimonial-name text-white">Rajshekar</span>
+                                <span class="testimonial-name text-white">Rajshekar R</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="testimonial-carousel carousel-style-one">
                         <div class="single-testimonial">
                             <div class="testimonial-text pt-46">
                                 <p class="text-white p-0">Really helped me out a lot. And the fact that they are open
@@ -409,11 +456,9 @@
                                     to take SAT classes and study abroad.</p>
                             </div>
                             <div class="testimonial-info">
-                                <span class="testimonial-name text-white">Kiran </span>
+                                <span class="testimonial-name text-white">Kiran</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="testimonial-carousel carousel-style-one">
                         <div class="single-testimonial">
                             <div class="testimonial-text pt-46">
                                 <p class="text-white p-0">Not being that great at academics, I was a bit apprehensive.
@@ -421,7 +466,7 @@
                                     LSE.</p>
                             </div>
                             <div class="testimonial-info">
-                                <span class="testimonial-name text-white">Jowin</span>
+                                <span class="testimonial-name text-white">Jowin J</span>
                             </div>
                         </div>
                     </div>
@@ -448,7 +493,7 @@
                 <div class="single-blog hover-effect">
                     <div class="blog-image box-hover">
                         <a href="#" class="block">
-                            <img src="images/blog/1.jpg" alt="">
+                            <img src="/img/blog/1.jpg" alt="">
                         </a>
                     </div>
                     <div class="blog-text">
@@ -467,7 +512,7 @@
                 <div class="single-blog hover-effect">
                     <div class="blog-image box-hover">
                         <a href="#" class="block">
-                            <img src="images/blog/2.jpg" alt="">
+                            <img src="/img/blog/2.jpg" alt="">
                         </a>
                     </div>
                     <div class="blog-text">
@@ -486,7 +531,7 @@
                 <div class="single-blog hover-effect">
                     <div class="blog-image box-hover">
                         <a href="#" class="block">
-                            <img src="images/blog/3.jpg" alt="">
+                            <img src="/img/blog/3.jpg" alt="">
                         </a>
                     </div>
                     <div class="blog-text">
@@ -505,7 +550,7 @@
                 <div class="single-blog hover-effect">
                     <div class="blog-image box-hover">
                         <a href="#" class="block">
-                            <img src="images/blog/1.jpg" alt="">
+                            <img src="/img/blog/1.jpg" alt="">
                         </a>
                     </div>
                     <div class="blog-text">
@@ -524,7 +569,7 @@
                 <div class="single-blog hover-effect">
                     <div class="blog-image box-hover">
                         <a href="#" class="block">
-                            <img src="images/blog/2.jpg" alt="">
+                            <img src="img/blog/2.jpg" alt="">
                         </a>
                     </div>
                     <div class="blog-text">
@@ -543,7 +588,7 @@
                 <div class="single-blog hover-effect">
                     <div class="blog-image box-hover">
                         <a href="#" class="block">
-                            <img src="images/blog/3.jpg" alt="">
+                            <img src="/img/blog/3.jpg" alt="">
                         </a>
                     </div>
                     <div class="blog-text">
@@ -561,7 +606,6 @@
             </div>
         </div>
     </div>
-    L̥
     {% include "login.html.twig" %}
     {% include "register.html.twig" %}
 {% endblock %}
