@@ -35,20 +35,21 @@
                                     <label for="company-name" class="uppercase pull-left m-0">Name</label>
                                     <div class="form-box fix">
                                         <input type="text" id="name" name="name"
-                                               placeholder="Please enter your full name">
+                                               placeholder="Please enter your full name" required>
                                     </div>
                                 </div>
                                 <div class="single-info mb-14">
                                     <label for="Linkedin" class="uppercase pull-left m-0">Contact number</label>
                                     <div class="form-box fix">
-                                        <input type="text" id="number" name="number" placeholder="Starting from +91">
+                                        <input type="text" id="number" name="number" placeholder="Starting from +91"
+                                               required>
                                     </div>
                                 </div>
                                 <div class="single-info mb-14">
                                     <label for="Linkedin" class="uppercase pull-left m-0">Email</label>
                                     <div class="form-box fix">
                                         <input type="email" id="Email" name="Email"
-                                               placeholder="Please enter your Email">
+                                               placeholder="Please enter your Email" required>
                                     </div>
                                 </div>
                                 <div class="single-info mb-14">
@@ -62,13 +63,14 @@
                                     <label class="uppercase pull-left m-0">Place</label>
                                     <div class="desc fix">
                                         <input type="text" id="Place" name="Place"
-                                               placeholder="Please enter your place">
+                                               placeholder="Please enter your place" required>
                                     </div>
                                 </div>
                                 <div class="single-info mb-14 fix">
-                                    <label class="uppercase pull-left m-0">Resume</label>
+                                    <label class="uppercase pull-left m-0">Resume </label>
                                     <div class="uploader fix pull-left fileupload">
-                                        <input type="file" id="fileupload" name="fileupload">
+                                        <input type="file" id="fileupload" name="fileupload" required
+                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf">
                                         <span class="filename" name="filename">Upload your resume</span>
                                         <span class="action"><i class="zmdi zmdi-folder"></i>Browse</span>
                                     </div>
@@ -89,6 +91,19 @@
                                                   placeholder="Anything you want to share on your work profile"></textarea>
                                     </div>
                                 </div>
+                                <div class="single-info mb-14">
+                                    <label class="uppercase m-0" for="selectcategory">Select Category</label>
+                                    <span style="float: right;width: 79%;">
+                                        <select name="selectcategory" id="selectcategory" required>
+                                             <option value="" disabled selected>--Select your option about your profession--</option>
+                                            <option value="1">School Teacher</option>
+                                            <option value="2">College Teacher</option>
+                                            <option value="3">Software Engineer</option>
+                                            <option value="4">Counseling</option>
+                                            <option value="5">Developer</option>
+                                        </select>
+                                            </span>
+                                </div>
                                 <div class="ml-160 mt-38">
                                     <a class="button button-large-box"
                                        onclick="javascript:document.getElementById('formsubmit').click()">Submit</a>
@@ -108,7 +123,7 @@
 {% block javascripts %}
     <script>
         {% if sent != 0 %}
-        $('#snackbar').html("Your message is successfully sent to skillsfarm team.");
+        $('#snackbar').html("Your message has been successfully sent to skillsfarm team.");
         showtoast();
         {% endif %}
     </script>

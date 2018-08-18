@@ -69,16 +69,19 @@ class JobseekerController extends Controller
      */
     public function profileedit(Request $request)
     {
+        $sent = 0;
         $jobseeker = $this->getUser();
         $entityManager = $this->getDoctrine()->getManager();
         $editjobseeker = $this->createForm(EditProfileType::class, $jobseeker);
         $editjobseeker->handleRequest($request);
-        if ($editjobseeker->isSubmitted() && $editjobseeker->isValid()) {
+        if ($request->getMethod() == 'POST') {
             $entityManager->persist($jobseeker);
             $entityManager->flush();
+            $sent =1;
         }
         return $this->render('jobseeker/editProfile.html.twig', [
             'form' => $editjobseeker->createView(),
+            'sent' => $sent
         ]);
     }
 
@@ -87,16 +90,19 @@ class JobseekerController extends Controller
      */
     public function profileeditEducation(Request $request)
     {
+        $sent = 0;
         $jobseeker = $this->getUser();
         if ($request->getMethod() == 'POST') {
             $request = $request->request->all();
             $oldID = $request['id'];
             $masterEducation = $this->getDoctrine()->getRepository(MasterEducation::class)->addintoMasterEducation($request);
             $jobseekerEducation = $this->getDoctrine()->getRepository(JobseekerEducation::class)->addintoEducation($request, $masterEducation, $jobseeker, $oldID);
+            $sent = 1;
         }
         $education = $this->getDoctrine()->getRepository(JobseekerEducation::class)->findBy(['jobseeker' => $jobseeker->getId()]);
         return $this->render('jobseeker/editEducation.html.twig', array(
-            'education' => $education
+            'education' => $education,
+            'sent' => $sent
         ));
     }
 
@@ -122,7 +128,7 @@ class JobseekerController extends Controller
             $fileName = $file->getClientOriginalName();
             $file->move($uploadsDirectory, $fileName);
             $request = $request->request->all();
-            $jobseekerresume = $this->getDoctrine()->getRepository(JobseekerResume::class)->updateJobseekerResume($request, $jobseeker,$fileName);
+            $jobseekerresume = $this->getDoctrine()->getRepository(JobseekerResume::class)->updateJobseekerResume($request, $jobseeker, $fileName);
         }
         return $this->render('jobSeeker/index.html.twig', array(
             'resumes' => $jobseekerresume,

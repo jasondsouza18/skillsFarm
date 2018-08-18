@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-{% block title %}Skills Farm{% endblock %}
+{% block title %}Skillsfarm{% endblock %}
 {% block body %}
     <div class="breadcrumb-banner-area pt-94 pb-85 bg-3">
         <div class="container">
@@ -30,18 +30,10 @@
                     <div class="single-job-content">
                         <div class="title">
                             <span>Profile</span>
-                            <a href="{{ path('_jobseeker_profile_edit_education')}}" style="float:right">Edit Education</a>
+                            <a href="{{ path('_jobseeker_profile_edit_education') }}" style="float:right">Edit
+                                Education</a>
                         </div>
                         <div class="single-job-form">
-                            <div class="single-info mb-14 fix">
-                                <label class="uppercase pull-left m-0">photo</label>
-                                <div class="uploader fix pull-left fileupload">
-                                    <input id="fileupload" name="fileupload" type="file">
-                                    <span class="filename">Upload your photo</span>
-                                    <span class="action">
-                                        <i class="zmdi zmdi-folder"></i>Browse</span>
-                                </div>
-                            </div>
                             <div class="single-info pb-14">
                                 <label for="f_name" class="uppercase pull-left m-0">First Name</label>
                                 <div class="form-box fix">
@@ -62,9 +54,9 @@
                             </div>
                             <div class="single-info pb-14">
                                 <label for="l_name" class="uppercase m-0">gender</label>
-                                <div class="form-box">
+                                <span style="float: right;width: 79%;">
                                     {{ form_widget(form.bo_sex) }}
-                                </div>
+                                      </span>
                             </div>
                             <div class="single-info pb-14">
                                 <label class="uppercase pull-left m-0">DOB</label>
@@ -116,20 +108,29 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="single-job-form">
+                        <div class="single-job-form" style="display: none">
                             <div class="single-info mb-14">
                                 <label class="uppercase pull-left m-0">Subscription</label>
-                                <div class="desc">
+                                <span style="float: right;width: 79%;">
                                     {{ form_widget(form.bo_subscriptionletter) }}
-                                </div>
+                                </span>
                             </div>
                         </div>
-
                     </div>
-                    <input type="submit" value="Save"/>
-                    {{ form_end(form) }}
+
                 </div>
+                <input type="submit" value="Save" id="formsubmit"/>
+              {{ form_end(form) }}
             </div>
         </div>
     </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        {% if sent != 0 %}
+        $('#snackbar').html("Profile details Successfully edited");
+        showtoast();
+        {% endif %}
+    </script>
 {% endblock %}

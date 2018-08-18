@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-{% block title %}Skills Farm{% endblock %}
+{% block title %}Skillsfarm{% endblock %}
 {% block body %}
     <div class="breadcrumb-banner-area pt-94 pb-85 bg-3">
         <div class="container">
@@ -41,8 +41,8 @@
                                 <i class="zmdi zmdi-email"></i>
                             </div>
                             <div class="single-contact-text">
-                                <span class="block">info@example.com</span>
-                                <span class="block">info@example.com</span>
+                                <span class="block">support@skillsfarm.in</span>
+                                <span class="block">skillsfarmindia@gmail.com</span>
                             </div>
                         </div>
                         <div class="single-contact-info">
@@ -50,9 +50,9 @@
                                 <i class="zmdi zmdi-phone"></i>
                             </div>
                             <div class="single-contact-text">
-                                <span class="block">+012 345 678 102
+                                <span class="block">+91 9945594954
                                 </span>
-                                <span class="block">+013 345 628 112
+                                <span class="block">+91 9945594954
                                 </span>
                             </div>
                         </div>
@@ -61,8 +61,8 @@
                                 <i class="zmdi zmdi-pin"></i>
                             </div>
                             <div class="single-contact-text">
-                                <span class="block">House 09, Road 32, Mohammadpur,</span>
-                                <span class="block">Dhaka-1200, UK</span>
+                                <span class="block">Plankala Kripa, Jp Nagar 8th Phase</span>
+                                <span class="block">Karnataka, Bangalore - 560083</span>
                             </div>
                         </div>
                     </div>
@@ -113,26 +113,14 @@
             </div>
         </div>
     </div>
-    <!--End of Google Map-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSLSFRa0DyBj9VGzT7GM6SFbSMcG0YNBM"></script>
     <script>
-        // When the window has finished loading create our google map below
         google.maps.event.addDomListener(window, 'load', init);
-
         function init() {
-            // Basic options for a simple Google Map
-            // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
             var mapOptions = {
-                // How zoomed in you want the map to start at (always required)
                 zoom: 11,
 
-                scrollwheel: true,
-
-                // The latitude and longitude to center the map (always required)
-                center: new google.maps.LatLng(23.761226, 90.420766), // New York
-
-                // How you would like to style the map.
-                // This is where you would paste any style found on Snazzy Maps.
+                scrollwheel: false,
+                center: new google.maps.LatLng(12.865982, 77.580997),
                 styles: [
                     {
                         "featureType": "administrative",
@@ -218,21 +206,23 @@
                 ]
             };
 
-            // Get the HTML DOM element that will contain your map
-            // We are using a div with id="map" seen below in the <body>
             var mapElement = document.getElementById('googleMap');
-
-            // Create the Google Map using our element and options defined above
             var map = new google.maps.Map(mapElement, mapOptions);
-
-            // Let's also add a marker while we're at it
             var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(23.761226, 90.420766),
+                position: new google.maps.LatLng(12.865982, 77.580997),
                 map: map,
-                title: 'Snazzy!'
+                title: 'Skillsfarm office'
             });
         }
     </script>
     {% include "login.html.twig" %}
     {% include "register.html.twig" %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        {% if sent != 0 %}
+        $('#snackbar').html("Your message has been successfully sent to skillsfarm team.");
+        showtoast();
+        {% endif %}
+    </script>
 {% endblock %}

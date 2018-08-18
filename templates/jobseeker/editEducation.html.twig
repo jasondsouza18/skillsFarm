@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-{% block title %}Skills Farm{% endblock %}
+{% block title %}Skillsfarm{% endblock %}
 {% import _self as macroForm %}
 {% block body %}
     {% macro education(education, i, inwords) %}
@@ -21,11 +21,11 @@
             {% set locationdetails_data = education.masterEducation.vclocationdetails %}
             {% set idedu = education.masterEducation.id %}
         {% endif %}
-        <form method="post" action="{{path('_jobseeker_profile_edit_education')}}">
+        <form method="post" action="{{ path('_jobseeker_profile_edit_education') }}">
             <div class="single-job-form">
                 <h4>
                     <b>
-                        <u class="uppercase">{{inwords}}
+                        <u class="uppercase">{{ inwords }}
                         </u>
                     </b>
                 </h4>
@@ -34,33 +34,37 @@
                 <div class="single-info pb-14">
                     <label for="s_name" class="uppercase pull-left m-0">Name</label>
                     <div class="form-box fix">
-                        <input type="text" id="name_{{i}}" name="name" placeholder="Please enter your school name" value="{{name_data}}">
+                        <input type="text" id="name_{{ i }}" name="name" placeholder="Please enter your school name"
+                               value="{{ name_data }}" required>
                     </div>
                 </div>
                 <div class="single-info pb-14">
                     <label for="s_name" class="uppercase pull-left m-0">Location</label>
                     <div class="form-box fix">
-                        <input type="text" id="location_{{i}}" name="location" placeholder="Location" value="{{locationdetails_data}}">
-                        <input type="hidden" id="latitude_{{i}}" name="latitude" value="{{latitude_data}}">
-                        <input type="hidden" id="longitude_{{i}}" name="longitude" value="{{longitude_data}}">
+                        <input type="text" id="location_{{ i }}" name="location" placeholder="Location"
+                               value="{{ locationdetails_data }}"  required>
+                        <input type="hidden" id="latitude_{{ i }}" name="latitude" value="{{ latitude_data }}">
+                        <input type="hidden" id="longitude_{{ i }}" name="longitude" value="{{ longitude_data }}">
                     </div>
                 </div>
                 <div class="single-info pb-14">
                     <label for="m_name" class="uppercase pull-left m-0">Percentage</label>
                     <div class="form-box fix">
-                        <input type="text" id="percentage_{{i}}" name="percentage" placeholder="Enter your percentage" value="{{percentage_data}}">
+                        <input type="text" id="percentage_{{ i }}" name="percentage" placeholder="Enter your percentage"
+                               value="{{ percentage_data }}"  required>
                     </div>
                 </div>
                 <div class="single-info  pb-14">
                     <label for="l_name" class="uppercase pull-left m-0">Specialisations</label>
                     <div class="form-box fix">
-                        <input type="text" id="coursename_{{i}}" name="coursename" placeholder="Specialisations(If any)" value="{{coursename_data}}">
+                        <input type="text" id="coursename_{{ i }}" name="coursename"
+                               placeholder="Specialisations(If any)" value="{{ coursename_data }}">
                     </div>
                 </div>
                 <div class="single-info pb-14">
-                    <label for="l_name" class="uppercase m-0">gender</label>
-                    <div class="form-box">
-                        <select name="passoutyear" id="passoutyear_{{i}}" style="width: 50%;">
+                    <label for="l_name" class="uppercase m-0">Passout Year</label>
+                    <span style="float: right;width: 79%;">
+                        <select name="passoutyear" id="passoutyear_{{ i }}" style="width: 50%;">
                             <option disabled="disabled" selected="selected" value="default">
                                 -- select an option --</option>
                             <option value="1990">1990</option>
@@ -93,17 +97,18 @@
                             <option value="2017">2017</option>
                             <option value="2018">2018</option>
                         </select>
-                    </div>
+                          </span>
                 </div>
             </div>
-            <input type="hidden" id="type" name="type" value="{{i}}">
+            <input type="hidden" id="type" name="type" value="{{ i }}">
             <input type="hidden" value="{{ idedu }}" id="id" name="id">
             <input type="submit" value="Save">
         </form>
         <script>
-            document.getElementById('passoutyear_{{i}}').value = '{{passedoutyear_data}}';
+            document.getElementById('passoutyear_{{ i }}').value = '{{ passedoutyear_data }}';
+
             function initAutocomplete() {
-                var input = document.getElementById('name_{{i}}');
+                var input = document.getElementById('name_{{ i }}');
                 var searchBox = new google.maps.places.SearchBox(input);
                 searchBox.addListener('places_changed', function () {
                     var places = searchBox.getPlaces();
@@ -122,18 +127,19 @@
                             console.log("Returned place contains no geometry");
                             return;
                         } else {
-                            var locationdetails = document.getElementById("name_{{i}}").value;
+                            var locationdetails = document.getElementById("name_{{ i }}").value;
                             locationdetails = locationdetails.split(",");
-                            $('#name_{{i}}').val(locationdetails[0]);
+                            $('#name_{{ i }}').val(locationdetails[0]);
                             locationdetails.shift();
                             locationdetails = locationdetails.join();
-                            document.getElementById("latitude_{{i}}").value = latlong.lat();
-                            document.getElementById("longitude_{{i}}").value = latlong.lng();
-                            document.getElementById("location_{{i}}").value = locationdetails.trim();
+                            document.getElementById("latitude_{{ i }}").value = latlong.lat();
+                            document.getElementById("longitude_{{ i }}").value = latlong.lng();
+                            document.getElementById("location_{{ i }}").value = locationdetails.trim();
                         }
                     });
                 });
             }
+
             initAutocomplete();
         </script>
     {% endmacro %}
@@ -203,4 +209,12 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        {% if sent != 0 %}
+        $('#snackbar').html("Education Details Successfully edited");
+        showtoast();
+        {% endif %}
+    </script>
 {% endblock %}

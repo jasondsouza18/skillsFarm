@@ -14,11 +14,18 @@ class ContactUsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('vc_name', TextType::class)
-        ->add('vc_email',EmailType::class)
-        ->add('vc_subject',TextType::class)
-        ->add('vc_message',TextAreaType::class)
-        ;
+            ->add('vc_name', TextType::class, array(
+                'required'   => true,
+            ))
+            ->add('vc_email', EmailType::class, array(
+                'required'   => true,
+            ))
+            ->add('vc_subject', TextType::class, array(
+                'required'   => true,
+            ))
+            ->add('vc_message', TextAreaType::class, array(
+                'required'   => true,
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

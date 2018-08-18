@@ -33,6 +33,7 @@ class HomeController extends Controller
     {
         $form = $this->createForm(ContactUsType::class);
         $form->handleRequest($request);
+        $sent = 0;
         if ($form->isSubmitted() && $form->isValid()) {
             // data is an array with "name", "email", and "message" keys
             $data = $form->getData();
@@ -43,10 +44,11 @@ class HomeController extends Controller
                 ->setBody("Name - " . $data['vc_name'] . PHP_EOL . "Email - " . $data['vc_email'] . PHP_EOL
                     . "Subject -" . $data['vc_subject'] . PHP_EOL . " Message - " . PHP_EOL . $data['vc_message'] . PHP_EOL
                 );
-            $mailer->send($message);
+            $sent = $mailer->send($message);
         }
         return $this->render('home/contactus.html.twig', array(
             'form' => $form->createView(),
+            'sent' => $sent
         ));
     }
 
@@ -71,6 +73,16 @@ class HomeController extends Controller
             $fileName = $file->getClientOriginalName();
             $file->move($uploadsDirectory, $fileName);
             $request = $request->request->all();
+            if ($request['selectcategory'] == 1)
+                $category = "School Teacher";
+            else if ($request['selectcategory'] == 2)
+                $category = "College Teacher";
+            else if ($request['selectcategory'] == 3)
+                $category = "Software Engineer";
+            else if ($request['selectcategory'] == 4)
+                $category = "Counseling";
+            else if ($request['selectcategory'] == 5)
+                $category = "Developer";
             $message = " SkillsFarm Update" . PHP_EOL . "Name = " . $request['name'] . PHP_EOL .
                 "Email = " . $request['Email'] . PHP_EOL .
                 "Phone number = " . $request['number'] . PHP_EOL .
@@ -78,14 +90,15 @@ class HomeController extends Controller
                 "place = " . $request['Place'] . PHP_EOL .
                 "website = " . $request['website'] . PHP_EOL .
                 "cover letter  = " . $request['cover'] . PHP_EOL .
-                "Resume name = " . $fileName;
+                "Resume name = " . $fileName.PHP_EOL.
+                "Category Selected = ".$category.PHP_EOL;
             $messagetosend = (new \Swift_Message('Skills Farm'))
                 ->setFrom('skillsfarmindia@gmail.com')
                 ->setTo('jasondsouza717@gmail.com')
                 ->setCc('josephjeffry2@gmail.com')
                 ->setBody($message)
                 ->attach(\Swift_Attachment::fromPath($uploadsDirectory . $fileName));
-            $sent= $mailer->send($messagetosend);
+            $sent = $mailer->send($messagetosend);
         }
         return $this->render('home/generalform.html.twig', array(
             'sent' => $sent
