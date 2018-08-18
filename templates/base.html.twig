@@ -28,8 +28,6 @@
             {% block body %}{% endblock %}
             {% include "footer.html.twig" %}
         </div>
-        <button onclick="showNotice()" style="display: none">Show Snackbar</button>
-        <div id="snackbar"></div>
         <script type="text/javascript">
             function initMap(event) {
                 if (event.keyCode == 13) {
@@ -73,16 +71,6 @@
         <script src="/js/jquery.ajaxchimp.min.js"></script>
         <script src="/js/waypoints.min.js"></script>
         <script src="/js/main.js"></script>
-
-        <script>
-            function showNotice() {
-                var x = document.getElementById("snackbar");
-                x.className = "show";
-                setTimeout(function () {
-                    x.className = x.className.replace("show", "");
-                }, 3000);
-            }
-        </script>
         <!--Start of Zendesk Chat Script-->
         <script type="text/javascript">
             window.$zopim || (function (d, s) {

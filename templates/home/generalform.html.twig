@@ -1,0 +1,106 @@
+{% extends "base.html.twig" %}
+{% block title %}Skillsfarm{% endblock %}
+{% block body %}
+
+    <!-- End of Header Area -->
+    <!--Breadcrumb Banner Area Start-->
+    <div class="breadcrumb-banner-area pt-94 pb-85 bg-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-text">
+                        <h2 class="text-center">A Quick Form</h2>
+                        <div class="breadcrumb-bar">
+                            <ul class="breadcrumb text-center m-0">
+                                <li><a href="/">Home</a></li>
+                                <li>A quick form</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Breadcrumb Banner Area-->
+    <!--Start of Single Job Post Area-->
+    <div class="single-job-post-area pt-130 pt-sm-60 pb-70 pb-sm-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mr-auto ml-auto">
+                    <form action="{{ path('_general') }}" method="post" enctype="multipart/form-data">
+                        <div class="single-job-content">
+                            <div class="title"><span>Pen down your details</span></div>
+                            <div class="single-job-form">
+                                <div class="single-info mb-14">
+                                    <label for="company-name" class="uppercase pull-left m-0">Name</label>
+                                    <div class="form-box fix">
+                                        <input type="text" id="name" name="name"
+                                               placeholder="Please enter your full name">
+                                    </div>
+                                </div>
+                                <div class="single-info mb-14">
+                                    <label for="Linkedin" class="uppercase pull-left m-0">Contact number</label>
+                                    <div class="form-box fix">
+                                        <input type="text" id="number" name="number" placeholder="Starting from +91">
+                                    </div>
+                                </div>
+                                <div class="single-info mb-14">
+                                    <label for="Linkedin" class="uppercase pull-left m-0">Email</label>
+                                    <div class="form-box fix">
+                                        <input type="text" id="Email" name="Email"
+                                               placeholder="Please enter your Email">
+                                    </div>
+                                </div>
+                                <div class="single-info mb-14">
+                                    <label for="company-website" class="uppercase pull-left m-0">Stream</label>
+                                    <div class="form-box fix">
+                                        <input type="text" id="Stream" name="Stream"
+                                               placeholder="Please enter your stream">
+                                    </div>
+                                </div>
+                                <div class="single-info mb-14 fix">
+                                    <label class="uppercase pull-left m-0">Place</label>
+                                    <div class="desc fix">
+                                        <input type="text" id="Place" name="Place"
+                                               placeholder="Please enter your place">
+                                    </div>
+                                </div>
+                                <div class="single-info mb-14 fix">
+                                    <label class="uppercase pull-left m-0">Resume</label>
+                                    <div class="uploader fix pull-left fileupload">
+                                        <input type="file" id="fileupload" name="fileupload">
+                                        <span class="filename" name="filename">Upload your resume</span>
+                                        <span class="action"><i class="zmdi zmdi-folder"></i>Browse</span>
+                                    </div>
+                                    <span class="ml-20 pull-left max-size">Maximum file size: 5MB</span>
+                                </div>
+                                <div class="single-info mb-14">
+                                    <label for="website" class="uppercase pull-left m-0">website</label>
+                                    <div class="form-box fix">
+                                        <input type="text" id="website" name="website" placeholder="http://">
+                                    </div>
+                                </div>
+
+                                <div class="single-info mb-14 fix">
+                                    <label class="uppercase pull-left m-0">Cover letter</label>
+                                    <div class="desc fix">
+                                        <textarea class="fix textarea" cols="30" rows="10"
+                                                  name="cover"
+                                                  placeholder="Anything you want to share on your work profile"></textarea>
+                                    </div>
+                                </div>
+                                <div class="ml-160 mt-38">
+                                    <a class="button button-large-box" onclick="javascript:document.getElementById('formsubmit').click()">Submit</a>
+                                </div>
+                                <input type="submit" id="formsubmit" style="display: none;">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "login.html.twig" %}
+    {% include "register.html.twig" %}
+{% endblock %}

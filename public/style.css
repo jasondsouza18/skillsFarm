@@ -913,7 +913,7 @@ p.panel-title {
     padding: 0;
 }
 .modal {
-  background: rgba(0, 0, 0, 0) url("images/bg/login.jpg") no-repeat scroll center center / cover ;
+  background: rgba(0, 0, 0, 0) url("/img/writing1.jpg") no-repeat scroll center center / cover ;
   z-index: 99999;
 }
 .modal-dialog {

@@ -117,13 +117,12 @@ class JobseekerController extends Controller
         $jobseekerresume = $this->getDoctrine()->getRepository(JobseekerResume::class)->findBy(['jobseeker' => $jobseeker->getId()]);
         if ($request->getMethod() == 'POST') {
             $projectRoot = $this->get('kernel')->getProjectDir();
-            $uploadsDirectory = $projectRoot . "/public/uploads/";
+            $uploadsDirectory = $projectRoot . "/public/uploads/jobseeker/Resumes/";
             $file = $request->files->get('cvfile');
             $fileName = $file->getClientOriginalName();
-            dump($file->move($uploadsDirectory, $fileName));
-            die;
+            $file->move($uploadsDirectory, $fileName);
             $request = $request->request->all();
-            $jobseekerresume = $this->getDoctrine()->getRepository(JobseekerResume::class)->updateJobseekerResume($request, $jobseeker);
+            $jobseekerresume = $this->getDoctrine()->getRepository(JobseekerResume::class)->updateJobseekerResume($request, $jobseeker,$fileName);
         }
         return $this->render('jobSeeker/index.html.twig', array(
             'resumes' => $jobseekerresume,

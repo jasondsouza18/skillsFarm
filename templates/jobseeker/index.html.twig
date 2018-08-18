@@ -23,141 +23,160 @@
             </div>
         </div>
     </div>
-</div>
-<div class="job-post-area ptb-130 ptb-sm-60">
-    <div class="container">
-        <div class="all-job-post">
-            <!-- Nav tabs -->
-            <div class="post-tab nav">
-                <a class="nav-link active" data-toggle="tab" href="#profile">PROFILE</a>
-                <a class="nav-link" data-toggle="tab" href="#cv_s">CVs</a>
-                <a class="nav-link" data-toggle="tab" href="#manage">MANAGE JOBS</a>
-                <a class="nav-link" data-toggle="tab" href="#contactus">CONTACT US</a>
-            </div>
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div class="tab-pane active" id="profile">
-                    <div class="single-job-post-area ptb-130 ptb-sm-60" style="padding-top: 67px;padding-bottom: 67px;">
+    </div>
+    <div class="job-post-area ptb-130 ptb-sm-60">
+        <div class="container">
+            <div class="all-job-post">
+                <!-- Nav tabs -->
+                <div class="post-tab nav">
+                    <a class="nav-link active" data-toggle="tab" href="#profile">PROFILE</a>
+                    <a class="nav-link" data-toggle="tab" href="#cv_s">CVs</a>
+                    <a class="nav-link" data-toggle="tab" href="#manage">MANAGE JOBS</a>
+                    <a class="nav-link" data-toggle="tab" href="#contactus">CONTACT US</a>
+                </div>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="profile">
+                        <div class="single-job-post-area ptb-130 ptb-sm-60"
+                             style="padding-top: 67px;padding-bottom: 67px;">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form action="#">
+                                            <div class="single-job-content">
+                                                <div class="area-title">
+                                                    <div class="single-job-post">
+                                                        <div class="img-icon">
+                                                            <img src="images/company-logo/1.png" alt="">
+                                                        </div>
+                                                        <div class="address">
+                                                            <h6>
+                                                                {{ app.user.vcfirstname |capitalize }}&nbsp;
+                                                                {{ app.user.vcsurname |capitalize }}
+                                                            </h6>
+                                                            <p>Location :
+                                                                {{ app.user.vclocation }}</p>
+                                                            <p>
+                                                                <button value="Contact him"></button>
+                                                            </p>
+                                                            <p>Member Since :
+                                                                {{ app.user.createdat|date("Y") }}</p>
+                                                        </div>
+                                                        <div class="button-box">
+                                                            <a href="{{ path('_jobseeker_profile_edit') }}"
+                                                               class="button button-black">Edit</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="title">
+                                                    <span>Something about you</span></div>
+                                                <div class="single-job-form">
+                                                    <p>Describe yourself here....</p>
+                                                </div>
+                                                <div class="title">
+                                                    <span>You key Points</span></div>
+                                                <div class="single-job-form">
+                                                    <div class="single-info mb-14">
+                                                        {% for key in app.user.jobseekerKeyPoints %}
+                                                            <span class="mark-icon block pl-27">{{ key.vckeyname }}</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <div class="title">
+                                                    <span>Education Details</span></div>
+                                                {% for key in app.user.jobseekerEducation %}
+                                                    <div class="single-job-form">
+                                                        <h4>{{ key.mastereducation.getEducationInString }}</h4>
+                                                        <br>
+                                                        <p>Name -
+                                                            {{ key.mastereducation.vcName }}
+                                                        </p>
+                                                        <p>Location -{{ key.mastereducation.vclocationdetails }}
+                                                        </p>
+                                                        <p>Percentage -
+                                                            {{ key.itpercentage }}
+                                                        </p>
+                                                    </div>
+                                                {% endfor %}
+                                                <div class="title">
+                                                    <span>Something good about me</span></div>
+                                                <div class="single-job-form">
+                                                    <p>This would be helpfull in finding a suitable job</p>
+                                                </div>
+                                                <div class="buttonback">
+                                                    <a href="#" class="button button-large-box lg-btn mr-20">back</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="cv_s">
+                        <div style="padding-left: 75%;padding-bottom: 4%;">
+                            <div class="buttonback">
+                                <a href="#" class="button button-large-box lg-btn mr-20" data-toggle="modal"
+                                   data-target="#myModal0">Add CV</a>
+                                {{ macroForm.editResumeMacro(0,'','','') }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% for resume in app.user.jobseekerResumes %}
+                                <div class="col-md-6">
+                                    <div class="single-job-post">
+                                        <div class="img-icon">
+                                            <img src="images/company-logo/1.png" alt="">
+                                        </div>
+                                        <div class="address">
+                                            <h6>{{ resume.vccvname }}</h6>
+                                            <p>{{ resume.getstatusinString }}</p>
+                                            <p>Date uploaded:
+                                                {{ resume.createdat|date("F jS Y") }}</p>
+                                            <p>File Name:
+                                                {{ resume.vccvpath }}</p>
+                                        </div>
+
+                                        <div class="">
+                                            <a href="#" class="button button-black"
+                                               style="width: 120.56px;">Download</a>&nbsp;&nbsp;&nbsp;
+                                            <a href="" class="button button-black" style="width: 120.56px;">DELETE</a>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <a href="" class="button button-black" data-toggle="modal"
+                                               style="width: 120.56px;"
+                                               data-target="#myModal{{ resume.id }}">Edit</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ macroForm.editResumeMacro(resume.id,resume.vccvname,resume.vccvpath,resume.vccoverletter) }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="contactus">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <form action="#">
-                                        <div class="single-job-content">
-                                            <div class="area-title">
-                                                <div class="single-job-post">
-                                                    <div class="img-icon">
-                                                        <img src="images/company-logo/1.png" alt="">
-                                                    </div>
-                                                    <div class="address">
-                                                        <h6>
-                                                            {{ app.user.vcfirstname |capitalize }}&nbsp;
-                                                            {{ app.user.vcsurname |capitalize }}
-                                                        </h6>
-                                                        <p>Location :
-                                                            {{ app.user.vclocation }}</p>
-                                                        <p>
-                                                            <button value="Contact him"></button>
-                                                        </p>
-                                                        <p>Member Since :
-                                                            {{ app.user.createdat|date("Y") }}</p>
-                                                    </div>
-                                                    <div class="button-box">
-                                                        <a href="{{ path('_jobseeker_profile_edit') }}" class="button button-black">Edit</a>
-                                                    </div>
+                                    <div class="single-job-content">
+                                        <div class="area-title">
+                                            <div class="single-job-post">
+                                                <div class="img-icon">
+                                                    <img src="images/company-logo/1.png" alt="">
                                                 </div>
-                                            </div>
-                                            <div class="title">
-                                                <span>Something about you</span></div>
-                                            <div class="single-job-form">
-                                                <p>Describe yourself here....</p>
-                                            </div>
-                                            <div class="title">
-                                                <span>You key Points</span></div>
-                                            <div class="single-job-form">
-                                                <div class="single-info mb-14">
-                                                    {% for key in app.user.jobseekerKeyPoints %}
-                                                        <span class="mark-icon block pl-27">{{ key.vckeyname }}</span>
-                                                    {% endfor %}
+                                                <div class="address">
+                                                    <h6>
+                                                        Upload your resume and leave the rest to us to Search a job for
+                                                        you ..
+                                                    </h6>
+                                                    {# Write a form to upload a CV #}
+                                                    <p></p>
+                                                    <p></p>
+                                                    <p></p>
                                                 </div>
-                                            </div>
-                                            <div class="title">
-                                                <span>Education Details</span></div>
-                                            {% for key in app.user.jobseekerEducation %}
-                                                <div class="single-job-form">
-                                                    <h4>{{ key.mastereducation.getEducationInString }}</h4>
-                                                    <br>
-                                                    <p>Name -
-                                                        {{ key.mastereducation.vcName}}
-                                                    </p>
-                                                    <p>Location -{{ key.mastereducation.vclocationdetails}}
-                                                    </p>
-                                                    <p>Percentage -
-                                                        {{ key.itpercentage}}
-                                                    </p>
+                                                <div class="button-box">
+                                                    <a href="{{ path('_contactus') }}" class="button button-black">Leave
+                                                        a message</a>
                                                 </div>
-                                            {% endfor %}
-                                            <div class="title">
-                                                <span>Something good about me</span></div>
-                                            <div class="single-job-form">
-                                                <p>This would be helpfull in finding a suitable job</p>
-                                            </div>
-                                            <div class="buttonback">
-                                                <a href="#" class="button button-large-box lg-btn mr-20">back</a>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane" id="cv_s">
-                    <div class="row">
-                        {% for resume in app.user.jobseekerResumes %}
-                            <div class="col-md-6">
-                                <div class="single-job-post">
-                                    <div class="img-icon">
-                                        <img src="images/company-logo/1.png" alt="">
-                                    </div>
-                                    <div class="address">
-                                        <h6>{{resume.vccvname}}</h6>
-                                        <p>{{resume.getstatusinString}}</p>
-                                        <p>Date uploaded:
-                                            {{ resume.createdat|date("F jS Y")  }}</p>
-                                        <p>Path:
-                                            {{ resume.vccvpath}}</p>
-                                    </div>
-                                    <div class="button-box">
-                                        <a href="#" class="button button-black">Download</a>&nbsp;&nbsp;&nbsp;
-                                        <a href="" class="button button-black" data-toggle="modal" data-target="#myModal{{resume.id}}">Edit</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {{ macroForm.editResumeMacro(resume.id,resume.vccvname,resume.vccvpath,resume.vccoverletter)}}
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="tab-pane" id="contactus">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="single-job-content">
-                                    <div class="area-title">
-                                        <div class="single-job-post">
-                                            <div class="img-icon">
-                                                <img src="images/company-logo/1.png" alt="">
-                                            </div>
-                                            <div class="address">
-                                                <h6>
-                                                    Upload your resume and leave the rest to us to Search a job for you ..
-                                                </h6>
-                                                {# Write a form to upload a CV #}
-                                                <p></p>
-                                                <p></p>
-                                                <p></p>
-                                            </div>
-                                            <div class="button-box">
-                                                <a href="{{path('_contactus')}}" class="button button-black">Leave a message</a>
                                             </div>
                                         </div>
                                     </div>
@@ -169,39 +188,42 @@
             </div>
         </div>
     </div>
-</div>
-{% macro editResumeMacro(id, cvname, existingCV, coverletter) %}
-    <div class="modal fade" id="myModal{{id}}" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+    {% macro editResumeMacro(id, cvname, existingCV, coverletter) %}
+        <div class="modal fade" id="myModal{{ id }}" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
 
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">
                             <i class="zmdi zmdi-close"></i></span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-pop-up-content ptb-60 pl-60 pr-60">
-                        <form action="{{ path('_jobseeker_profile_resume') }}" method="post" enctype="multipart/form-data">
-                            <div class="form-box">
-                                <input type="hidden" name="cvid" value="{{id}}">
-                                <input type="text" name="cvname" placeholder="CV Name" class="mb-14" value="{{cvname}}">
-                                <input type="file" name="cvfile" class="mb-14">
-                                <input type="text" name="existingCV" placeholder="existing CV Name" readonly="readonly" value="{{existingCV}}">
-                                <input type="textarea" name="coverletter" placeholder="Enter cover letter" value="{{coverletter}}">
-                            </div>
-                            <br>
-                            <br>
-                            <div class="text-center">
-                                <button type="submit" class="text-uppercase">Update</button>
-                            </div>
-                        </form>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-pop-up-content ptb-60 pl-60 pr-60">
+                            <form action="{{ path('_jobseeker_profile_resume') }}" method="post"
+                                  enctype="multipart/form-data">
+                                <div class="form-box">
+                                    <input type="hidden" name="cvid" value="{{ id }}">
+                                    <input type="text" name="cvname" placeholder="CV Name" class="mb-14"
+                                           value="{{ cvname }}">
+                                    <input type="file" name="cvfile" class="mb-14">
+                                    <input type="text" name="existingCV" placeholder="existing CV Name"
+                                           readonly="readonly" value="{{ existingCV }}">
+                                    <input type="textarea" name="coverletter" placeholder="Enter cover letter"
+                                           value="{{ coverletter }}">
+                                </div>
+                                <br>
+                                <br>
+                                <div class="text-center">
+                                    <button type="submit" class="text-uppercase">Update</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-{% endmacro %}
-<!-- End of Job Post Area -->
+    {% endmacro %}
+    <!-- End of Job Post Area -->
 {% endblock %}
 {% block javascripts %}{% endblock %}

@@ -58,4 +58,35 @@ class HomeController extends Controller
     {
         return $this->render('home/aboutus.html.twig');
     }
+
+    /**
+     * @Route("/general", name="_general")
+     */
+    public function general(Request $request,\Swift_Mailer $mailer)
+    {
+        if ($request->getMethod() == 'POST') {
+            $projectRoot = $this->get('kernel')->getProjectDir();
+            $uploadsDirectory = $projectRoot . "/public/uploads/general/Resumes/";
+            $file = $request->files->get('fileupload');
+            $fileName = $file->getClientOriginalName();
+            $file->move($uploadsDirectory, $fileName);
+            $request = $request->request->all();
+            $message = " SkillsFarm Update".PHP_EOL."Name = ".$request['name'].PHP_EOL.
+                        "Email = ".$request['Email'].PHP_EOL.
+                        "Phone number = " .$request['number'].PHP_EOL.
+                        "stream = ".$request['Stream'].PHP_EOL.
+                        "place = ".$request['Place'].PHP_EOL.
+                        "website = ".$request['website'].PHP_EOL.
+                        "cover letter  = ".$request['cover'].PHP_EOL.
+                        "Resume name = ".$fileName;
+            $messagetosend = (new \Swift_Message('Skills Farm'))
+                ->setFrom('skillsfarmindia@gmail.com')
+                ->setTo('jasondsouza717@gmail.com')
+                ->setCc('josephjeffry2@gmail.com')
+                ->setBody($message)
+                ->attach(\Swift_Attachment::fromPath($uploadsDirectory.$fileName));
+            echo $mailer->send($messagetosend);
+        }
+        return $this->render('home/generalform.html.twig');
+    }
 }
