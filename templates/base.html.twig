@@ -23,11 +23,20 @@
     </head>
     <body>
         <!--[if lt IE 8]> <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please upgrade your browser</a> to improve your experience.</p> <![endif]-->
+        <button onclick="myFunction()" style="display: none">Show Snackbar</button>
+        <div id="snackbar">Some text some message..</div>
         <div class="as-mainwrapper">
             {% include "header.html.twig" %}
             {% block body %}{% endblock %}
             {% include "footer.html.twig" %}
         </div>
+        <script>
+            function showtoast() {
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            }
+        </script>
         <script type="text/javascript">
             function initMap(event) {
                 if (event.keyCode == 13) {

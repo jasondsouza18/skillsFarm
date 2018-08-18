@@ -47,7 +47,7 @@
                                 <div class="single-info mb-14">
                                     <label for="Linkedin" class="uppercase pull-left m-0">Email</label>
                                     <div class="form-box fix">
-                                        <input type="text" id="Email" name="Email"
+                                        <input type="email" id="Email" name="Email"
                                                placeholder="Please enter your Email">
                                     </div>
                                 </div>
@@ -90,7 +90,8 @@
                                     </div>
                                 </div>
                                 <div class="ml-160 mt-38">
-                                    <a class="button button-large-box" onclick="javascript:document.getElementById('formsubmit').click()">Submit</a>
+                                    <a class="button button-large-box"
+                                       onclick="javascript:document.getElementById('formsubmit').click()">Submit</a>
                                 </div>
                                 <input type="submit" id="formsubmit" style="display: none;">
                             </div>
@@ -103,4 +104,12 @@
 
     {% include "login.html.twig" %}
     {% include "register.html.twig" %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        {% if sent != 0 %}
+        $('#snackbar').html("Your message is successfully sent to skillsfarm team.");
+        showtoast();
+        {% endif %}
+    </script>
 {% endblock %}
