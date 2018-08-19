@@ -28,6 +28,11 @@ security:
                 path: _jobseeker_logout
                 target: _home
                 invalidate_session: true
+
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
                    
     access_control:  
         - { path: ^/jobseeker/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

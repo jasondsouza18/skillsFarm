@@ -31,24 +31,32 @@ class JobseekerController extends Controller
         if ($jobseeker != null)
             return $this->render('index.html.twig');
         if ($request->getMethod() == "POST") {
+
             $jobseeker = new Jobseeker();
             $password = $request->request->get('pass');
             $firstname = $request->request->get('firstname');
             $surname = $request->request->get('lastname');
             $email = $request->request->get('email');
             $login = $request->request->get('login');
-            $password = $passwordEncoder->encodePassword($jobseeker, $password);
-            $entityManager = $this->getDoctrine()->getManager();
-            $jobseeker->setVcPassword($password);
-            $jobseeker->setVcLogin($login);
-            $jobseeker->setVcFirstname($firstname);
-            $jobseeker->setVcSurname($surname);
-            $jobseeker->setVcEmail($email);
-            $jobseeker->setItJobseekerstatus(1);
-            $jobseeker->setBoSubscriptionletter(1);
-            $entityManager->persist($jobseeker);
-            $entityManager->flush($jobseeker);
-            return $this->redirectToRoute('_jobseeker_home');
+            $res = $this->getDoctrine()->getRepository(Jobseeker::class)->validateLoginandEmail($login, $email);
+            if ($res != "true") {
+                $sent = $res;
+                return $this->redirectToRoute('_home', array('sent' => $sent));
+            } else {
+                $password = $passwordEncoder->encodePassword($jobseeker, $password);
+                $entityManager = $this->getDoctrine()->getManager();
+                $jobseeker->setVcPassword($password);
+                $jobseeker->setVcLogin($login);
+                $jobseeker->setVcFirstname($firstname);
+                $jobseeker->setVcSurname($surname);
+                $jobseeker->setVcEmail($email);
+                $jobseeker->setItJobseekerstatus(1);
+                $jobseeker->setBoSubscriptionletter(1);
+                $entityManager->persist($jobseeker);
+                $entityManager->flush($jobseeker);
+                $sent = "success";
+                return $this->redirectToRoute('_home', array('sent' => $sent));
+            }
         }
     }
 
@@ -56,7 +64,7 @@ class JobseekerController extends Controller
     /**
      * @Route("/home", name="_jobseeker_home")
      */
-    public function index()
+    public function index(Request $request)
     {
         $jobseeker = $this->getUser();
         return $this->render('jobseeker/index.html.twig', [
@@ -77,7 +85,7 @@ class JobseekerController extends Controller
         if ($request->getMethod() == 'POST') {
             $entityManager->persist($jobseeker);
             $entityManager->flush();
-            $sent =1;
+            $sent = 1;
         }
         return $this->render('jobseeker/editProfile.html.twig', [
             'form' => $editjobseeker->createView(),

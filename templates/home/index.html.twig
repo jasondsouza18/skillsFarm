@@ -609,3 +609,35 @@
     {% include "login.html.twig" %}
     {% include "register.html.twig" %}
 {% endblock %}
+{% block javascripts %}
+    <script>
+        {% if sent != '0' %}
+        {% if sent == "Email" %}
+        $('#snackbar').html("Email address already taken! Kindly change your Email address");
+        showtoast();
+        {% elseif sent == "Login" %}
+        $('#snackbar').html("Login Username already taken! Kindly change your Username");
+        showtoast();
+        {% elseif sent == "success" %}
+        $('#snackbar').html("Successfully registered. Login to skillsfarm");
+        showtoast();
+        {% elseif sent == "inactive" %}
+        $('#snackbar').html("Could not find you. Caould you please skillsfarm Team");
+        showtoast();
+        {% elseif sent == "emailsent" %}
+        $('#snackbar').html("Email sent to your Inbox. Kindly change your password from the link available in inbox");
+        showtoast();
+        {% elseif sent == "passwordchanged" %}
+        $('#snackbar').html("Password Changes successfully. Kindly Login at skillsfarm");
+        showtoast();
+        {% elseif sent == "jobseekernotfound" %}
+        $('#snackbar').html("Your Email address and Username doesnt match. Kindly recheck.");
+        showtoast();
+        {% endif %}
+        {% endif %}
+        {% if error %}
+        $('#snackbar').html('{{ error.messageKey|trans(error.messageData, 'security') }}');
+        showtoast();
+        {% endif %}
+    </script>
+{% endblock %}

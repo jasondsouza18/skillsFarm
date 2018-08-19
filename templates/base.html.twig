@@ -1,107 +1,127 @@
 <html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>
-            {% block title %}{% endblock %}
-        </title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/nice-select.css">
-        <link rel="stylesheet" href="/css/core.css">
-        <link rel="stylesheet" href="/css/shortcode/shortcodes.css">
-        <link rel="stylesheet" href="/style.css">
-        <link rel="stylesheet" href="/css/plugins/color.css">
-        <link rel="stylesheet" href="/css/responsive.css">
-        <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
-        {% block stylesheets %}{% endblock %}
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB7iYeVpuQ0vMoW0JSzTgwhxY7C3QccZ7g"></script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/nice-select.css">
+    <link rel="stylesheet" href="/css/core.css">
+    <link rel="stylesheet" href="/css/shortcode/shortcodes.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/css/plugins/color.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
+    {% block stylesheets %}{% endblock %}
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB7iYeVpuQ0vMoW0JSzTgwhxY7C3QccZ7g"></script>
 
-    </head>
-    <body>
-        <!--[if lt IE 8]> <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please upgrade your browser</a> to improve your experience.</p> <![endif]-->
-        <button onclick="myFunction()" style="display: none">Show Snackbar</button>
-        <div id="snackbar">Some text some message..</div>
-        <div class="as-mainwrapper">
-            {% include "header.html.twig" %}
-            {% block body %}{% endblock %}
-            {% include "footer.html.twig" %}
-        </div>
-        <script>
-            function showtoast() {
-                var x = document.getElementById("snackbar");
-                x.className = "show";
-                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+</head>
+<body>
+<!--[if lt IE 8]> <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please upgrade your
+    browser</a> to improve your experience.</p> <![endif]-->
+<button onclick="myFunction()" style="display: none">Show Snackbar</button>
+<div id="snackbar">Some text some message..</div>
+<div class="as-mainwrapper">
+    {% include "header.html.twig" %}
+    {% block body %}{% endblock %}
+    {% include "footer.html.twig" %}
+</div>
+<script>
+    function showtoast() {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 3000);
+    }
+</script>
+<script type="text/javascript">
+    function initMap(event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+        var options = {
+            types: ["geocode"]
+        };
+        var input = document.getElementById('location');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+        autocomplete.addListener('place_changed', function () {
+            var place = autocomplete.getPlace();
+            var latitude = place.geometry.location.lat();
+            var longitude = place.geometry.location.lng();
+            document.getElementById("latitude").value = latitude;
+            document.getElementById("longitude").value = longitude;
+            var country = place.address_components;
+            if ((country[country.length - 1].types[0] == "country") && (country[country.length - 1].types[1] == "political")) {
+                document.getElementById("country").value = country[country.length - 1].long_name;
+            } else {
+                document.getElementById("country").value = country[country.length - 2].long_name;
             }
-        </script>
-        <script type="text/javascript">
-            function initMap(event) {
-                if (event.keyCode == 13) {
-                    event.preventDefault();
-                    return false;
-                }
-                var options = {
-                    types: ["geocode"]
-                };
-                var input = document.getElementById('location');
-                var autocomplete = new google.maps.places.Autocomplete(input, options);
-                autocomplete.addListener('place_changed', function () {
-                    var place = autocomplete.getPlace();
-                    var latitude = place.geometry.location.lat();
-                    var longitude = place.geometry.location.lng();
-                    document.getElementById("latitude").value = latitude;
-                    document.getElementById("longitude").value = longitude;
-                    var country = place.address_components;
-                    if ((country[country.length - 1].types[0] == "country") && (country[country.length - 1].types[1] == "political")) {
-                        document.getElementById("country").value = country[country.length - 1].long_name;
-                    } else {
-                        document.getElementById("country").value = country[country.length - 2].long_name;
-                    }
-                    if (!place.geometry) {
-                        window.alert("No details available for input: '" + place.name + "'");
-                        return;
-                    }
-                });
+            if (!place.geometry) {
+                window.alert("No details available for input: '" + place.name + "'");
+                return;
             }
-        </script>
-        <script src="/js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/popper.js"></script>
-        <script src="/js/owl.carousel.min.js"></script>
-        <script src="/js/jquery.nice-select.min.js"></script>
-        <script src="/lib/nivo-slider/js/jquery.nivo.slider.js"></script>
-        <script src="/lib/nivo-slider/home.js"></script>
-        <script src="/js/plugins.js"></script>
-        <script src="/js/jquery.mb.YTPlayer.js"></script>
-        <script src="/js/ajax-mail.js"></script>
-        <script src="/js/jquery.ajaxchimp.min.js"></script>
-        <script src="/js/waypoints.min.js"></script>
-        <script src="/js/main.js"></script>
-        <!--Start of Zendesk Chat Script-->
-        <script type="text/javascript">
-            window.$zopim || (function (d, s) {
-                var z = $zopim = function (c) {
-                        z._.push(c)
-                    },
-                    $ = z.s = d.createElement(s),
-                    e = d.getElementsByTagName(s)[0];
-                z.set = function (o) {
-                    z.set._.push(o)
-                };
-                z._ = [];
-                z.set._ = [];
-                $.async = !0;
-                $.setAttribute("charset", "utf-8");
-                $.src = "https://v2.zopim.com/?5vmL5s1MbKkZp3B35GDWk4cEP7fr20cD";
-                z.t = + new Date;
-                $.type = "text/javascript";
-                e.parentNode.insertBefore($, e)
-            })(document, "script");
-        </script>
-        <!--End of Zendesk Chat Script-->
-        {% block javascripts %}{% endblock %}
-    </body>
+        });
+    }
+</script>
+<script src="/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/popper.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
+<script src="/lib/nivo-slider/js/jquery.nivo.slider.js"></script>
+<script src="/lib/nivo-slider/home.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/jquery.mb.YTPlayer.js"></script>
+<script src="/js/ajax-mail.js"></script>
+<script src="/js/jquery.ajaxchimp.min.js"></script>
+<script src="/js/waypoints.min.js"></script>
+<script src="/js/main.js"></script>
+<!--Start of Zendesk Chat Script-->
+<script type="text/javascript">
+    window.$zopim || (function (d, s) {
+        var z = $zopim = function (c) {
+                z._.push(c)
+            },
+            $ = z.s = d.createElement(s),
+            e = d.getElementsByTagName(s)[0];
+        z.set = function (o) {
+            z.set._.push(o)
+        };
+        z._ = [];
+        z.set._ = [];
+        $.async = !0;
+        $.setAttribute("charset", "utf-8");
+        $.src = "https://v2.zopim.com/?5vmL5s1MbKkZp3B35GDWk4cEP7fr20cD";
+        z.t = +new Date;
+        $.type = "text/javascript";
+        e.parentNode.insertBefore($, e)
+    })(document, "script");
+</script>
+<script>
+    function submitnotify() {
+        $('#notify-span').hide();
+        $('#notify-loader').show();
+        var email = document.getElementById('email').value;
+        $.post("{{ path('_notify') }}", {email: email, string: "a@3212's[]asdo[{&*^&*"}, function (data) {
+            if (data == '1') {
+                $('#snackbar').html("Your message has been successfully sent to skillsfarm team.");
+                showtoast();
+            }
+
+            $('#notify-span').show();
+            $('#notify-loader').hide();
+        });
+    }
+</script>
+<!--End of Zendesk Chat Script-->
+{% block javascripts %}{% endblock %}
+</body>
 </html>

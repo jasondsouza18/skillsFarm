@@ -19,32 +19,16 @@ class JobseekerRepository extends ServiceEntityRepository
         parent::__construct($registry, Jobseeker::class);
     }
 
-//    /**
-//     * @return Jobseeker[] Returns an array of Jobseeker objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('j')
-            ->andWhere('j.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('j.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Jobseeker
+    public function validateLoginandEmail($login, $email)
     {
-        return $this->createQueryBuilder('j')
-            ->andWhere('j.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+        $emailJobseeker = self::findOneBy(array('vc_email' => $email));
+        if ($emailJobseeker instanceof Jobseeker)
+            return "Email";
+        $loginJobseeker = self::findOneBy(array('vc_login' => $login));
+        if ($loginJobseeker instanceof Jobseeker)
+            return "Login";
+        return "true";
+     }
+
 }
