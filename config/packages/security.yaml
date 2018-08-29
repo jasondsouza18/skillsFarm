@@ -33,6 +33,26 @@ security:
                 secret:   '%kernel.secret%'
                 lifetime: 604800 # 1 week in seconds
                 path:     /
+
+        employer:
+            pattern: ^/employer/
+            anonymous: true
+            provider: jobseeker_provider
+            form_login:
+                login_path: _home
+                check_path: _home
+                always_use_default_target_path: true
+                default_target_path: /jobseeker/home
+
+            logout:
+                path: _jobseeker_logout
+                target: _home
+                invalidate_session: true
+
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
                    
     access_control:  
         - { path: ^/jobseeker/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

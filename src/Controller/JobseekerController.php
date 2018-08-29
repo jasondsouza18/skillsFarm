@@ -29,7 +29,7 @@ class JobseekerController extends Controller
     {
         $jobseeker = $this->getUser();
         if ($jobseeker != null)
-            return $this->render('index.html.twig');
+            return $this->render('login.html.twig');
         if ($request->getMethod() == "POST") {
 
             $jobseeker = new Jobseeker();
@@ -67,7 +67,7 @@ class JobseekerController extends Controller
     public function index(Request $request)
     {
         $jobseeker = $this->getUser();
-        return $this->render('jobseeker/index.html.twig', [
+        return $this->render('jobseeker/login.html.twig', [
             'controller_name' => 'JobseekerController',
         ]);
     }
@@ -138,7 +138,7 @@ class JobseekerController extends Controller
             $request = $request->request->all();
             $jobseekerresume = $this->getDoctrine()->getRepository(JobseekerResume::class)->updateJobseekerResume($request, $jobseeker, $fileName);
         }
-        return $this->render('jobSeeker/index.html.twig', array(
+        return $this->render('jobSeeker/login.html.twig', array(
             'resumes' => $jobseekerresume,
         ));
     }
