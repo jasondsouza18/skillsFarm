@@ -72,7 +72,7 @@ class JobseekerController extends Controller
         ]);
     }
 
-    /**
+     /**
      * @Route("/profile/edit", name="_jobseeker_profile_edit")
      */
     public function profileedit(Request $request)

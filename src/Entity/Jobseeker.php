@@ -158,11 +158,17 @@ class Jobseeker implements UserInterface, \Serializable
      */
     private $jobseekerExperiences;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\JobseekerWishlist", mappedBy="jobseeker")
+     */
+    private $jobseekerWishlists;
+
     public function __construct()
     {
         $this->jobseekerResumes = new ArrayCollection();
         $this->jobseekerKeyPoints = new ArrayCollection();
         $this->jobseekerEducation = new ArrayCollection();
+        $this->jobseekerWishlists = new ArrayCollection();
         $this->jobseekerExperiences = new ArrayCollection();
     }
 
@@ -655,5 +661,35 @@ class Jobseeker implements UserInterface, \Serializable
     }
 
 
+    /**
+     * @return Collection|JobseekerWishlist[]
+     */
+    public function getJobseekerWishlists(): Collection
+    {
+        return $this->jobseekerWishlists;
+    }
+
+    public function addJobseekerWishlist(JobseekerWishlist $jobseekerWishlist): self
+    {
+        if (!$this->jobseekerWishlists->contains($jobseekerWishlist)) {
+            $this->jobseekerWishlists[] = $jobseekerWishlist;
+            $jobseekerWishlist->setJobseeker($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobseekerWishlist(JobseekerWishlist $jobseekerWishlist): self
+    {
+        if ($this->jobseekerWishlists->contains($jobseekerWishlist)) {
+            $this->jobseekerWishlists->removeElement($jobseekerWishlist);
+            // set the owning side to null (unless already changed)
+            if ($jobseekerWishlist->getJobseeker() === $this) {
+                $jobseekerWishlist->setJobseeker(null);
+            }
+        }
+
+        return $this;
+    }
 
 }

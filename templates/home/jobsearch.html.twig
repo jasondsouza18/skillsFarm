@@ -1,0 +1,105 @@
+{% extends "base.html.twig" %}
+{% block title %}Skillsfarm{% endblock %}
+{% block body %}
+
+    <!--Breadcrumb Banner Area Start-->
+    <div class="breadcrumb-banner-area pt-94 pb-85 bg-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-text">
+                        <h2 class="text-center">Find a Job</h2>
+                        <div class="breadcrumb-bar">
+                            <ul class="breadcrumb text-center m-0">
+                                <li><a href="index.html">Home</a></li>
+                                <li>Find a Job</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="job-search-content text-center brd-style">
+                        <form action="{{ path('_job_search') }}" method="post">
+                            <div class="form-container">
+                                <div class="box-select">
+                                    <div class="select">
+                                        <input type="text" placeholder="Job title/keywords" name="keyword" id="keyword"
+                                               style="height: 60px;background-color: white;"/>
+                                    </div>
+                                    <div class="select">
+                                        <input type="text" placeholder="City, province or region" name="location"
+                                               id="location" style="height: 60px;background-color: white;"/>
+                                        <input type="hidden" name="latitude" id="latitude" value=""/>
+                                        <input type="hidden" name="longitude" id="longitude" value=""/>
+                                        <input type="hidden" name="county" id="county" value=""/>
+                                        <input type="hidden" name="country" id="country" value=""/>
+                                        <input type="hidden" name="isCountry" id="isCountry" value=""/>
+                                        <input type="hidden" name="radius" id="radius" value="10"/>
+                                    </div>
+                                    <div class="select">
+                                        <select name="category" id="category">
+                                            <option value="0">All</option>
+                                        </select>
+                                    </div>
+                                    <div style="display: none">
+                                        <input type="date" value="" id="startdate" name="startdate"/>
+                                        <input type="date" value="" id="enddate" name="enddate"/>
+                                    </div>
+                                    <div class="select">
+                                        <button type="submit">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Breadcrumb Banner Area-->
+    <!--Start of Job Post Area-->
+    <div class="job-post-area ptb-130 ptb-sm-60">
+        <div class="container">
+            <div class="all-job-post">
+                <!-- Nav tabs -->
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination, 'knpPaginator/slidingTop.html.twig') }}
+                </div>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="featured">
+                        <div class="row">
+                            {% for job in pagination %}
+                                <div class="col-md-6">
+                                    <div class="single-job-post">
+                                        <div class="address">
+                                            <h6>{{ job.vc_shortheadline }}</h6>
+                                            <p>in : {{ job.vc_locationdetails }}</p>
+                                        </div>
+                                        <div class="button-box"><a href="/description/{{ job.id }}" class="button button-black">Read More..</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination, 'knpPaginator/slidingBottom.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Job Post Area -->
+
+    {% include "login.html.twig" %}
+    {% include "register.html.twig" %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        {% if sent != 0 %}
+        $('#snackbar').html("Your message has been successfully sent to skillsfarm team.");
+        showtoast();
+        {% endif %}
+    </script>
+{% endblock %}

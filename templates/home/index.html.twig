@@ -62,14 +62,56 @@
             </div>
         </div>
     </div>
-    <!--End of Slider Area-->
+    <div class="search-catestyle2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 ml-auto mr-auto">
+                    <div class="job-search-content text-center">
+                        <form action="{{ path('_job_search') }}" method="post">
+                            <div class="form-container">
+                                <div class="box-select">
+                                    <div class="select">
+                                        <input type="text" placeholder="Job title/keywords" name="keyword" id="keyword"
+                                               style="height: 60px;background-color: white;"/>
+                                    </div>
+                                    <div class="select">
+                                        <input type="text" placeholder="City, province or region" name="location"
+                                               id="location" style="height: 60px;background-color: white;"/>
+                                        <input type="hidden" name="latitude" id="latitude" value=""/>
+                                        <input type="hidden" name="longitude" id="longitude" value=""/>
+                                        <input type="hidden" name="county" id="county" value=""/>
+                                        <input type="hidden" name="country" id="country" value=""/>
+                                        <input type="hidden" name="isCountry" id="isCountry" value=""/>
+                                        <input type="hidden" name="radius" id="radius" value="10"/>
+                                    </div>
+                                    <div class="select">
+                                        <select name="category" id="category">
+                                            <option value="0">All</option>
+                                        </select>
+                                    </div>
+                                    <div style="display: none">
+                                        <input type="date" value="" id="startdate" name="startdate"/>
+                                        <input type="date" value="" id="enddate" name="enddate"/>
+                                    </div>
+                                    <div class="select">
+                                        <button type="submit">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="job-categroy-area ptb-130 ptb-sm-60">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-title text-center ">
-                        <h2>Features</h2>
-                        <p>that we offer you on your success.</p>
+                        <h2>Categories</h2>
+                        <p>jobs...</p>
                     </div>
                 </div>
             </div>
@@ -78,32 +120,32 @@
                     <div class="img-icon">
                         <img src="images/icons/cat1.png" alt="">
                     </div>
-                    <h5>Soft Skills</h5>
+                    <h5>Information Technology</h5>
                 </div>
                 <div class="category-item">
                     <div class="img-icon">
                         <img src="images/icons/cat2.png" alt="">
                     </div>
-                    <h5>Career Counseling </h5>
+                    <h5>Teaching </h5>
                 </div>
                 <div class="category-item">
                     <div class="img-icon">
                         <img src="images/icons/cat3.png" alt="">
                     </div>
-                    <h5>Communication Skills
+                    <h5>Staff
                     </h5>
                 </div>
                 <div class="category-item">
                     <div class="img-icon">
                         <img src="images/icons/cat4.png" alt="">
                     </div>
-                    <h5>Psychological Counseling</h5>
+                    <h5>Counselling</h5>
                 </div>
                 <div class="category-item">
                     <div class="img-icon">
                         <img src="images/icons/cat1.png" alt="">
                     </div>
-                    <h5>Faculty Training</h5>
+                    <h5>Resume building</h5>
                 </div>
                 <div class="category-item">
                     <div class="img-icon">
@@ -128,7 +170,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-title text-center ">
-                        <h2>All Job</h2>
+                        <h2>All Jobs</h2>
                         <p>The best jobs for you..</p>
                     </div>
                 </div>
@@ -137,10 +179,10 @@
             <div class="all-job-post">
                 <!-- Nav tabs -->
                 <div class="post-tab nav">
-                    <a class="nav-link" data-toggle="tab" href="#featured">FEATURED JOBS</a>
-                    <a class="nav-link  active" data-toggle="tab" href="#recent_job">RECENT JOBS</a>
-                    <a class="nav-link" data-toggle="tab" href="#featured">PART TIME</a>
-                    <a class="nav-link" data-toggle="tab" href="#recent_job">FULL TIME</a>
+                    <a class="nav-link" data-toggle="tab" href="#featured">FEATURED</a>
+                    <a class="nav-link  active" data-toggle="tab" href="#recent_job">RECENT</a>
+                    <a class="nav-link" data-toggle="tab" href="#featured">TOP</a>
+                    <a class="nav-link" data-toggle="tab" href="#recent_job">MOST APPLIED</a>
                 </div>
                 <!-- Tab panes -->
                 <div class="tab-content">

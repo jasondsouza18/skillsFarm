@@ -1,0 +1,59 @@
+{% extends "base.html.twig" %}
+{% block title %}Skillsfarm{% endblock %}
+{% block body %}
+    <div class="single-job-post-area ptb-130 ptb-sm-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                        <div class="single-job-content">
+                            <div class="area-title">
+                                <div class="single-job-post">
+                                    <div class="img-icon">
+                                        <img src="images/company-logo/1.png" alt="">
+                                    </div>
+                                    <div class="address">
+                                        <h6>{{ job.vcshortheadline }}</h6>
+                                        <p>at : {{ job.vclocationdetails }}</p>
+                                        <p>Category : </p>
+                                        <p>Date : {{ job.dtlivedate  | date('F jS Y')  }}</p>
+                                    </div>
+                                    <div class="button-box"><a href="/apply/{{ job.id }}" class="button button-black">APPLY NOW</a></div>
+                                </div>
+                            </div>
+                            <div class="title"><span>job description</span></div>
+                            <div class="single-job-form">
+                                <p>{{ job.vcdescription }} </p>
+                            </div>
+                            <div class="title"><span>Qualities</span></div>
+                            <div class="single-job-form">
+                                <div class="single-info mb-14">
+                                    <span class="mark-icon block pl-27">{{ job.vcqualifications }}</span>
+                                </div>
+                            </div>
+                            <div class="title"><span>how to apply</span></div>
+                            <div class="single-job-form">
+                                <p>Kindly fill the upcoming form and then our team would be pleased to help you with the job</p>
+                            </div>
+                            <div class="buttonback">
+                                <a href="/apply/{{ job.id }}" class="button button-large-box lg-btn mr-20">Apply now</a>
+                                <a href="/" class="button button-large-box lg-btn mr-20">Back</a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {% include "login.html.twig" %}
+    {% include "register.html.twig" %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        {% if sent != 0 %}
+        $('#snackbar').html("Your message has been successfully sent to skillsfarm team.");
+        showtoast();
+        {% endif %}
+    </script>
+{% endblock %}
