@@ -163,6 +163,11 @@ class Jobseeker implements UserInterface, \Serializable
      */
     private $jobseekerWishlists;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\JobApplication", mappedBy="jobseeker")
+     */
+    private $jobApplications;
+
     public function __construct()
     {
         $this->jobseekerResumes = new ArrayCollection();
@@ -170,6 +175,7 @@ class Jobseeker implements UserInterface, \Serializable
         $this->jobseekerEducation = new ArrayCollection();
         $this->jobseekerWishlists = new ArrayCollection();
         $this->jobseekerExperiences = new ArrayCollection();
+        $this->jobApplications = new ArrayCollection();
     }
 
     public function getId()
@@ -686,6 +692,37 @@ class Jobseeker implements UserInterface, \Serializable
             // set the owning side to null (unless already changed)
             if ($jobseekerWishlist->getJobseeker() === $this) {
                 $jobseekerWishlist->setJobseeker(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|JobApplication[]
+     */
+    public function getJobApplications(): Collection
+    {
+        return $this->jobApplications;
+    }
+
+    public function addJobApplication(JobApplication $jobApplication): self
+    {
+        if (!$this->jobApplications->contains($jobApplication)) {
+            $this->jobApplications[] = $jobApplication;
+            $jobApplication->setJobseeker($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobApplication(JobApplication $jobApplication): self
+    {
+        if ($this->jobApplications->contains($jobApplication)) {
+            $this->jobApplications->removeElement($jobApplication);
+            // set the owning side to null (unless already changed)
+            if ($jobApplication->getJobseeker() === $this) {
+                $jobApplication->setJobseeker(null);
             }
         }
 

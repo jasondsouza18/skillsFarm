@@ -1,63 +1,71 @@
 security:
-    encoders:
-         \App\Entity\Jobseeker:
-            algorithm: bcrypt
+  encoders:
+    \App\Entity\Jobseeker:
+      algorithm: bcrypt
+    \App\Entity\Employer:
+      algorithm: bcrypt
 
-    providers:
-        jobseeker_provider:
-            entity:
-                class:  \App\Entity\Jobseeker
-                property: vc_login            
-      
-    firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-           
-        jobseeker:
-            pattern: ^/
-            anonymous: true
-            provider: jobseeker_provider
-            form_login:
-                login_path: _home
-                check_path: _home
-                always_use_default_target_path: true
-                default_target_path: /jobseeker/home
+  providers:
+    jobseeker_provider:
+      entity:
+        class:  \App\Entity\Jobseeker
+        property: vc_login
+    employer_provider:
+      entity:
+        class:  \App\Entity\Employer
+        property: vc_login
 
-            logout:
-                path: _jobseeker_logout
-                target: _home
-                invalidate_session: true
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
 
-            remember_me:
-                secret:   '%kernel.secret%'
-                lifetime: 604800 # 1 week in seconds
-                path:     /
 
-        employer:
-            pattern: ^/employer/
-            anonymous: true
-            provider: jobseeker_provider
-            form_login:
-                login_path: _home
-                check_path: _home
-                always_use_default_target_path: true
-                default_target_path: /jobseeker/home
+    employer:
+      pattern: ^/employer/
+      anonymous: true
+      provider: employer_provider
+      form_login:
+        login_path: _employer_login
+        check_path: _employer_login
+        always_use_default_target_path: true
+        default_target_path: /employer/home
 
-            logout:
-                path: _jobseeker_logout
-                target: _home
-                invalidate_session: true
+      logout:
+        path: _employer_logout
+        target: _employer_home
+        invalidate_session: true
 
-            remember_me:
-                secret:   '%kernel.secret%'
-                lifetime: 604800 # 1 week in seconds
-                path:     /
-                   
-    access_control:  
-        - { path: ^/jobseeker/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/jobseeker/signup, roles: IS_AUTHENTICATED_ANONYMOUSLY }              
-        - { path: ^/jobseeker, roles: ROLE_JOBSEEKER }
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }        
-        - { path: ^/, roles: ROLE_JOBSEEKER }
+      remember_me:
+        secret:   '%kernel.secret%'
+        lifetime: 604800 # 1 week in seconds
+        path:     /
+
+    jobseeker:
+      pattern: ^/
+      anonymous: true
+      provider: jobseeker_provider
+      form_login:
+        login_path: _home
+        check_path: _home
+        always_use_default_target_path: true
+        default_target_path: /jobseeker/home
+
+      logout:
+        path: _jobseeker_logout
+        target: _home
+        invalidate_session: true
+
+      remember_me:
+        secret:   '%kernel.secret%'
+        lifetime: 604800 # 1 week in seconds
+        path:     /
+
+  access_control:
+  - { path: ^/jobseeker/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+  - { path: ^/employer/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+  - { path: ^/jobseeker/signup, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+  - { path: ^/jobseeker, roles: ROLE_JOBSEEKER }
+  - { path: ^/employer, roles: ROLE_EMPLOYER }
+  - { path: ^/admin, roles: ROLE_ADMIN }
+  - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

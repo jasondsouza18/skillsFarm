@@ -152,6 +152,16 @@ class Job
      */
     private $vc_country;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $it_status;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\JobApplication", mappedBy="job")
+     */
+    private $jobApplications;
+
 
     public function getId(): ?int
     {
@@ -266,17 +276,6 @@ class Job
         return $this;
     }
 
-    public function getVcLongitude() : ? float
-    {
-        return $this->vc_longitude;
-    }
-
-    public function setVcLongitude(float $vc_longitude) : self
-    {
-        $this->vc_longitude = $vc_longitude;
-
-        return $this;
-    }
 
     public function getVcCountry() : ? string
     {
@@ -308,6 +307,7 @@ class Job
         $this->setUpdatedAt(new \DateTime());
         $this->jobCategories = new ArrayCollection();
         $this->jobseekerWishlists = new ArrayCollection();
+        $this->jobApplications = new ArrayCollection();
     }
 
     /**
@@ -506,6 +506,49 @@ class Job
             // set the owning side to null (unless already changed)
             if ($jobseekerWishlist->getJob() === $this) {
                 $jobseekerWishlist->setJob(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getItStatus(): ?bool
+    {
+        return $this->it_status;
+    }
+
+    public function setItStatus(bool $it_status): self
+    {
+        $this->it_status = $it_status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|JobApplication[]
+     */
+    public function getJobApplications(): Collection
+    {
+        return $this->jobApplications;
+    }
+
+    public function addJobApplication(JobApplication $jobApplication): self
+    {
+        if (!$this->jobApplications->contains($jobApplication)) {
+            $this->jobApplications[] = $jobApplication;
+            $jobApplication->setJob($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobApplication(JobApplication $jobApplication): self
+    {
+        if ($this->jobApplications->contains($jobApplication)) {
+            $this->jobApplications->removeElement($jobApplication);
+            // set the owning side to null (unless already changed)
+            if ($jobApplication->getJob() === $this) {
+                $jobApplication->setJob(null);
             }
         }
 

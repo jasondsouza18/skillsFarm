@@ -1,0 +1,118 @@
+{% extends "employerbase.html.twig" %}
+{% block title %}Skillsfarm - Recruiter{% endblock %}
+{% block body %}
+    <section class="module bg-dark-30" data-background="/img/desk_1.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h1 class="module-title font-alt mb-0">Login-Register</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="module">
+        <div class="container">
+            <div class="row">
+                <div class=" col-sm-offset-1 mb-sm-40">
+                    <h4 class="font-alt">Add a new Job</h4>
+                    <hr class="divider-w mb-10">
+                    <form action="{{ path('_employer_addjob') }}" method="post">
+                        <div class="form-group">
+                            <input type="hidden" id="idjob" class="form-control" name="idjob"
+                                   value="{% if job.id is defined %}{{ job.id }}{% else %}0{% endif %}">
+                            <label for="companyname">Headline :</label>
+                            <input type="text" id="sheadline" class="form-control" name="sheadline"
+                                   placeholder="A shortheadline for your Job"
+                                   required="" style="text-transform: none;"
+                                   value="{% if job.vcshortheadline is defined %}{{ job.vcshortheadline }}{% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="lheadline">Long Headline :</label>
+                            <input type="text" id="lheadline" class="form-control" name="lheadline"
+                                   placeholder="Long Headline"
+                                   required="" style="text-transform: none;"
+                                   value="{% if job.vclongheadline is defined %}{{ job.vclongheadline }}{% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description :</label>
+                            <textarea id="description" class="form-control" name="description"
+                                      placeholder="Job Description" required=""
+                                      style="text-transform: none;">{% if job.vcdescription is defined %}{{ job.vcdescription }}{% endif %}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="deadline">Application Deadline Date :</label>
+                            <input type="date" id="deadline" class="form-control" name="deadline"
+                                   required="" style="text-transform: none;"
+                                   value="{% if job.dtapplicationdeadlinedate is defined %}{{ job.dtapplicationdeadlinedate|date("d-m-Y") }}{% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="sdate">Job Start Date :</label>
+                            <input type="date" id="sdate" class="form-control" name="sdate"
+                                   required="" style="text-transform: none;"
+                                   value="{% if job.dtlivedate is defined %}{{ job.dtlivedate |date("Y") }}}}{% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="edate">Job End Date :</label>
+                            <input type="date" id="edate" class="form-control" name="edate"
+                                   required=""
+                                   style="text-transform: none;"
+                                   value="{% if job.dtenddate is defined %}{{ job.dtenddate|date("Y") }} }}{% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">Salary :</label>
+                            <input type="text" id="salary" class="form-control" name="salary" placeholder="Salary"
+                                   required=""
+                                   style="text-transform: none;"
+                                   value="{% if job.vcsalarydescription is defined %}{{ job.vcsalarydescription }}{% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location :</label>
+                            <input type="text" id="location" class="form-control" name="location"
+                                   placeholder="Job location - City, province or region" onkeydown="initMap(this);"
+                                   required="" style="text-transform: none;"
+                                   value="{% if job.vclocationdetails is defined %}{{ job.vclocationdetails }}{% endif %}">
+                            <input type="hidden" name="latitude" id="latitude"
+                                   value="{% if job.dblatitude is defined %}{{ job.dblatitude }}{% endif %}">
+                            <input type="hidden" name="longitude" id="longitude"
+                                   value="{% if job.dblongitude is defined %}{{ job.dblongitude }}{% endif %}">
+                            <input type="hidden" name="county" id="county"
+                                   value="{% if job.vclongheadline is defined %}{{ job.vclongheadline }}{% endif %}">
+                            <input type="hidden" name="country" id="country"
+                                   value="{% if job.vccountry is defined %}{{ job.vccountry }}{% endif %}">
+                            <input type="hidden" name="isCountry" id="isCountry"
+                                   value="{% if job.isabroad is defined %}{{ job.isabroad }}{% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address :</label>
+                            <input type="text" id="email" class="form-control" name="email"
+                                   placeholder="Get all applications directly to your email address"
+                                   required=""
+                                   style="text-transform: none;"
+                                   value="{% if job.vcapplyemail is defined %}{{ job.vcapplyemail }}{% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="keywords">Keywords :</label>
+                            <input type="text" id="keywords" class="form-control" name="keywords"
+                                   placeholder="keywords"
+                                   required=""
+                                   style="text-transform: none;"
+                                   value="{% if job.vckeywords is defined %}{{ job.vckeywords }}{% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="keywords">Select Job Category :</label>
+                            <select name="category" class="form-control">
+                                <option value="default">Select Job Category</option>
+                                {% for cat in category %}
+                                    <option value="{{ cat.id }}">{{ cat.vccategoryname }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-round btn-b">Add Job</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

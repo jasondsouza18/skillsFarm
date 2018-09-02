@@ -28,7 +28,7 @@ class HomeController extends Controller
         $request = $request->request->all();
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
-        return $this->render('home/login.html.twig', array(
+        return $this->render('home/index.html.twig', array(
             'last_username' => $lastUsername,
             'sent' => $sent,
             'error' => $error,

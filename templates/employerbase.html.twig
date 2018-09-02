@@ -3,22 +3,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/favicons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/favicons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/favicons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/favicons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/favicons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/favicons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/favicons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/favicons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/favicons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/assets/images/favicons/ms-icon-144x144.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <meta name="theme-color" content="#ffffff">
     <link href="/assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
@@ -47,11 +32,10 @@
     <div class="page-loader">
         <div class="loader">Loading...</div>
     </div>
+    <button onclick="myFunction()" style="display: none">Show Snackbar</button>
+    <div id="snackbar">Some text some message..</div>
     {% include "employerheader.html.twig" %}
-    <div class="main">
-        {% block body %}{% endblock %}
-        {% include "employerfooter.html.twig" %}
-    </div>
+    {% block body %}{% endblock %}
     <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
 </main>
 <script src="/assets/lib/jquery/dist/jquery.js"></script>
@@ -67,6 +51,15 @@
 <script src="/assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
 <script src="/assets/js/plugins.js"></script>
 <script src="/assets/js/main.js"></script>
+<script>
+    function showtoast() {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 3000);
+    }
+</script>
 <script type="text/javascript">
     function initMap(event) {
         if (event.keyCode == 13) {
@@ -94,6 +87,13 @@
                 window.alert("No details available for input: '" + place.name + "'");
                 return;
             }
+            var isCountryLength = country.length;
+            var countryValue = country['0']
+            if ((isCountryLength == 1) && (countryValue.types[0] == "country") && (countryValue.types[1] == "political")) {
+                document.getElementById("isCountry").value = "1";
+            } else if ((isCountryLength == 2) && (countryValue.types[0] == "administrative_area_level_1") && (countryValue.types[1] == "political")) {
+                document.getElementById("county").value = country[0].long_name;
+            }
         });
     }
 </script>
@@ -119,6 +119,22 @@
     })(document, "script");
 </script>
 <!--End of Zendesk Chat Script-->
+<script>
+    function submitnotify() {
+        $('#notify-span').hide();
+        $('#notify-loader').show();
+        var email = document.getElementById('email').value;
+        $.post("{{ path('_notify') }}", {email: email, string: "a@3212's[]asdo[{&*^&*"}, function (data) {
+            if (data == '1') {
+                $('#snackbar').html("Your message has been successfully sent to skillsfarm team.");
+                showtoast();
+            }
+
+            $('#notify-span').show();
+            $('#notify-loader').hide();
+        });
+    }
+</script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>

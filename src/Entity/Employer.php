@@ -21,22 +21,22 @@ class Employer implements UserInterface, \Serializable
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="string", length=100, nullable=false)
      */
     private $vc_name;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100,nullable=false)
      */
     private $vc_login;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=false)
      */
     private $vc_email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=false)
      */
     private $vc_password;
 
@@ -46,7 +46,7 @@ class Employer implements UserInterface, \Serializable
     private $vc_companyname;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100,nullable=true)
      */
     private $vc_addressline1;
 
@@ -56,12 +56,12 @@ class Employer implements UserInterface, \Serializable
     private $vc_addressline2;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100,nullable=true)
      */
     private $vc_county;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100,nullable=true)
      */
     private $vc_country;
 
@@ -86,137 +86,137 @@ class Employer implements UserInterface, \Serializable
     private $updated_at;
 
 
-    public function getId() : ? int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getVcName() : ? string
+    public function getVcName(): ?string
     {
         return $this->vc_name;
     }
 
-    public function setVcName(? string $vc_name) : self
+    public function setVcName(? string $vc_name): self
     {
         $this->vc_name = $vc_name;
 
         return $this;
     }
 
-    public function getVcLoginid() : ? string
+    public function getVcLoginid(): ?string
     {
         return $this->vc_login;
     }
 
-    public function setVcLoginid(string $vc_login) : self
+    public function setVcLoginid(string $vc_login): self
     {
         $this->vc_login = $vc_login;
 
         return $this;
     }
 
-    public function getVcEmail() : ? string
+    public function getVcEmail(): ?string
     {
         return $this->vc_email;
     }
 
-    public function setVcEmail(string $vc_email) : self
+    public function setVcEmail(string $vc_email): self
     {
         $this->vc_email = $vc_email;
 
         return $this;
     }
 
-    public function getVcPassword() : ? string
+    public function getVcPassword(): ?string
     {
         return $this->vc_password;
     }
 
-    public function setVcPassword(string $vc_password) : self
+    public function setVcPassword(string $vc_password): self
     {
         $this->vc_password = $vc_password;
 
         return $this;
     }
 
-    public function getVcCompanyname() : ? string
+    public function getVcCompanyname(): ?string
     {
         return $this->vc_companyname;
     }
 
-    public function setVcCompanyname(? string $vc_companyname) : self
+    public function setVcCompanyname(? string $vc_companyname): self
     {
         $this->vc_companyname = $vc_companyname;
 
         return $this;
     }
 
-    public function getVcAddressline1() : ? string
+    public function getVcAddressline1(): ?string
     {
         return $this->vc_addressline1;
     }
 
-    public function setVcAddressline1(string $vc_addressline1) : self
+    public function setVcAddressline1(string $vc_addressline1): self
     {
         $this->vc_addressline1 = $vc_addressline1;
 
         return $this;
     }
 
-    public function getVcAddressline2() : ? string
+    public function getVcAddressline2(): ?string
     {
         return $this->vc_addressline2;
     }
 
-    public function setVcAddressline2(? string $vc_addressline2) : self
+    public function setVcAddressline2(? string $vc_addressline2): self
     {
         $this->vc_addressline2 = $vc_addressline2;
 
         return $this;
     }
 
-    public function getVcCounty() : ? string
+    public function getVcCounty(): ?string
     {
         return $this->vc_county;
     }
 
-    public function setVcCounty(string $vc_county) : self
+    public function setVcCounty(string $vc_county): self
     {
         $this->vc_county = $vc_county;
 
         return $this;
     }
 
-    public function getVcCountry() : ? string
+    public function getVcCountry(): ?string
     {
         return $this->vc_country;
     }
 
-    public function setVcCountry(string $vc_country) : self
+    public function setVcCountry(string $vc_country): self
     {
         $this->vc_country = $vc_country;
 
         return $this;
     }
 
-    public function getVcPhone() : ? string
+    public function getVcPhone(): ?string
     {
         return $this->vc_phone;
     }
 
-    public function setVcPhone(? string $vc_phone) : self
+    public function setVcPhone(? string $vc_phone): self
     {
         $this->vc_phone = $vc_phone;
 
         return $this;
     }
 
-    public function getVcUrl() : ? string
+    public function getVcUrl(): ?string
     {
         return $this->vc_url;
     }
 
-    public function setVcUrl(? string $vc_url) : self
+    public function setVcUrl(? string $vc_url): self
     {
         $this->vc_url = $vc_url;
 
@@ -238,24 +238,24 @@ class Employer implements UserInterface, \Serializable
         $this->setUpdatedAt(new \DateTime());
     }
 
-    public function getCreatedAt() : ? \DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at) : self
+    public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getUpdatedAt() : ? \DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at) : self
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
 
@@ -286,8 +286,8 @@ class Employer implements UserInterface, \Serializable
             $this->id,
             $this->vc_login,
             $this->vc_password,
-                // see section on salt below
-                // $this->salt,
+            // see section on salt below
+            // $this->salt,
         ));
     }
 
@@ -300,7 +300,7 @@ class Employer implements UserInterface, \Serializable
             $this->vc_password,
             // see section on salt below
             // $this->salt
-        ) = unserialize($serialized, array('allowed_classes' => false));
+            ) = unserialize($serialized, array('allowed_classes' => false));
     }
 
     public function getUsername()
@@ -313,12 +313,12 @@ class Employer implements UserInterface, \Serializable
         return $this->vc_password;
     }
 
-    public function getVcLogin() : ? string
+    public function getVcLogin(): ?string
     {
         return $this->vc_login;
     }
 
-    public function setVcLogin(string $vc_login) : self
+    public function setVcLogin(string $vc_login): self
     {
         $this->vc_login = $vc_login;
 

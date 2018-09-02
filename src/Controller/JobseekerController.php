@@ -23,7 +23,6 @@ class JobseekerController extends Controller
 
     /**
      * @Route("/signup", name="_jobseeker_signup")
-     * @author Jason Vinod Dsouza<jason.vinod@techjini.com>
      */
     public function signup(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -31,7 +30,6 @@ class JobseekerController extends Controller
         if ($jobseeker != null)
             return $this->render('login.html.twig');
         if ($request->getMethod() == "POST") {
-
             $jobseeker = new Jobseeker();
             $password = $request->request->get('pass');
             $firstname = $request->request->get('firstname');
@@ -67,12 +65,12 @@ class JobseekerController extends Controller
     public function index(Request $request)
     {
         $jobseeker = $this->getUser();
-        return $this->render('jobseeker/login.html.twig', [
+        return $this->render('jobseeker/index.html.twig', [
             'controller_name' => 'JobseekerController',
         ]);
     }
 
-     /**
+    /**
      * @Route("/profile/edit", name="_jobseeker_profile_edit")
      */
     public function profileedit(Request $request)
@@ -116,7 +114,6 @@ class JobseekerController extends Controller
 
     /**
      * @Route("/logout", name="_jobseeker_logout")
-     * @author Jason Vinod Dsouza<jason.vinod@techjini.com>
      */
     public function logout(Request $request)
     {

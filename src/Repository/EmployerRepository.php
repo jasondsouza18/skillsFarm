@@ -19,32 +19,21 @@ class EmployerRepository extends ServiceEntityRepository
         parent::__construct($registry, Employer::class);
     }
 
-//    /**
-//     * @return Employer[] Returns an array of Employer objects
-//     */
-    /*
-    public function findByExampleField($value)
+    public function validateEmployerloginandEmail($login, $email)
     {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $email = self::findOneBy(array('vc_email' => $email));
+        if ($email instanceof Jobseeker)
+            return "Email ID already exists. Kindly Use other Email";
+        $login = self::findOneBy(array('vc_login' => $login));
+        if ($login instanceof Jobseeker)
+            return "Username alreay exists. Kindly Use other username";
+        return true;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Employer
+    public function validatePassword($password,$repassword)
     {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if($password != $repassword)
+            return "Password Doesn't match";
+        return true;
     }
-    */
 }

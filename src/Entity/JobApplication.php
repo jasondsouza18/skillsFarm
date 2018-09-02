@@ -33,11 +33,6 @@ class JobApplication
     private $bo_issignedin;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Jobseeker", inversedBy="jobApplications")
-     */
-    private $jobseeker;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\JobseekerResume", cascade={"persist", "remove"})
      */
     private $jobseekerresume;
@@ -82,6 +77,12 @@ class JobApplication
      */
     private $updated_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Jobseeker", inversedBy="jobApplications")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $jobseeker;
+
     public function getId()
     {
         return $this->id;
@@ -107,18 +108,6 @@ class JobApplication
     public function setBoIssignedin(bool $bo_issignedin): self
     {
         $this->bo_issignedin = $bo_issignedin;
-
-        return $this;
-    }
-
-    public function getJobseeker(): ?jobseeker
-    {
-        return $this->jobseeker;
-    }
-
-    public function setJobseeker(? jobseeker $jobseeker): self
-    {
-        $this->jobseeker = $jobseeker;
 
         return $this;
     }
@@ -255,5 +244,17 @@ class JobApplication
             return "Online";
         if ($this->it_applicationmethod == JobApplication::APPLY_PHONE)
             return "Phone";
+    }
+
+    public function getJobseeker(): ?Jobseeker
+    {
+        return $this->jobseeker;
+    }
+
+    public function setJobseeker(?Jobseeker $jobseeker): self
+    {
+        $this->jobseeker = $jobseeker;
+
+        return $this;
     }
 }
