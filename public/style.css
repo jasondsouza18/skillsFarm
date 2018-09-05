@@ -478,10 +478,10 @@ a.button.large-button {line-height: 33px; padding: 0 30px}
   font-family: montserratsemi_bold;
   line-height: 25px;
   margin-bottom: 15px;
-  color: #333;
+  color: white;
 }
 .breadcrumb-bar li {
-  color: #333;
+  color: white;
   font-family: "montserratregular";
   font-size: 15px;
   margin: 0 10px;
@@ -500,7 +500,7 @@ a.button.large-button {line-height: 33px; padding: 0 30px}
 }
 .breadcrumb-bar .breadcrumb > li + li:before {display: none;}
 .breadcrumb-bar a {
-  color: #333;
+  color: white;
 }
 .breadcrumb-bar a:hover{
     color: #26ae61;

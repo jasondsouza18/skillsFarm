@@ -22,7 +22,7 @@
                 <li class="dropdown"><a href="/blogs">Blogs</a>
                 </li>
                 {% if app.user is defined and app.user is not null %}
-                    <li class="dropdown"><a href="{{ path('_employer_home') }}">My Account</a>
+                    <li class="dropdown"><a href="{{ path('_employer_index') }}">My Account</a>
                     </li>
                     <li class="dropdown"><a href="{{ path('_employer_logout') }}">Logout</a>
                     </li>

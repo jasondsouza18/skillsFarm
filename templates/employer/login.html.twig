@@ -28,7 +28,7 @@
                                    placeholder="Password" required/>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-round btn-b">Login</button>
+                            <button type="submit" class="btn btn-round btn-b">Login</button>
                         </div>
                         <div class="form-group"><a href="">Forgot Password?</a></div>
                     </form>
@@ -66,10 +66,14 @@
     </section>
 {% endblock %}
 {% block javascripts %}
-<script>
-    {% if message != '' %}
-    $('#snackbar').html('{{ message }}');
-    showtoast();
-    {% endif %}
-</script>
+    <script>
+        {% if message != '' %}
+        $('#snackbar').html('{{ message }}');
+        showtoast();
+        {% endif %}
+        {% if error %}
+        $('#snackbar').html('{{ error.messageKey|trans(error.messageData, 'security') }}');
+        showtoast();
+        {% endif %}
+    </script>
 {% endblock %}
