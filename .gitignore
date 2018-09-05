@@ -50,3 +50,6 @@
 
 /public/uploads/*
 /public/blogs/*
+
+/public/.htaccess
+/.env
