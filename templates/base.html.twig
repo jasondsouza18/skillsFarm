@@ -68,8 +68,26 @@
                 window.alert("No details available for input: '" + place.name + "'");
                 return;
             }
+            var isCountryLength = country.length;
+            var countryValue = country['0']
+            if ((isCountryLength == 1) && (countryValue.types[0] == "country") && (countryValue.types[1] == "political")) {
+                document.getElementById("isCountry").value = "1";
+            } else if ((isCountryLength == 2) && (countryValue.types[0] == "administrative_area_level_1") && (countryValue.types[1] == "political")) {
+                document.getElementById("county").value = country[0].long_name;
+            }
         });
     }
+
+    function searchforJobsin(place) {
+        document.getElementById('location').value = place;
+        $('#search_form').submit();
+    }
+
+    function searchforJobstype(type) {
+        document.getElementById('category').value = type;
+        $('#search_form').submit();
+    }
+
 </script>
 <script src="/js/vendor/jquery-1.12.4.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>

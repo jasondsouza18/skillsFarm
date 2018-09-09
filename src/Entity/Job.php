@@ -17,6 +17,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Job
 {
+    const PART_TIME = 1;
+    const FULL_TIME = 2;
+    const PART_OR_FULLTIME = 3;
+    const WORKFROMHOME = 4;
+    const PART_OR_FULL_OR_WORKFROMHOME = 5;
+    const TEMPERORY = 6;
+    const INTERNSHIP = 7;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -162,6 +170,26 @@ class Job
      */
     private $jobApplications;
 
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $vc_employmenttype;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $vc_annualctc;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $vc_allowances;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $vc_experience;
+
 
     public function getId(): ?int
     {
@@ -277,12 +305,12 @@ class Job
     }
 
 
-    public function getVcCountry() : ? string
+    public function getVcCountry(): ?string
     {
         return $this->vc_country;
     }
 
-    public function setVcCountry(string $vc_country) : self
+    public function setVcCountry(string $vc_country): self
     {
         $this->vc_country = $vc_country;
 
@@ -551,6 +579,54 @@ class Job
                 $jobApplication->setJob(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getVcEmploymenttype(): ?int
+    {
+        return $this->vc_employmenttype;
+    }
+
+    public function setVcEmploymenttype(int $vc_employmenttype): self
+    {
+        $this->vc_employmenttype = $vc_employmenttype;
+
+        return $this;
+    }
+
+    public function getVcAnnualctc(): ?string
+    {
+        return $this->vc_annualctc;
+    }
+
+    public function setVcAnnualctc(?string $vc_annualctc): self
+    {
+        $this->vc_annualctc = $vc_annualctc;
+
+        return $this;
+    }
+
+    public function getVcAllowances(): ?string
+    {
+        return $this->vc_allowances;
+    }
+
+    public function setVcAllowances(?string $vc_allowances): self
+    {
+        $this->vc_allowances = $vc_allowances;
+
+        return $this;
+    }
+
+    public function getVcExperience(): ?string
+    {
+        return $this->vc_experience;
+    }
+
+    public function setVcExperience(?string $vc_experience): self
+    {
+        $this->vc_experience = $vc_experience;
 
         return $this;
     }

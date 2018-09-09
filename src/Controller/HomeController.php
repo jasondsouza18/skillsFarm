@@ -7,6 +7,7 @@ use App\Entity\Jobseeker;
 use App\Entity\Job;
 use App\Entity\Employer;
 use App\Entity\JobseekerResume;
+use App\Entity\MasterCategory;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -28,10 +29,20 @@ class HomeController extends Controller
         $request = $request->request->all();
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
+        $category = $this->getDoctrine()->getRepository(MasterCategory::class)->findAll();
+        $jobfeatured = $this->getDoctrine()->getRepository(Job::class)->getJobRecommendationsfeatured();
+        $jobrecent = $this->getDoctrine()->getRepository(Job::class)->getJobRecommendationsrecent();
+        $jobtop = $this->getDoctrine()->getRepository(Job::class)->getJobRecommendationstop();
+        $jobmostapplied = $this->getDoctrine()->getRepository(Job::class)->getJobRecommendationsmostapplied();
         return $this->render('home/index.html.twig', array(
             'last_username' => $lastUsername,
             'sent' => $sent,
             'error' => $error,
+            'category' => $category,
+            'jobfeatured' => $jobfeatured,
+            'jobrecent' => $jobrecent,
+            'jobtop' => $jobtop,
+            'jobmostapplied' => $jobmostapplied
         ));
 
     }
@@ -233,9 +244,12 @@ class HomeController extends Controller
         }
         $query = $em->createQuery($jobSearchQuery);
         $pagination = $paginator->paginate($query, $request->query->getInt('page', 1), 10);
+        $category = $this->getDoctrine()->getRepository(MasterCategory::class)->findAll();
         return $this->render('home/jobsearch.html.twig', array(
             'pagination' => $pagination,
-            'sent' => 0
+            'sent' => 0,
+            'searchparameters' => $requestResult,
+            'category' => $category
         ));
     }
 
@@ -319,7 +333,7 @@ class HomeController extends Controller
                 ->setCc('josephjeffry2@gmail.com')
                 ->setBody($message)
                 ->attach(\Swift_Attachment::fromPath($uploadsDirectory . $fileName));
-          //  $sent = $mailer->send($messagetosend);
+            //  $sent = $mailer->send($messagetosend);
         }
         return $this->render('home/applyjob.html.twig', array(
             'job' => $job,

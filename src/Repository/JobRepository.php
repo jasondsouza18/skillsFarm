@@ -18,70 +18,45 @@ class JobRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Job::class);
     }
+
     public function findJobResults($jobSearchParameters)
     {
         $conn = $this->getEntityManager()->getConnection();
         $locationQuery = $keywordSearch = $dateQuery = $categoryQuery = "";
-        $locationQuery = Self::getLocationSearchQuery($jobSearchParameters['latitude'], $jobSearchParameters['longitude'], $jobSearchParameters['radius'], $jobSearchParameters['isCountry']);
-        $categoryQuery = Self::getCatrogrySearchQuery($jobSearchParameters['category']);
-        $keywordSearch = Self::getKeywordSearchQuery($jobSearchParameters['keyword'], $jobSearchParameters['isCountry'], $jobSearchParameters['country'], $jobSearchParameters['county'], $jobSearchParameters['latitude']);
+        $locationQuery = Self::getLocationSearchQuery($jobSearchParameters['location'], $jobSearchParameters['latitude'], $jobSearchParameters['longitude'], $jobSearchParameters['radius'], $jobSearchParameters['isCountry']);
+        $keywordSearch = Self::getKeywordSearchQuery($jobSearchParameters['location'], $jobSearchParameters['keyword'], $jobSearchParameters['isCountry'], $jobSearchParameters['country'], $jobSearchParameters['county'], $jobSearchParameters['latitude']);
+        $category = Self::getCategorySearchQuery($jobSearchParameters['category']);
         $dateQuery = Self::getStartdateSearchQuery($jobSearchParameters['startdate'], $jobSearchParameters['enddate']);
         $initialQuery = Self::getJobInitialSearchQuery();
-        $query = $initialQuery . $categoryQuery . $keywordSearch . $dateQuery . $locationQuery . " ORDER BY j.id";
-        if ($categoryQuery == "" && $locationQuery == "" && $keywordSearch == "" && $dateQuery == "")
+        $query = $initialQuery . $categoryQuery . $keywordSearch . $dateQuery . $locationQuery . $category . " ORDER BY j.id";
+        if ($categoryQuery == "" && $locationQuery == "" && $keywordSearch == "" && $dateQuery == "" && $category == "")
             $query = str_replace(" WHERE", "", $query);
         $query = preg_replace('!\s+!', ' ', $query);
         $query = str_replace(" WHERE AND", " WHERE ", $query);
         return $query;
     }
 
-    public function getLocationSearchQuery($lat, $lng, $radius = 10, $isCountry)
+    public function getLocationSearchQuery($location, $lat, $lng, $radius = 10, $isCountry)
     {
         $locationQuery = "";
         if ($isCountry != "1") {
-            if ($lat != "")
-                $locationQuery = " AND ( 3959 * acos( cos( radians('" . $lat . "') ) * cos( radians(j.db_latitude) ) * cos( radians(j.db_longitude) - radians('" . $lng . "') ) + sin( radians('" . $lat . "') ) * sin( radians(j.db_latitude) ) ) ) <= $radius ";
+            if ($location != "") {
+                if ($lat != "")
+                    $locationQuery = " AND ( 3959 * acos( cos( radians('" . $lat . "') ) * cos( radians(j.db_latitude) ) * cos( radians(j.db_longitude) - radians('" . $lng . "') ) + sin( radians('" . $lat . "') ) * sin( radians(j.db_latitude) ) ) ) <= $radius ";
+            }
         }
         return $locationQuery;
     }
 
-    public static function getCatrogrySearchQuery($category)
-    {
 
-        switch ($category) {
-            case 0:
-                $query = "";
-                break;
-            case 1:
-                $query = ' j.bo_parttime = 1 ';
-                break;
-            case 2:
-                $query = ' j.bo_gaptemp = 1  ';
-                break;
-            case 3:
-                $query = ' j.bo_internship = 1  ';
-                break;
-            case 4:
-                $query = ' j.bo_entrylevel = 1  ';
-                break;
-            case 5:
-                $query = ' j.bo_graduate = 1  ';
-                break;
-            default:
-                $query = "";
-                break;
-        }
-        return $query;
-    }
-
-
-
-    public  function getKeywordSearchQuery($keyword, $isCountry, $country, $county, $latitude)
+    public function getKeywordSearchQuery($location, $keyword, $isCountry, $country, $county, $latitude)
     {
         $countryQuery = $countyQuery = $keywordSearch = "";
         if ($county != "")
             $countyQuery = " or j.vc_locationdetails LIKE '%$county%' ";
-        else if ($isCountry == "1")
+        else if ($isCountry == "1" && $country != "")
+            $countryQuery = " or j.vc_locationdetails LIKE '%$country%' ";
+        else if ($location != "" && $latitude == '')
             $countryQuery = " or j.vc_locationdetails LIKE '%$country%' ";
         if ($keyword != "all")
             if ($keyword != "")
@@ -113,9 +88,92 @@ class JobRepository extends ServiceEntityRepository
         return $query;
     }
 
+    public function getCategorySearchQuery($category)
+    {
+        $query = "";
+        if ($category != '')
+            if ($category != 'default')
+                $query = " AND jc.mastercategory = $category and jc.job=j.id";
+        return $query;
+    }
 
     public function getJobInitialSearchQuery()
     {
-        return "select j.id,j.vc_shortheadline,j.vc_locationdetails,j.db_latitude,j.db_longitude,j.created_at FROM App\Entity\Job j WHERE ";
+        return "select DISTINCT j.id,j.vc_shortheadline,j.vc_locationdetails,j.db_latitude,j.db_longitude,j.vc_salarydescription ,j.created_at FROM App\Entity\Job j inner join  App\Entity\JobCategory jc WHERE ";
+    }
+
+    public function getJobRecommendationsfeatured()
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->setMaxResults(6)
+            ->getQuery();
+        $result = $qb->execute();
+        $returnResult = array();
+        $i = 0;
+        foreach ($result as $job) {
+            $returnResult[$i]['id'] = $job->getid();
+            $returnResult[$i]['headline'] = $job->getVcShortheadline();
+            $returnResult[$i]['location'] = $job->getVcLocationdetails();
+            $returnResult[$i]['salary'] = $job->getVcSalarydescription();
+            $i++;
+        }
+        return $returnResult;
+    }
+
+    public function getJobRecommendationsrecent()
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->addOrderBy('u.created_at', 'DESC')
+            ->setMaxResults(6)
+            ->getQuery();
+        $result = $qb->execute();
+        $returnResult = array();
+        $i = 0;
+        foreach ($result as $job) {
+            $returnResult[$i]['id'] = $job->getid();
+            $returnResult[$i]['headline'] = $job->getVcShortheadline();
+            $returnResult[$i]['location'] = $job->getVcLocationdetails();
+            $returnResult[$i]['salary'] = $job->getVcSalarydescription();
+            $i++;
+        }
+        return $returnResult;
+    }
+
+    public function getJobRecommendationstop()
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->addOrderBy('u.dt_livedate', 'DESC')
+            ->setMaxResults(6)
+            ->getQuery();
+        $result = $qb->execute();
+        $returnResult = array();
+        $i = 0;
+        foreach ($result as $job) {
+            $returnResult[$i]['id'] = $job->getid();
+            $returnResult[$i]['headline'] = $job->getVcShortheadline();
+            $returnResult[$i]['location'] = $job->getVcLocationdetails();
+            $returnResult[$i]['salary'] = $job->getVcSalarydescription();
+            $i++;
+        }
+        return $returnResult;
+    }
+
+    public function getJobRecommendationsmostapplied()
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->addOrderBy('u.updated_at', 'DESC')
+            ->setMaxResults(6)
+            ->getQuery();
+        $result = $qb->execute();
+        $returnResult = array();
+        $i = 0;
+        foreach ($result as $job) {
+            $returnResult[$i]['id'] = $job->getid();
+            $returnResult[$i]['headline'] = $job->getVcShortheadline();
+            $returnResult[$i]['location'] = $job->getVcLocationdetails();
+            $returnResult[$i]['salary'] = $job->getVcSalarydescription();
+            $i++;
+        }
+        return $returnResult;
     }
 }

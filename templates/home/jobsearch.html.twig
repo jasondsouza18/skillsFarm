@@ -17,28 +17,45 @@
                         </div>
                     </div>
                     <div class="job-search-content text-center brd-style">
-                        <form action="{{ path('_job_search') }}" method="post">
+                        <form action="{{ path('_job_search') }}" method="post" id="search_form">
                             <div class="form-container">
                                 <div class="box-select">
                                     <div class="select">
                                         <input type="text" placeholder="Job title/keywords" name="keyword" id="keyword"
-                                               style="height: 60px;background-color: white;"/>
+                                               style="height: 60px;background-color: white;"
+                                               value="{{ searchparameters['keyword'] }}"/>
                                     </div>
                                     <div class="select">
                                         <input type="text" placeholder="City, province or region" name="location"
-                                               id="location" style="height: 60px;background-color: white;"/>
-                                        <input type="hidden" name="latitude" id="latitude" value=""/>
-                                        <input type="hidden" name="longitude" id="longitude" value=""/>
-                                        <input type="hidden" name="county" id="county" value=""/>
-                                        <input type="hidden" name="country" id="country" value=""/>
-                                        <input type="hidden" name="isCountry" id="isCountry" value=""/>
+                                               id="location" style="height: 60px;background-color: white;"
+                                               onkeydown="initMap(this);"
+                                               value="{{ searchparameters['location'] }}"/>
+                                        <input type="hidden" name="latitude" id="latitude"
+                                               value="{{ searchparameters['latitude'] }}"/>
+                                        <input type="hidden" name="longitude" id="longitude"
+                                               value="{{ searchparameters['longitude'] }}"/>
+                                        <input type="hidden" name="county" id="county"
+                                               value="{{ searchparameters['county'] }}"/>
+                                        <input type="hidden" name="country" id="country"
+                                               value="{{ searchparameters['country'] }}"/>
+                                        <input type="hidden" name="isCountry" id="isCountry"
+                                               value="{{ searchparameters['isCountry'] }}"/>
                                         <input type="hidden" name="radius" id="radius" value="10"/>
                                     </div>
                                     <div class="select">
-                                        <select name="category" id="category">
-                                            <option value="0">All</option>
-                                        </select>
+                                        <div class="select">
+                                            <select name="category" class="form-control" id="category">
+                                                <option value="default">Select Job Category</option>
+                                                {% for cat in category %}
+                                                    <option value="{{ cat.id }}">{{ cat.vccategoryname }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
                                     </div>
+                                    <script>
+                                        document.getElementById('category').value = {% if searchparameters is defined %}'{{ searchparameters['category'] }}'
+                                        {% else %}'default' {% endif %};
+                                    </script>
                                     <div style="display: none">
                                         <input type="date" value="" id="startdate" name="startdate"/>
                                         <input type="date" value="" id="enddate" name="enddate"/>
@@ -50,7 +67,6 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -68,19 +84,29 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="featured">
                         <div class="row">
-                            {% for job in pagination %}
-                                <div class="col-md-6">
-                                    <div class="single-job-post">
-                                        <div class="address">
-                                            <h6>{{ job.vc_shortheadline }}</h6>
-                                            <p>in : {{ job.vc_locationdetails }}</p>
-                                        </div>
-                                        <div class="button-box"><a href="/description/{{ job.id }}" class="button button-black">Read More..</a>
-                                        </div>
+                            {% if pagination|length == 0 %}
+                                <span style="padding-left: 5%">
+                                <h4>No Jobs found for you criteria. Kindly search for any other keyword or location.</h4>
+                                </span>
+                            {% else %}
+                                {% for job in pagination %}
+                                    <div class="col-md-6">
+                                        <div class="single-job-post">
+                                            <div class="address"
+                                                 onclick="javascript:location.href='/description/{{ job.id }}'">
+                                                <h6>{{ job.vc_shortheadline }}</h6>
+                                                <p><i class="fa fa-map-marker"></i>&nbsp;&nbsp;&nbsp;{{ job.vc_locationdetails }}</p>
+                                                <p><i class="fa fa-calendar"></i> &nbsp;&nbsp;&nbsp;{{ job.created_at | date('F jS Y') }}</p>
+                                                <p><i class="fa fa-money"></i> &nbsp;&nbsp;&nbsp;{{ job.vc_salarydescription }}</p>
+                                            </div>
+                                            <div class="button-box"><a href="/description/{{ job.id }}"
+                                                                       class="button button-black">Read More..</a>
+                                            </div>
 
+                                        </div>
                                     </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="navigation">
