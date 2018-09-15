@@ -13,4 +13,5 @@ return [
     Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle::class => ['all' => true],
     Aws\Symfony\AwsBundle::class => ['all' => true],
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
+    Sonata\SeoBundle\SonataSeoBundle::class => ['all' => true],
 ];

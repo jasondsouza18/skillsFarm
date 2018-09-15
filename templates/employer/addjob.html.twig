@@ -49,14 +49,15 @@
                             <label for="sdate">Job Start Date :</label>
                             <input type="date" id="sdate" class="form-control" name="sdate"
                                    required="" style="text-transform: none;"
-                                   value="{% if job.dtlivedate is defined %}{{ job.dtlivedate |date("Y") }}}}{% endif %}">
+                                   value="{% if job.dtlivedate is defined %}{{ job.dtlivedate |date("Y") }}}{% endif %}">
                         </div>
                         <div class="form-group">
                             <label for="edate">Job End Date :</label>
                             <input type="date" id="edate" class="form-control" name="edate"
                                    required=""
                                    style="text-transform: none;"
-                                   value="{% if job.dtenddate is defined %}{{ job.dtenddate|date("Y") }} }}{% endif %}">
+                                   value="{% if job.dtenddate is defined %}{{ job.dtenddate|date("d-m-Y") }}{% endif %}">
+
                         </div>
                         <div class="form-group">
                             <label for="salary">Salary :</label>
@@ -100,15 +101,19 @@
                         </div>
                         <div class="form-group">
                             <label for="keywords">Select Job Category :</label>
-                            <select name="category" class="form-control">
+                            <select name="category" id="category" class="form-control">
                                 <option value="default">Select Job Category</option>
                                 {% for cat in category %}
                                     <option value="{{ cat.id }}">{{ cat.vccategoryname }}</option>
                                 {% endfor %}
                             </select>
+                            <script>
+                                document.getElementById("category").value={{ jobcategory }};
+                            </script>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-round btn-b">Add Job</button>
+                            <button type="submit" class="btn btn-round btn-b">Save and Exit</button> &nbsp;&nbsp;
+                            <button type="button" class="btn btn-round btn-b">Cancel</button>
                         </div>
                     </form>
                 </div>

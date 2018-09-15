@@ -39,13 +39,25 @@
                                         <div class="panel-group" id="accordion">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <h4 class="panel-title font-alt"><a data-toggle="collapse"
-                                                                                        data-parent="#accordion"
-                                                                                        href="#jobin{{ job.id }}">{{ job.vcshortheadline }}</a>
+                                                    <h4 class="panel-title font-alt"><label
+                                                                style="float: left;    margin-top: 3px;"
+                                                                onclick="javascript:location.href='/employer/add/job/{{ job.id }}'"><i
+                                                                    class="fa fa-edit"></i></label><a
+                                                                style="padding-left: 5%;position: initial"
+                                                                data-toggle="collapse"
+                                                                data-parent="#accordion"
+                                                                href="#jobin{{ job.id }}">{{ job.vcshortheadline }}</a>
                                                     </h4>
+
                                                 </div>
                                                 <div class="panel-collapse collapse" id="jobin{{ job.id }}">
-                                                    <div class="panel-body">{{ job.vcdescription }}
+                                                    <div class="panel-body">
+                                                        Headline : {{ job.vcshortheadline }}<br>
+                                                        Start date : {{ job.dtlivedate|date("F jS \\a\\t g:ia") }}<br>
+                                                        End date : {{ job.dtenddate |date("F jS \\a\\t g:ia") }}
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <b>Discription:</b><br>{{ job.vcdescription }}
                                                     </div>
                                                 </div>
                                             </div>

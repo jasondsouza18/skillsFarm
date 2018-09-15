@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Constraints\Date;
 class EmployerController extends AbstractController
 {
     /**
-     * @Route("/", name="_employer_home")
+     * @Route("/home", name="_employer_home")
      */
     public function home(Request $request)
     {
@@ -87,12 +87,12 @@ class EmployerController extends AbstractController
     }
 
     /**
-     * @Route("/home", name="_employer_index")
+     * @Route("/dashboard", name="_employer_index")
      */
     public function index(Request $request)
     {
         $employer = $this->getUser();
-        $jobs = $this->getDoctrine()->getRepository(Job::class)->findBy(array('employer' => $employer->getId()));
+        $jobs = $this->getDoctrine()->getRepository(Job::class)->findBy(array('employer' => $employer->getId(), 'it_status' => 1));
         $company = $this->getDoctrine()->getRepository(Job::class)->findBy(array('employer' => $employer->getId()));
         return $this->render('employer/home.html.twig', array(
             'jobs' => $jobs,
@@ -177,6 +177,7 @@ class EmployerController extends AbstractController
         return $this->render('employer/addjob.html.twig', array(
             'job' => $job,
             'category' => $category,
+            'jobcategory' => $masterCategory->getId(),
             'id' => $id
         ));
     }

@@ -9,6 +9,7 @@
         "beberlei/DoctrineExtensions": "^1.1",
         "knplabs/knp-paginator-bundle": "^2.8",
         "sensio/framework-extra-bundle": "^5.2",
+        "symfony-cmf/seo-bundle": "^2.1",
         "symfony/console": "^4.1",
         "symfony/flex": "^1.0",
         "symfony/form": "^4.1",

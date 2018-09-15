@@ -49,12 +49,6 @@
                                 <a href="/">Home</a>
                             </li>
                             <li>
-                                <a href="/search">Jobs</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('_aboutus') }}">About Us</a>
-                            </li>
-                            <li>
                                 <a href="#">Services</a>
                                 <ul class="dropdown">
                                     <li>
@@ -82,13 +76,16 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="/blogs">Blog</a>
+                                <a href="/blogs">Blogs</a>
                             </li>
                             <li>
                                 <a href="{{ path('_contactus') }}">Contact Us</a>
                             </li>
                         </ul>
                     </nav>
+                    <div class="login-btn">
+                        <a class="modal-view button" href="{{ path('_employer_home') }}">Recruiters</a>
+                    </div>
                     {% if app.user is defined and app.user is not null %}
                         <div class="login-btn">
                             <a class="modal-view button" href="{{ path('_jobseeker_home') }}">My Account</a>
