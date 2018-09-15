@@ -168,6 +168,11 @@ class Jobseeker implements UserInterface, \Serializable
      */
     private $jobApplications;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CVManagement", mappedBy="jobseeker")
+     */
+    private $cVManagements;
+
     public function __construct()
     {
         $this->jobseekerResumes = new ArrayCollection();
@@ -176,6 +181,7 @@ class Jobseeker implements UserInterface, \Serializable
         $this->jobseekerWishlists = new ArrayCollection();
         $this->jobseekerExperiences = new ArrayCollection();
         $this->jobApplications = new ArrayCollection();
+        $this->cVManagements = new ArrayCollection();
     }
 
     public function getId()
@@ -723,6 +729,37 @@ class Jobseeker implements UserInterface, \Serializable
             // set the owning side to null (unless already changed)
             if ($jobApplication->getJobseeker() === $this) {
                 $jobApplication->setJobseeker(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CVManagement[]
+     */
+    public function getCVManagements(): Collection
+    {
+        return $this->cVManagements;
+    }
+
+    public function addCVManagement(CVManagement $cVManagement): self
+    {
+        if (!$this->cVManagements->contains($cVManagement)) {
+            $this->cVManagements[] = $cVManagement;
+            $cVManagement->setJobseeker($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCVManagement(CVManagement $cVManagement): self
+    {
+        if ($this->cVManagements->contains($cVManagement)) {
+            $this->cVManagements->removeElement($cVManagement);
+            // set the owning side to null (unless already changed)
+            if ($cVManagement->getJobseeker() === $this) {
+                $cVManagement->setJobseeker(null);
             }
         }
 

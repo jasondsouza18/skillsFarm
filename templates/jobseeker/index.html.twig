@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                 <div class="breadcrumb-text" style="padding-left: 42%;">
+                    <div class="breadcrumb-text" style="padding-left: 42%;">
                         <h2 class="text-center">Profile</h2>
                         <div class="breadcrumb-bar">
                             <ul class="breadcrumb text-center m-0">
@@ -42,6 +42,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
+                                        <h6>(Create you profile so that we can showcase you for the recruiters)</h6>
                                         <form action="#">
                                             <div class="single-job-content">
                                                 <div class="area-title">
@@ -71,17 +72,17 @@
                                                 <div class="title">
                                                     <span>Something about you</span></div>
                                                 <div class="single-job-form">
-                                                    <p>Describe yourself here....</p>
+                                                    <p>{% if app.user.vcdescription is null %} Describe yourself here....{% else %}{{ app.user.vcdescription }}{% endif %}</p>
                                                 </div>
-                                                <div class="title">
-                                                    <span>You key Points</span></div>
-                                                <div class="single-job-form">
-                                                    <div class="single-info mb-14">
-                                                        {% for key in app.user.jobseekerKeyPoints %}
-                                                            <span class="mark-icon block pl-27">{{ key.vckeyname }}</span>
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
+                                                {#<div class="title">#}
+                                                {#<span>You key Points</span></div>#}
+                                                {#<div class="single-job-form">#}
+                                                {#<div class="single-info mb-14">#}
+                                                {#{% for key in app.user.jobseekerKeyPoints %}#}
+                                                {#<span class="mark-icon block pl-27">{{ key.vckeyname }}</span>#}
+                                                {#{% endfor %}#}
+                                                {#</div>#}
+                                                {#</div>#}
                                                 <div class="title">
                                                     <span>Education Details</span></div>
                                                 {% for key in app.user.jobseekerEducation %}
@@ -118,38 +119,40 @@
                             <div class="buttonback">
                                 <a href="#" class="button button-large-box lg-btn mr-20" data-toggle="modal"
                                    data-target="#myModal0">Add CV</a>
-                                {{ macroForm.editResumeMacro(0,'','','') }}
+                                {{ macroForm.editResumeMacro(0,'','','',category) }}
                             </div>
                         </div>
                         <div class="row">
                             {% for resume in app.user.jobseekerResumes %}
-                                <div class="col-md-6">
-                                    <div class="single-job-post">
-                                        <div class="img-icon">
-                                            <img src="images/company-logo/1.png" alt="">
-                                        </div>
-                                        <div class="address">
-                                            <h6>{{ resume.vccvname }}</h6>
-                                            <p>{{ resume.getstatusinString }}</p>
-                                            <p>Date uploaded:
-                                                {{ resume.createdat|date("F jS Y") }}</p>
-                                            <p>File Name:
-                                                {{ resume.vccvpath }}</p>
-                                        </div>
+                                {% if resume.itcvstatus == 1 %}
+                                    <div class="col-md-6">
+                                        <div class="single-job-post">
+                                            <div class="img-icon">
+                                                <img src="images/company-logo/1.png" alt="">
+                                            </div>
+                                            <div class="address">
+                                                <h6>{{ resume.vccvname }}</h6>
+                                                <p>{{ resume.getstatusinString }}</p>
+                                                <p>Date uploaded:
+                                                    {{ resume.createdat|date("F jS Y") }}</p>
+                                            </div>
 
-                                        <div class="">
-                                            <a href="#" class="button button-black"
-                                               style="width: 120.56px;">Download</a>&nbsp;&nbsp;&nbsp;
-                                            <a href="" class="button button-black" style="width: 120.56px;">DELETE</a>
-                                            &nbsp;&nbsp;&nbsp;
-                                            <a href="" class="button button-black" data-toggle="modal"
-                                               style="width: 120.56px;"
-                                               data-target="#myModal{{ resume.id }}">Edit</a>
+                                            <div class="">
+                                                <a href="/jobseeker/resume/download/{{ resume.id }}"
+                                                   class="button button-black"
+                                                   style="width: 120.56px;">Download</a>&nbsp;&nbsp;&nbsp;
+                                                <a href="/jobseeker/resume/inactive/{{ resume.id }}"
+                                                   class="button button-black" style="width: 120.56px;">DELETE</a>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <a href="" class="button button-black" data-toggle="modal"
+                                                   style="width: 120.56px;"
+                                                   data-target="#myModal{{ resume.id }}">Edit</a>
 
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                {{ macroForm.editResumeMacro(resume.id,resume.vccvname,resume.vccvpath,resume.vccoverletter) }}
+                                    {{ macroForm.editResumeMacro(resume.id,resume.vccvname,resume.vccvpath,resume.vccoverletter,category) }}
+                                {% endif %}
                             {% endfor %}
                         </div>
                     </div>
@@ -187,7 +190,7 @@
             </div>
         </div>
     </div>
-    {% macro editResumeMacro(id, cvname, existingCV, coverletter) %}
+    {% macro editResumeMacro(id, cvname, existingCV, coverletter,category) %}
         <div class="modal fade" id="myModal{{ id }}" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
 
@@ -199,19 +202,25 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-pop-up-content ptb-60 pl-60 pr-60">
+                            <h3><label style="color: black;padding-left: 29%;"><strong>Add CV</strong></label></h3>
                             <form action="{{ path('_jobseeker_profile_resume') }}" method="post"
                                   enctype="multipart/form-data">
                                 <div class="form-box">
                                     <input type="hidden" name="cvid" value="{{ id }}">
                                     <input type="text" name="cvname" placeholder="CV Name" class="mb-14"
-                                           value="{{ cvname }}">
-                                    <input type="file" name="cvfile" class="mb-14">
-                                    <input type="text" name="existingCV" placeholder="existing CV Name"
-                                           readonly="readonly" value="{{ existingCV }}">
+                                           value="{{ cvname }}" required>
+                                    <input type="file" name="cvfile" class="mb-14" required>
                                     <input type="textarea" name="coverletter" placeholder="Enter cover letter"
                                            value="{{ coverletter }}">
+                                    <div class="select form-box" style="width: 100%;">
+                                        <select name="category" id="category" required>
+                                            <option value="default">Select your relevant Category</option>
+                                            {% for cat in category %}
+                                                <option value="{{ cat.id }}">{{ cat.vccategoryname }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
                                 </div>
-                                <br>
                                 <br>
                                 <div class="text-center">
                                     <button type="submit" class="text-uppercase">Update</button>

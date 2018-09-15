@@ -59,9 +59,10 @@ class HomeController extends Controller
             // data is an array with "name", "email", and "message" keys
             $data = $form->getData();
             $message = (new \Swift_Message('Skills Farm'))
+                ->setSubject('Contact me  - Skillsfarm')
                 ->setFrom('skillsfarmindia@gmail.com')
-                ->setTo('jasondsouza717@gmail.com')
-                ->setCc('josephjeffry2@gmail.com')
+                ->setTo('shyjunair2018@gmail.com')
+                ->setCc(['receiver@domain.org', '20angelgeo@gmail.com', 'jasondsouza717@gmail.com'])
                 ->setBody("Name - " . $data['vc_name'] . PHP_EOL . "Email - " . $data['vc_email'] . PHP_EOL
                     . "Subject -" . $data['vc_subject'] . PHP_EOL . " Message - " . PHP_EOL . $data['vc_message'] . PHP_EOL
                 );
@@ -114,15 +115,18 @@ class HomeController extends Controller
                 "Resume name = " . $fileName . PHP_EOL .
                 "Category Selected = " . $category . PHP_EOL;
             $messagetosend = (new \Swift_Message('Skills Farm'))
+                ->setSubject("General Form - Skillsfarm")
                 ->setFrom('skillsfarmindia@gmail.com')
-                ->setTo('jasondsouza717@gmail.com')
-                ->setCc('josephjeffry2@gmail.com')
+                ->setTo('shyjunair2018@gmail.com')
+                ->setCc(['receiver@domain.org', '20angelgeo@gmail.com', 'jasondsouza717@gmail.com'])
                 ->setBody($message)
                 ->attach(\Swift_Attachment::fromPath($uploadsDirectory . $fileName));
             $sent = $mailer->send($messagetosend);
         }
+        $category = $this->getDoctrine()->getRepository(MasterCategory::class)->findAll();
         return $this->render('home/generalform.html.twig', array(
-            'sent' => $sent
+            'sent' => $sent,
+            'category'=>$category
         ));
     }
 
@@ -134,11 +138,12 @@ class HomeController extends Controller
         if ($request->getMethod() == 'POST') {
             $request = $request->request->all();
             if ($request['string'] == "a@3212's[]asdo[{&*^&*") {
-                $message = "Asked us to contact this email" . $request['email'];
+                $message = "Asked us to contact this email -" . PHP_EOL . $request['email'];
                 $messagetosend = (new \Swift_Message('Skills Farm'))
+                    ->setSubject("Contact me - Skillsfarm")
                     ->setFrom('skillsfarmindia@gmail.com')
-                    ->setTo('jasondsouza717@gmail.com')
-                    ->setCc('josephjeffry2@gmail.com')
+                    ->setTo('shyjunair2018@gmail.com')
+                    ->setCc(['receiver@domain.org', '20angelgeo@gmail.com', 'jasondsouza717@gmail.com'])
                     ->setBody($message);
                 $sent = $mailer->send($messagetosend);
             }
@@ -190,8 +195,10 @@ class HomeController extends Controller
             $rand = self::generateRandomString(10);
             $link = "http://127.0.0.3/changepassword/" . $jobseeker->getId() . "/$rand";
             $messagetosend = (new \Swift_Message('Skills Farm'))
+                ->setSubject('Forgot Password - Skillsfarm')
                 ->setFrom('skillsfarmindia@gmail.com')
                 ->setTo($email)
+                ->setBcc(['receiver@domain.org', '20angelgeo@gmail.com', 'jasondsouza717@gmail.com'])
                 ->setBody(
                     $this->renderView(
                     // templates/emails/registration.html.twig
@@ -329,8 +336,8 @@ class HomeController extends Controller
                 "Resume name = " . $fileName . PHP_EOL;
             $messagetosend = (new \Swift_Message('Skills Farm'))
                 ->setFrom('skillsfarmindia@gmail.com')
-                ->setTo('jasondsouza717@gmail.com')
-                ->setCc('josephjeffry2@gmail.com')
+                ->setTo($request['Email'])
+                ->setBcc(['receiver@domain.org', '20angelgeo@gmail.com', 'jasondsouza717@gmail.com'])
                 ->setBody($message)
                 ->attach(\Swift_Attachment::fromPath($uploadsDirectory . $fileName));
             //  $sent = $mailer->send($messagetosend);

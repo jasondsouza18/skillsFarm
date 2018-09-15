@@ -128,7 +128,7 @@
     function submitnotify() {
         $('#notify-span').hide();
         $('#notify-loader').show();
-        var email = document.getElementById('email').value;
+        var email = document.getElementById('emailtonotify').value;
         $.post("{{ path('_notify') }}", {email: email, string: "a@3212's[]asdo[{&*^&*"}, function (data) {
             if (data == '1') {
                 $('#snackbar').html("Your message has been successfully sent to skillsfarm team.");

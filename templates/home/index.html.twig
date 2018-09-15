@@ -190,86 +190,112 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="featured">
                         <div class="row">
-                            {% for jobf in jobfeatured %}
-                                <div class="col-md-6">
-                                    <div class="single-job-post">
-                                        <div class="address"
-                                             onclick="javascript:location.href='/description/{{ jobf['id'] }}'">
-                                            <h6>{{ jobf['headline'] }}</h6>
-                                            <p><i class="fa fa-map-marker"></i>&nbsp;
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ jobf['location'] }}</p>
-                                            <p><i class="fa fa-money"></i>
-                                                &nbsp;&nbsp;&nbsp;{{ jobf['salary'] }}</p>
-                                        </div>
-                                        <div class="button-box"><a href="/description/{{ jobf['id'] }}"
-                                                                   class="button button-black">APPLY NOW</a>
+                            {% if jobfeatured|length == 0 %}
+                                <span style="padding-left: 5%">
+                                    <h4>No Jobs Found! click <a style="color: blue;" href="{{ path('_job_search') }}">here</a> and check the latest jobs</h4>
+                                </span>
+                            {% else %}
+                                {% for jobf in jobfeatured %}
+                                    <div class="col-md-6">
+                                        <div class="single-job-post">
+                                            <div class="address"
+                                                 onclick="javascript:location.href='/description/{{ jobf['id'] }}'">
+                                                <h6>{{ jobf['headline'] }}</h6>
+                                                <p><i class="fa fa-map-marker"></i>&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ jobf['location'] }}</p>
+                                                <p><i class="fa fa-money"></i>
+                                                    &nbsp;&nbsp;&nbsp;{{ jobf['salary'] }}</p>
+                                            </div>
+                                            <div class="button-box"><a href="/description/{{ jobf['id'] }}"
+                                                                       class="button button-black">APPLY NOW</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="tab-pane" id="recent_job">
                         <div class="row">
-                            {% for jobf in jobrecent %}
-                                <div class="col-md-6">
-                                    <div class="single-job-post">
-                                        <div class="address"
-                                             onclick="javascript:location.href='/description/{{ jobf['id'] }}'">
-                                            <h6>{{ jobf['headline'] }}</h6>
-                                            <p><i class="fa fa-map-marker"></i>&nbsp;
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ jobf['location'] }}</p>
-                                            <p><i class="fa fa-money"></i>
-                                                &nbsp;&nbsp;&nbsp;{{ jobf['salary'] }}</p>
-                                        </div>
-                                        <div class="button-box"><a href="/description/{{ jobf['id'] }}"
-                                                                   class="button button-black">APPLY NOW</a>
+                            {% if jobrecent|length == 0 %}
+                                <span style="padding-left: 5%">
+                                <h4> No Jobs Found! click <a style="color: blue;"
+                                                             href="{{ path('_job_search') }}">here</a> and check the latest jobs</h4>
+                               </span>
+                            {% else %}
+                                {% for jobf in jobrecent %}
+                                    <div class="col-md-6">
+                                        <div class="single-job-post">
+                                            <div class="address"
+                                                 onclick="javascript:location.href='/description/{{ jobf['id'] }}'">
+                                                <h6>{{ jobf['headline'] }}</h6>
+                                                <p><i class="fa fa-map-marker"></i>&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ jobf['location'] }}</p>
+                                                <p><i class="fa fa-money"></i>
+                                                    &nbsp;&nbsp;&nbsp;{{ jobf['salary'] }}</p>
+                                            </div>
+                                            <div class="button-box"><a href="/description/{{ jobf['id'] }}"
+                                                                       class="button button-black">APPLY NOW</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="tab-pane" id="top">
                         <div class="row">
-                            {% for jobf in jobtop %}
-                                <div class="col-md-6">
-                                    <div class="single-job-post">
-                                        <div class="address"
-                                             onclick="javascript:location.href='/description/{{ jobf['id'] }}'">
-                                            <h6>{{ jobf['headline'] }}</h6>
-                                            <p><i class="fa fa-map-marker"></i>&nbsp;
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ jobf['location'] }}</p>
-                                            <p><i class="fa fa-money"></i>
-                                                &nbsp;&nbsp;&nbsp;{{ jobf['salary'] }}</p>
-                                        </div>
-                                        <div class="button-box"><a href="/description/{{ jobf['id'] }}"
-                                                                   class="button button-black">APPLY NOW</a>
+                            {% if jobtop|length == 0 %}
+                                <span style="padding-left: 5%">
+                                   <h4>No Jobs Found! click <a style="color: blue;" href="{{ path('_job_search') }}">here</a> and check the latest jobs</h4>
+                                </span>
+                            {% else %}
+                                {% for jobf in jobtop %}
+                                    <div class="col-md-6">
+                                        <div class="single-job-post">
+                                            <div class="address"
+                                                 onclick="javascript:location.href='/description/{{ jobf['id'] }}'">
+                                                <h6>{{ jobf['headline'] }}</h6>
+                                                <p><i class="fa fa-map-marker"></i>&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ jobf['location'] }}</p>
+                                                <p><i class="fa fa-money"></i>
+                                                    &nbsp;&nbsp;&nbsp;{{ jobf['salary'] }}</p>
+                                            </div>
+                                            <div class="button-box"><a href="/description/{{ jobf['id'] }}"
+                                                                       class="button button-black">APPLY NOW</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="tab-pane" id="mostapplied">
                         <div class="row">
-                            {% for jobf in jobmostapplied %}
-                                <div class="col-md-6">
-                                    <div class="single-job-post">
-                                        <div class="address"
-                                             onclick="javascript:location.href='/description/{{ jobf['id'] }}'">
-                                            <h6>{{ jobf['headline'] }}</h6>
-                                            <p><i class="fa fa-map-marker"></i>&nbsp;
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ jobf['location'] }}</p>
-                                            <p><i class="fa fa-money"></i>
-                                                &nbsp;&nbsp;&nbsp;{{ jobf['salary'] }}</p>
-                                        </div>
-                                        <div class="button-box"><a href="/description/{{ jobf['id'] }}"
-                                                                   class="button button-black">APPLY NOW</a>
+                            {% if jobmostapplied|length == 0 %}
+                                <span style="padding-left: 5%">
+                                  <h4>No Jobs Found! click <a style="color: blue;"
+                                                              href="{{ path('_job_search') }}">here</a> and check the latest jobs</h4>
+                                </span>
+                            {% else %}
+                                {% for jobf in jobmostapplied %}
+                                    <div class="col-md-6">
+                                        <div class="single-job-post">
+                                            <div class="address"
+                                                 onclick="javascript:location.href='/description/{{ jobf['id'] }}'">
+                                                <h6>{{ jobf['headline'] }}</h6>
+                                                <p><i class="fa fa-map-marker"></i>&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ jobf['location'] }}</p>
+                                                <p><i class="fa fa-money"></i>
+                                                    &nbsp;&nbsp;&nbsp;{{ jobf['salary'] }}</p>
+                                            </div>
+                                            <div class="button-box"><a href="/description/{{ jobf['id'] }}"
+                                                                       class="button button-black">APPLY NOW</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>

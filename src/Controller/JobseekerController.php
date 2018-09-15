@@ -2,17 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\CVManagement;
+use App\Entity\MasterCategory;
 use App\Form\EditProfileType;
+use App\Repository\CVManagementRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Jobseeker;
 use App\Entity\JobseekerEducation;
-use App\Entity\JobseekResume;
+use App\Entity\JobseekerResume;
 use App\Entity\MasterEducation;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use App\Entity\JobseekerResume;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 
 /**
@@ -65,8 +68,9 @@ class JobseekerController extends Controller
     public function index(Request $request)
     {
         $jobseeker = $this->getUser();
+        $category = $this->getDoctrine()->getRepository(MasterCategory::class)->findAll();
         return $this->render('jobseeker/index.html.twig', [
-            'controller_name' => 'JobseekerController',
+            'category' => $category
         ]);
     }
 
@@ -127,17 +131,41 @@ class JobseekerController extends Controller
         $jobseeker = $this->getUser();
         $jobseekerresume = $this->getDoctrine()->getRepository(JobseekerResume::class)->findBy(['jobseeker' => $jobseeker->getId()]);
         if ($request->getMethod() == 'POST') {
+            $year = date("Y");
+            $rand = rand(0, 1000);
+            $month = date('m');
+            $requestpost = $request->request->all();
             $projectRoot = $this->get('kernel')->getProjectDir();
-            $uploadsDirectory = $projectRoot . "/public/uploads/jobseeker/Resumes/";
+            $uploadsDirectory = $projectRoot . "/public/uploads/CVs/$year/$month/" . $requestpost['category'] . "/";
             $file = $request->files->get('cvfile');
-            $fileName = $file->getClientOriginalName();
+            $fileName = $rand . $file->getClientOriginalName();
             $file->move($uploadsDirectory, $fileName);
-            $request = $request->request->all();
-            $jobseekerresume = $this->getDoctrine()->getRepository(JobseekerResume::class)->updateJobseekerResume($request, $jobseeker, $fileName);
+            $category = $this->getDoctrine()->getRepository(MasterCategory::class)->find($requestpost['category']);
+            $jobseekerresume = $this->getDoctrine()->getRepository(JobseekerResume::class)->updateJobseekerResume($requestpost, $jobseeker, $fileName, $uploadsDirectory);
+            $addintoCVmanagenemnt = $this->getDoctrine()->getRepository(CVManagement::class)->addIntoTabledata($jobseeker, $fileName, $uploadsDirectory, $requestpost, $category);
         }
-        return $this->render('jobSeeker/login.html.twig', array(
-            'resumes' => $jobseekerresume,
-        ));
+        $category = $this->getDoctrine()->getRepository(MasterCategory::class)->findAll();
+        return $this->redirectToRoute('_jobseeker_home');
     }
 
+
+    /**
+     * @Route("/resume/download/{id}", name="_resume_download")
+     */
+    public function resumedownload(Request $request, $id)
+    {
+        $resume = $this->getDoctrine()->getRepository(JobseekerResume::class)->find($id);
+        return $this->file($resume->getVccvpath(), $resume->getVccvname());
+    }
+
+    /**
+     * @Route("/resume/inactive/{id}", name="_resume_inactivate")
+     */
+    public function inactivatestatus(Request $request, $id)
+    {
+        $resume = $this->getDoctrine()->getRepository(JobseekerResume::class)->find($id);
+        $resume = $this->getDoctrine()->getRepository(JobseekerResume::class)->inactivateResume($resume);
+        $category = $this->getDoctrine()->getRepository(MasterCategory::class)->findAll();
+        return $this->redirectToRoute('_jobseeker_home');
+    }
 }

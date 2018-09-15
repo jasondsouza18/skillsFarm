@@ -13,6 +13,8 @@
                             <img src="/img/logo375.png" style="width: 300px;height: 75px;" alt="jobhere">
                         </div>
                         <form action="{{ path('_home') }}" method="post">
+                            <h3><label style="color: black;padding-left: 29%;"><strong>Jobseeker
+                                        Login</strong></label></h3>
                             <div class="form-box">
                                 <input type="text" id="username" class="mb-14"  name="_username" placeholder="Username" required
                                        value="{% if last_username is defined %}{{ last_username }}{% endif %}"/>

@@ -19,7 +19,7 @@ class JobseekerResumeRepository extends ServiceEntityRepository
         parent::__construct($registry, JobseekerResume::class);
     }
 
-    public function updateJobseekerResume($request, $jobseeker,$fileName)
+    public function updateJobseekerResume($request, $jobseeker,$fileName,$uploadsdrirectory)
     {
         $dm = $this->getEntityManager();
         $jobseekerResume = self::find($request['cvid']);
@@ -28,11 +28,20 @@ class JobseekerResumeRepository extends ServiceEntityRepository
         $jobseekerResume->setItPriority('1');
         $jobseekerResume->setJobseeker($jobseeker);
         $jobseekerResume->setVcCoverletter($request['coverletter']);
-        $jobseekerResume->setVcCvpath($fileName);
+        $jobseekerResume->setVcCvpath($uploadsdrirectory.$fileName);
         $jobseekerResume->setItCvstatus('1');
-        $jobseekerResume->setVcCvname($request['cvname']);
+        $jobseekerResume->setVcCvname($request['cvname'].$fileName);
         $dm->persist($jobseekerResume);
         $dm->flush($jobseekerResume);
         return $jobseekerResume;
+    }
+
+    public function inactivateResume($resume)
+    {
+        $dm = $this->getEntityManager();
+        $resume->setItCvstatus('0');
+        $dm->persist($resume);
+        $dm->flush($resume);
+        return $resume;
     }
 }

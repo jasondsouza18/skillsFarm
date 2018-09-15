@@ -44,9 +44,15 @@ class MasterCategory
      */
     private $JobCategories;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CVManagement", mappedBy="category")
+     */
+    private $cVManagements;
+
     public function __construct()
     {
         $this->JobCategories = new ArrayCollection();
+        $this->cVManagements = new ArrayCollection();
     }
 
     public function getId()
@@ -145,5 +151,36 @@ class MasterCategory
         if ($this->getCreatedAt() == null) {
             $this->setCreatedAt(new \DateTime('now'));
         }
+    }
+
+    /**
+     * @return Collection|CVManagement[]
+     */
+    public function getCVManagements(): Collection
+    {
+        return $this->cVManagements;
+    }
+
+    public function addCVManagement(CVManagement $cVManagement): self
+    {
+        if (!$this->cVManagements->contains($cVManagement)) {
+            $this->cVManagements[] = $cVManagement;
+            $cVManagement->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCVManagement(CVManagement $cVManagement): self
+    {
+        if ($this->cVManagements->contains($cVManagement)) {
+            $this->cVManagements->removeElement($cVManagement);
+            // set the owning side to null (unless already changed)
+            if ($cVManagement->getCategory() === $this) {
+                $cVManagement->setCategory(null);
+            }
+        }
+
+        return $this;
     }
 }

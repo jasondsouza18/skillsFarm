@@ -96,11 +96,9 @@
                                     <span style="float: right;width: 79%;">
                                         <select name="selectcategory" id="selectcategory" required>
                                              <option value="" disabled selected>--Select your option about your profession--</option>
-                                            <option value="1">School Teacher</option>
-                                            <option value="2">College Teacher</option>
-                                            <option value="3">Software Engineer</option>
-                                            <option value="4">Counseling</option>
-                                            <option value="5">Developer</option>
+                                            {% for cat in category %}
+                                                <option value="{{ cat.id }}">{{ cat.vccategoryname }}</option>
+                                            {% endfor %}
                                         </select>
                                             </span>
                                 </div>
