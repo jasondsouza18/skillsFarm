@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74436a97-1066-4195-894b-3796dd851956" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Entity/JobType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/MasterJobType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/JobTypeRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/MasterJobTypeRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/employer/pricing.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/EmployerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EmployerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/CompanyProfile.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/CompanyProfile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Job.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Job.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/JobCategoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/JobCategoryRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/employer/addjob.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employer/addjob.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/employer/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employer/home.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/employerfooter.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employerfooter.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/employerheader.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employerheader.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,12 +43,12 @@
           <entry key="jpg" value="7" />
           <entry key="js" value="6" />
           <entry key="json" value="2" />
-          <entry key="php" value="158" />
+          <entry key="php" value="160" />
           <entry key="png" value="1" />
           <entry key="rnc" value="1" />
-          <entry key="twig" value="247" />
+          <entry key="twig" value="248" />
           <entry key="txt" value="2" />
-          <entry key="yaml" value="15" />
+          <entry key="yaml" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -72,11 +57,11 @@
           <entry key="Image" value="10" />
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="6" />
-          <entry key="PHP" value="158" />
+          <entry key="PHP" value="160" />
           <entry key="PLAIN_TEXT" value="7" />
           <entry key="RNG Compact" value="1" />
-          <entry key="Twig" value="247" />
-          <entry key="YAML" value="15" />
+          <entry key="Twig" value="248" />
+          <entry key="YAML" value="16" />
           <entry key="htaccess" value="2" />
         </counts>
       </usages-collector>
@@ -89,7 +74,7 @@
           <entry key="json" value="1" />
           <entry key="php" value="10317" />
           <entry key="twig" value="14979" />
-          <entry key="yaml" value="143" />
+          <entry key="yaml" value="151" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -100,7 +85,7 @@
           <entry key="PHP" value="10317" />
           <entry key="PLAIN_TEXT" value="53" />
           <entry key="Twig" value="14979" />
-          <entry key="YAML" value="143" />
+          <entry key="YAML" value="151" />
           <entry key="htaccess" value="1" />
         </counts>
       </usages-collector>
@@ -108,6 +93,45 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="50" column="44" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="44" />
+              <folding>
+                <element signature="e#34#64#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/employerheader.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="19" column="65" selection-start-line="19" selection-start-column="65" selection-end-line="19" selection-end-column="65" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/EmployerController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="89">
+              <caret line="91" column="23" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="67" column="30" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/footer.html.twig">
           <provider selected="true" editor-type-id="text-editor">
@@ -117,7 +141,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/employerfooter.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
@@ -225,7 +249,6 @@
         <option value="$PROJECT_DIR$/src/Controller/JobseekerController.php" />
         <option value="$PROJECT_DIR$/templates/jobseeker/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/home/generalform.html.twig" />
-        <option value="$PROJECT_DIR$/config/packages/security.yaml" />
         <option value="$PROJECT_DIR$/src/Entity/Job.php" />
         <option value="$PROJECT_DIR$/src/Entity/MasterJobType.php" />
         <option value="$PROJECT_DIR$/src/Entity/JobType.php" />
@@ -239,9 +262,10 @@
         <option value="$PROJECT_DIR$/src/Controller/EmployerController.php" />
         <option value="$PROJECT_DIR$/src/Controller/HomeController.php" />
         <option value="$PROJECT_DIR$/templates/employer/pricing.html.twig" />
-        <option value="$PROJECT_DIR$/templates/employerheader.html.twig" />
         <option value="$PROJECT_DIR$/templates/footer.html.twig" />
         <option value="$PROJECT_DIR$/templates/employerfooter.html.twig" />
+        <option value="$PROJECT_DIR$/config/packages/security.yaml" />
+        <option value="$PROJECT_DIR$/templates/employerheader.html.twig" />
       </list>
     </option>
   </component>
@@ -366,6 +390,17 @@
             <path>
               <item name="skillsfarm" type="b2602c69:ProjectViewProjectNode" />
               <item name="skillsfarm" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="skillsfarm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="skillsfarm" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="skillsfarm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="skillsfarm" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -454,12 +489,12 @@
       <workItem from="1536475051813" duration="16177000" />
       <workItem from="1536846272569" duration="3384000" />
       <workItem from="1536991791596" duration="16429000" />
-      <workItem from="1537088105546" duration="8475000" />
+      <workItem from="1537088105546" duration="8707000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="172371000" />
+    <option name="totallyTimeSpent" value="172603000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -681,13 +716,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="31" column="48" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Job.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -785,34 +813,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/employerheader.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="23" column="60" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="34" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="34" />
-          <folding>
-            <element signature="e#34#64#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/employer/pricing.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="72" column="78" selection-start-line="72" selection-start-column="78" selection-end-line="72" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/EmployerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="91" column="49" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -855,6 +859,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="46" column="104" selection-start-line="46" selection-start-column="104" selection-end-line="46" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="67" column="30" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/EmployerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="91" column="23" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="50" column="44" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="44" />
+          <folding>
+            <element signature="e#34#64#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/employerheader.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="19" column="65" selection-start-line="19" selection-start-column="65" selection-end-line="19" selection-end-column="65" />
         </state>
       </provider>
     </entry>
