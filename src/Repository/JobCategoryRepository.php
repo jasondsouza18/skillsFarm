@@ -19,32 +19,10 @@ class JobCategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, JobCategory::class);
     }
 
-//    /**
-//     * @return JobCategory[] Returns an array of JobCategory objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('j')
-            ->andWhere('j.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('j.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?JobCategory
+    public function gethejobtype($job)
     {
-        return $this->createQueryBuilder('j')
-            ->andWhere('j.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $jobCategory = self::findOneBy(array('job'=>$job));
+        return $jobCategory->getMastercategory()->getId();
     }
-    */
 }

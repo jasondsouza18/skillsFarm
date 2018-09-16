@@ -29,7 +29,7 @@ security:
         login_path: _employer_login
         check_path: _employer_login
         always_use_default_target_path: true
-        default_target_path: /employer/home
+        default_target_path: /employer/dashboard
 
       logout:
         path: _employer_logout

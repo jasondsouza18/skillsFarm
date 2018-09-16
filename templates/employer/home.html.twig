@@ -79,7 +79,7 @@
                                                        name="companyname"
                                                        placeholder="Company Name"
                                                        required style="text-transform: none;"
-                                                       value=""/>
+                                                       value="{{ company.vcname }}"/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="companyurl">URL :</label>
@@ -87,7 +87,7 @@
                                                        name="companyurl"
                                                        placeholder="Company URL"
                                                        required style="text-transform: none;"
-                                                       value=""/>
+                                                       value="{{ company.vccompanyurl }}"/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="companydescription">Description :</label>
@@ -95,7 +95,7 @@
                                                           name="companydescription"
                                                           placeholder="Company Description"
                                                           required style="text-transform: none;"
-                                                ></textarea>
+                                                >{{ company.vcdescription }}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="Background">Background URL :</label>
@@ -103,7 +103,7 @@
                                                        name="Background"
                                                        placeholder="Background URL"
                                                        required style="text-transform: none;"
-                                                       value=""/>
+                                                       value="{{ company.vcurl }}"/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="videourl">Video URL :</label>
@@ -111,7 +111,7 @@
                                                        name="videourl"
                                                        placeholder="Video URL"
                                                        required style="text-transform: none;"
-                                                       value=""/>
+                                                       value="{{ company.vcvideourl }}"/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="facebook">Facebook :</label>
@@ -119,7 +119,7 @@
                                                        name="facebook"
                                                        placeholder="Facebook"
                                                        required style="text-transform: none;"
-                                                       value=""/>
+                                                       value="{{ company.vcfacebook }}"/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="twitter">Twitter :</label>
@@ -127,7 +127,7 @@
                                                        name="twitter"
                                                        placeholder="Twitter"
                                                        required style="text-transform: none;"
-                                                       value=""/>
+                                                       value="{{ company.vctwitter }}"/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="linkedin">LinkedIn :</label>
@@ -135,7 +135,7 @@
                                                        name="linkedin"
                                                        placeholder="Linked IN"
                                                        required style="text-transform: none;"
-                                                       value=""/>
+                                                       value="{{ company.vclinkedin }}"/>
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-round btn-b">Save</button>

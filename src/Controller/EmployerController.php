@@ -6,7 +6,9 @@ use App\Entity\CompanyProfile;
 use App\Entity\Employer;
 use App\Entity\Job;
 use App\Entity\JobCategory;
+use App\Entity\JobType;
 use App\Entity\MasterCategory;
+use App\Entity\MasterJobType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -87,13 +89,21 @@ class EmployerController extends AbstractController
     }
 
     /**
+     * @Route("/pricing", name="_employer_pricing")
+     */
+    public function pricing()
+    {
+        return $this->render('employer/pricing.html.twig');
+    }
+
+    /**
      * @Route("/dashboard", name="_employer_index")
      */
     public function index(Request $request)
     {
         $employer = $this->getUser();
         $jobs = $this->getDoctrine()->getRepository(Job::class)->findBy(array('employer' => $employer->getId(), 'it_status' => 1));
-        $company = $this->getDoctrine()->getRepository(Job::class)->findBy(array('employer' => $employer->getId()));
+        $company = $this->getDoctrine()->getRepository(CompanyProfile::class)->findOneBy(array('employer' => $employer->getId()));
         return $this->render('employer/home.html.twig', array(
             'jobs' => $jobs,
             'company' => $company
@@ -109,9 +119,11 @@ class EmployerController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $employer = $this->getUser();
             $request = $request->request->all();
-            $companyProfile = $this->getDoctrine()->getRepository(CompanyProfile::class)->findBy(array('employer' => $employer->getId()));
-            if (!($companyProfile instanceof CompanyProfile))
+            $companyProfile = $this->getDoctrine()->getRepository(CompanyProfile::class)->findBy(array('employer' => $employer));
+            if (!($companyProfile['0'] instanceof CompanyProfile))
                 $companyProfile = new CompanyProfile();
+            else
+                $companyProfile = $companyProfile['0'];
             $companyProfile->setEmployer($employer);
             $companyProfile->setVcCompanyURL($request['companyurl']);
             $companyProfile->setVcName($request['companyname']);
@@ -134,13 +146,20 @@ class EmployerController extends AbstractController
     public function addjob(Request $request, $id = 0)
     {
         $job = "";
-        if ($id != 0)
+        $message = "";
+        $jobcategoryValue = "default";
+        $jobtypeValue = "default";
+        if ($id != 0) {
             $job = $this->getDoctrine()->getRepository(Job::class)->find($id);
+            $jobtypeValue = $this->getDoctrine()->getRepository(JobType::class)->gethejobtype($job);
+            $jobcategoryValue = $this->getDoctrine()->getRepository(JobCategory::class)->gethejobtype($job);
+        }
         if ($request->getMethod() == "POST") {
             $entityManager = $this->getDoctrine()->getManager();
             $employer = $this->getUser();
             $request = $request->request->all();
             $category = $request['category'];
+            $typejob = $request['jobtype'];
             $id = $request['idjob'];
             if ($id == 0)
                 $job = new Job();
@@ -160,11 +179,12 @@ class EmployerController extends AbstractController
             $job->setVcApplyemail($request['email']);
             $job->setDtEnddate(new \DateTime($request['edate']));
             $job->setDtLivedate(new \DateTime($request['sdate']));
-            $job->getVcKeywords($request['keywords']);
+            $job->setVcKeywords($request['keywords']);
             $job->setItStatus(1);
             $entityManager->persist($job);
             $entityManager->flush($job);
             $jobcategory = $this->getDoctrine()->getRepository(JobCategory::class)->findOneBy(array('job' => $id));
+            $jobtype = $this->getDoctrine()->getRepository(JobType::class)->findOneBy(array('job' => $id));
             if (!($jobcategory instanceof JobCategory))
                 $jobcategory = new JobCategory();
             $jobcategory->setJob($job);
@@ -172,14 +192,35 @@ class EmployerController extends AbstractController
             $jobcategory->setMastercategory($masterCategory);
             $entityManager->persist($jobcategory);
             $entityManager->flush($jobcategory);
+            if (!($jobtype instanceof JobType))
+                $jobtype = new JobType();
+            $jobtype->setJob($job);
+            $masterJobType = $this->getDoctrine()->getRepository(MasterJobType::class)->find($typejob);
+            $jobtype->setMasterjobtype($masterJobType);
+            $entityManager->persist($jobtype);
+            $entityManager->flush($jobtype);
+            $jobtypeValue = $masterJobType->getId();
+            $jobcategoryValue = $masterCategory->getId();
+            if ($id == 0)
+                $message = "Job added Successfully";
+            else {
+                $message = "Job Updated Successfully";
+            }
+
         }
         $category = $this->getDoctrine()->getRepository(MasterCategory::class)->findAll();
+        $type = $this->getDoctrine()->getRepository(MasterJobType::class)->findAll();
         return $this->render('employer/addjob.html.twig', array(
+            'id' => $id,
             'job' => $job,
             'category' => $category,
-            'jobcategory' => $masterCategory->getId(),
-            'id' => $id
+            'jobcategory' => $jobcategoryValue,
+            'type' => $type,
+            'jobtype' => $jobtypeValue,
+            'id' => $id,
+            'message' => $message
         ));
     }
+
 
 }

@@ -17,13 +17,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Job
 {
-    const PART_TIME = 1;
-    const FULL_TIME = 2;
-    const PART_OR_FULLTIME = 3;
-    const WORKFROMHOME = 4;
-    const PART_OR_FULL_OR_WORKFROMHOME = 5;
-    const TEMPERORY = 6;
-    const INTERNSHIP = 7;
 
     /**
      * @ORM\Id()
@@ -170,10 +163,6 @@ class Job
      */
     private $jobApplications;
 
-    /**
-     * @ORM\Column(type="smallint")
-     */
-    private $vc_employmenttype;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -189,6 +178,11 @@ class Job
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $vc_experience;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\JobType", mappedBy="job")
+     */
+    private $jobTypes;
 
 
     public function getId(): ?int
@@ -336,6 +330,7 @@ class Job
         $this->jobCategories = new ArrayCollection();
         $this->jobseekerWishlists = new ArrayCollection();
         $this->jobApplications = new ArrayCollection();
+        $this->jobTypes = new ArrayCollection();
     }
 
     /**
@@ -583,18 +578,6 @@ class Job
         return $this;
     }
 
-    public function getVcEmploymenttype(): ?int
-    {
-        return $this->vc_employmenttype;
-    }
-
-    public function setVcEmploymenttype(int $vc_employmenttype): self
-    {
-        $this->vc_employmenttype = $vc_employmenttype;
-
-        return $this;
-    }
-
     public function getVcAnnualctc(): ?string
     {
         return $this->vc_annualctc;
@@ -627,6 +610,37 @@ class Job
     public function setVcExperience(?string $vc_experience): self
     {
         $this->vc_experience = $vc_experience;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|JobType[]
+     */
+    public function getJobTypes(): Collection
+    {
+        return $this->jobTypes;
+    }
+
+    public function addJobType(JobType $jobType): self
+    {
+        if (!$this->jobTypes->contains($jobType)) {
+            $this->jobTypes[] = $jobType;
+            $jobType->setJob($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobType(JobType $jobType): self
+    {
+        if ($this->jobTypes->contains($jobType)) {
+            $this->jobTypes->removeElement($jobType);
+            // set the owning side to null (unless already changed)
+            if ($jobType->getJob() === $this) {
+                $jobType->setJob(null);
+            }
+        }
 
         return $this;
     }

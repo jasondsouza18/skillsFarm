@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
-                    <h1 class="module-title font-alt mb-0">Login-Register</h1>
+                    <h1 class="module-title font-alt mb-0">Add Job here</h1>
                 </div>
             </div>
         </div>
@@ -43,21 +43,20 @@
                             <label for="deadline">Application Deadline Date :</label>
                             <input type="date" id="deadline" class="form-control" name="deadline"
                                    required="" style="text-transform: none;"
-                                   value="{% if job.dtapplicationdeadlinedate is defined %}{{ job.dtapplicationdeadlinedate|date("d-m-Y") }}{% endif %}">
+                                   value="{% if job.dtapplicationdeadlinedate is defined %}{{ job.dtapplicationdeadlinedate|date("Y-m-d") }}{% endif %}">
                         </div>
                         <div class="form-group">
                             <label for="sdate">Job Start Date :</label>
                             <input type="date" id="sdate" class="form-control" name="sdate"
                                    required="" style="text-transform: none;"
-                                   value="{% if job.dtlivedate is defined %}{{ job.dtlivedate |date("Y") }}}{% endif %}">
+                                   value="{% if job.dtlivedate is defined %}{{ job.dtlivedate |date("Y-m-d") }}{% endif %}">
                         </div>
                         <div class="form-group">
                             <label for="edate">Job End Date :</label>
                             <input type="date" id="edate" class="form-control" name="edate"
                                    required=""
                                    style="text-transform: none;"
-                                   value="{% if job.dtenddate is defined %}{{ job.dtenddate|date("d-m-Y") }}{% endif %}">
-
+                                   value="{% if job.dtenddate is defined %}{{ job.dtenddate|date("Y-m-d") }}{% endif %}">
                         </div>
                         <div class="form-group">
                             <label for="salary">Salary :</label>
@@ -108,16 +107,36 @@
                                 {% endfor %}
                             </select>
                             <script>
-                                document.getElementById("category").value={{ jobcategory }};
+                                document.getElementById("category").value ='{{ jobcategory }}';
+                            </script>
+                        </div>
+                        <div class="form-group">
+                            <label for="keywords">Select Job Type :</label>
+                            <select name="jobtype" id="jobtype" class="form-control">
+                                <option value="default">Select Job Type</option>
+                                {% for t in type %}
+                                    <option value="{{ t.id }}">{{ t.vctype }}</option>
+                                {% endfor %}
+                            </select>
+                            <script>
+                                document.getElementById("jobtype").value ='{{ jobtype }}';
                             </script>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-round btn-b">Save and Exit</button> &nbsp;&nbsp;
-                            <button type="button" class="btn btn-round btn-b">Cancel</button>
+                            <button type="button" onclick="javascript:location.href='/employer/dashboard'" class="btn btn-round btn-b">Cancel</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        {% if message != '' %}
+        $('#snackbar').html('{{ message }}');
+        showtoast();
+        {% endif %}
+    </script>
 {% endblock %}
