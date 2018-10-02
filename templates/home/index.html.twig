@@ -373,7 +373,9 @@
                             <img src="images/icons/wrk3.png" alt="">
                         </div>
                         <h5>Send Your Resume</h5>
-                        <p>Once you have registered your account with skillsfarm,you may upload your recent updated resume with all relevant facts,contact details.You may  always verify your contact details and let recruiters reach you with your desired jobs</p>
+                        <p>Once you have registered your account with skillsfarm,you may upload your recent updated
+                            resume with all relevant facts,contact details.You may always verify your contact details
+                            and let recruiters reach you with your desired jobs</p>
                     </div>
                 </div>
             </div>
@@ -434,127 +436,48 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-title text-center ">
-                        <h2>Our Blog</h2>
-                        <p>Lorem ipsum dolor sit amet, contetur adipisil elit sed do</p>
+                        <h2>Our Blogs</h2>
+                        <p>Here comes some interesting Blogs for you...</p>
                     </div>
                 </div>
             </div>
-            <!-- Section Title End -->
             <div class="blog-carousel carousel-style-two">
-                <!-- Single Item Start -->
-                <div class="single-blog hover-effect">
-                    <div class="blog-image box-hover">
-                        <a href="#" class="block">
-                            <img src="/img/blog/1.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-text">
-                        <h4><a href="blog-details.html">Standard blog post.</a></h4>
-                        <div class="blog-post-info">
-                            <span>Feb 13.</span>
-                            <span>ADMIN NAME</span>
-                            <span>4 comments</span>
+                {% set j=0 %}
+                {% for item in rss %}
+                    {% for i in item.item %}
+                        <div class="single-blog hover-effect">
+                            <div class="blog-image box-hover">
+                                <a href="{{ i.link }}" class="block">
+                                    <img width="390" height="275" src="" alt="" id="img_{{ j }}">
+                                </a>
+                            </div>
+                            <div class="blog-text">
+                                <h4><a href="{{ i.link }}"> {{ i.title }}</a></h4>
+                                <div class="blog-post-info">
+                                    <span>{{ i.pubDate|date("F jS Y") }}</span>
+                                </div>
+                                <p id="desc_{{ j }}"></p>
+                                <script>
+                                    function getstring(description, j) {
+                                        description = description.split("&lt;img");
+                                        description = description['1'].split('; /&gt;');
+                                        var desc = description['1'];
+                                        var image = description['0'];
+                                        image = image.split("src=&quot;")
+                                        image = image['1'].split("&quot;");
+                                        image = image['0'];
+                                        document.getElementById('desc_' + j).innerHTML = desc;
+                                        document.getElementById('img_' + j).src = image;
+                                    }
+
+                                    getstring("{{ i.description }}",{{ j }});
+                                </script>
+
+                            </div>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adiicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolor magna aliqua. Ut enim</p>
-                    </div>
-                </div>
-                <!-- Single Item End -->
-                <!-- Single Item Start -->
-                <div class="single-blog hover-effect">
-                    <div class="blog-image box-hover">
-                        <a href="#" class="block">
-                            <img src="/img/blog/2.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-text">
-                        <h4><a href="blog-details.html">Standard blog post.</a></h4>
-                        <div class="blog-post-info">
-                            <span>Feb 13.</span>
-                            <span>ADMIN NAME</span>
-                            <span>4 comments</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adiicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolor magna aliqua. Ut enim</p>
-                    </div>
-                </div>
-                <!-- Single Item End -->
-                <!-- Single Item Start -->
-                <div class="single-blog hover-effect">
-                    <div class="blog-image box-hover">
-                        <a href="#" class="block">
-                            <img src="/img/blog/3.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-text">
-                        <h4><a href="blog-details.html">Standard blog post.</a></h4>
-                        <div class="blog-post-info">
-                            <span>Feb 13.</span>
-                            <span>ADMIN NAME</span>
-                            <span>4 comments</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adiicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolor magna aliqua. Ut enim</p>
-                    </div>
-                </div>
-                <!-- Single Item End -->
-                <!-- Single Item Start -->
-                <div class="single-blog hover-effect">
-                    <div class="blog-image box-hover">
-                        <a href="#" class="block">
-                            <img src="/img/blog/1.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-text">
-                        <h4><a href="blog-details.html">Standard blog post.</a></h4>
-                        <div class="blog-post-info">
-                            <span>Feb 13.</span>
-                            <span>ADMIN NAME</span>
-                            <span>4 comments</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adiicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolor magna aliqua. Ut enim</p>
-                    </div>
-                </div>
-                <!-- Single Item End -->
-                <!-- Single Item Start -->
-                <div class="single-blog hover-effect">
-                    <div class="blog-image box-hover">
-                        <a href="#" class="block">
-                            <img src="img/blog/2.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-text">
-                        <h4><a href="blog-details.html">Standard blog post.</a></h4>
-                        <div class="blog-post-info">
-                            <span>Feb 13.</span>
-                            <span>ADMIN NAME</span>
-                            <span>4 comments</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adiicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolor magna aliqua. Ut enim</p>
-                    </div>
-                </div>
-                <!-- Single Item End -->
-                <!-- Single Item Start -->
-                <div class="single-blog hover-effect">
-                    <div class="blog-image box-hover">
-                        <a href="#" class="block">
-                            <img src="/img/blog/3.jpg" alt="">
-                        </a>
-                    </div>
-                    <div class="blog-text">
-                        <h4><a href="blog-details.html">Standard blog post.</a></h4>
-                        <div class="blog-post-info">
-                            <span>Feb 13.</span>
-                            <span>ADMIN NAME</span>
-                            <span>4 comments</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adiicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolor magna aliqua. Ut enim</p>
-                    </div>
-                </div>
-                <!-- Single Item End -->
+                        {% set j=j+1 %}
+                    {% endfor %}
+                {% endfor %}
             </div>
         </div>
     </div>
