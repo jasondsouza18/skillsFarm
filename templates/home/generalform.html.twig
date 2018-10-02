@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mr-auto ml-auto">
-                    <form action="{{ path('_general') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ path('_general') }}" method="post" enctype="multipart/form-data" onsubmit="return validateselect();">
                         <div class="single-job-content">
                             <div class="title"><span>Pen down your details</span></div>
                             <div class="single-job-form">
@@ -71,7 +71,7 @@
                                     <div class="uploader fix pull-left fileupload">
                                         <input type="file" id="fileupload" name="fileupload" required
                                                accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf">
-                                        <span class="filename" name="filename">Upload your resume</span>
+                                        <span class="filename" id="filename" name="filename">Upload your resume</span>
                                         <span class="action"><i class="zmdi zmdi-folder"></i>Browse</span>
                                     </div>
                                     <span class="ml-20 pull-left max-size">Maximum file size: 5MB</span>
@@ -94,7 +94,7 @@
                                 <div class="single-info mb-14">
                                     <label class="uppercase m-0" for="selectcategory">Select Category</label>
                                     <span style="float: right;width: 79%;">
-                                        <select name="selectcategory" id="selectcategory" required>
+                                        <select name="selectcategory" id="selectcategory">
                                              <option value="" disabled selected>--Select your option about your profession--</option>
                                             {% for cat in category %}
                                                 <option value="{{ cat.id }}">{{ cat.vccategoryname }}</option>
@@ -114,7 +114,24 @@
             </div>
         </div>
     </div>
+   <script>
+       document.getElementById('fileupload').onchange = function() {
+           var imagename = document.getElementById('fileupload').value;
+           imagename = imagename.split('\\');
+           imagename = imagename['2'];
+           document.getElementById('filename').innerHTML = imagename;
 
+       };
+
+       function validateselect()
+       {
+           if (document.getElementById('selectcategory').value === '') {
+               alert("select Category ");
+               return false;
+           }
+           return true;
+       }
+   </script>
     {% include "login.html.twig" %}
     {% include "register.html.twig" %}
 {% endblock %}

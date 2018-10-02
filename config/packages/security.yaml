@@ -64,6 +64,7 @@ security:
   access_control:
   - { path: ^/jobseeker/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
   - { path: ^/employer/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+  - { path: ^/employer/signup, roles: IS_AUTHENTICATED_ANONYMOUSLY }
   - { path: ^/employer/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }
   - { path: ^/employer/pricing, roles: IS_AUTHENTICATED_ANONYMOUSLY }
   - { path: ^/jobseeker/signup, roles: IS_AUTHENTICATED_ANONYMOUSLY }

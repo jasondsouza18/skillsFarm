@@ -27,13 +27,13 @@ class EmployerRepository extends ServiceEntityRepository
         $login = self::findOneBy(array('vc_login' => $login));
         if ($login instanceof Jobseeker)
             return "Username alreay exists. Kindly Use other username";
-        return true;
+        return "true";
     }
 
     public function validatePassword($password,$repassword)
     {
         if($password != $repassword)
             return "Password Doesn't match";
-        return true;
+        return "true";
     }
 }

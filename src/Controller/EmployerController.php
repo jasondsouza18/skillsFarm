@@ -68,10 +68,10 @@ class EmployerController extends AbstractController
             $email = $request->request->get('email');
             $login = $request->request->get('login');
             $res = $this->getDoctrine()->getRepository(Employer::class)->validatePassword($password, $repassword);
-            if ($res != true)
+            if ($res != "true")
                 return $this->redirectToRoute('_employer_login', array('message' => $res));
             $res = $this->getDoctrine()->getRepository(Employer::class)->validateEmployerloginandEmail($login, $email);
-            if ($res != true) {
+            if ($res != "true") {
                 return $this->redirectToRoute('_employer_login', array('message' => $res));
             } else {
                 $password = $passwordEncoder->encodePassword($employer, $password);

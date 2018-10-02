@@ -55,7 +55,6 @@ class HomeController extends Controller {
 		$form->handleRequest( $request );
 		$sent = 0;
 		if ( $form->isSubmitted() && $form->isValid() ) {
-			// data is an array with "name", "email", and "message" keys
 			$data    = $form->getData();
 			$message = ( new \Swift_Message( 'Skills Farm' ) )
 				->setSubject( 'Contact me  - Skillsfarm' )
@@ -93,17 +92,6 @@ class HomeController extends Controller {
 			$fileName         = $file->getClientOriginalName();
 			$file->move( $uploadsDirectory, $fileName );
 			$request = $request->request->all();
-			if ( $request['selectcategory'] == 1 ) {
-				$category = "School Teacher";
-			} else if ( $request['selectcategory'] == 2 ) {
-				$category = "College Teacher";
-			} else if ( $request['selectcategory'] == 3 ) {
-				$category = "Software Engineer";
-			} else if ( $request['selectcategory'] == 4 ) {
-				$category = "Counseling";
-			} else if ( $request['selectcategory'] == 5 ) {
-				$category = "Developer";
-			}
 			$message       = " SkillsFarm Update" . PHP_EOL . "Name = " . $request['name'] . PHP_EOL .
 			                 "Email = " . $request['Email'] . PHP_EOL .
 			                 "Phone number = " . $request['number'] . PHP_EOL .
@@ -112,7 +100,7 @@ class HomeController extends Controller {
 			                 "website = " . $request['website'] . PHP_EOL .
 			                 "cover letter  = " . $request['cover'] . PHP_EOL .
 			                 "Resume name = " . $fileName . PHP_EOL .
-			                 "Category Selected = " . $category . PHP_EOL;
+			                 "Category Selected = " . $request['selectcategory'] . PHP_EOL;
 			$messagetosend = ( new \Swift_Message( 'Skills Farm' ) )
 				->setSubject( "General Form - Skillsfarm" )
 				->setFrom( 'skillsfarmindia@gmail.com' )
@@ -123,7 +111,6 @@ class HomeController extends Controller {
 			$sent          = $mailer->send( $messagetosend );
 		}
 		$category = $this->getDoctrine()->getRepository( MasterCategory::class )->findAll();
-
 		return $this->render( 'home/generalform.html.twig', array(
 			'sent'     => $sent,
 			'category' => $category

@@ -16,15 +16,19 @@ class ContactUsType extends AbstractType
         $builder
             ->add('vc_name', TextType::class, array(
                 'required'   => true,
+                'empty_data' => 'John Doe',
             ))
             ->add('vc_email', EmailType::class, array(
                 'required'   => true,
+                'empty_data' => 'John Doe',
             ))
             ->add('vc_subject', TextType::class, array(
                 'required'   => true,
+                'empty_data' => 'John Doe',
             ))
             ->add('vc_message', TextAreaType::class, array(
                 'required'   => true,
+                'empty_data' => 'John Doe',
             ));
     }
 
