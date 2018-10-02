@@ -69,6 +69,8 @@
                 window.alert("No details available for input: '" + place.name + "'");
                 return;
             }
+            document.getElementById("isCountry").value="";
+            document.getElementById("county").value ="";
             var isCountryLength = country.length;
             var countryValue = country['0']
             if ((isCountryLength == 1) && (countryValue.types[0] == "country") && (countryValue.types[1] == "political")) {

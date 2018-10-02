@@ -1182,3 +1182,8 @@ p.panel-title {
 .address:hover {
   cursor: pointer;
 }
+
+.option{
+  z-index: 1000;
+  display: block;
+}

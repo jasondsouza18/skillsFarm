@@ -8,6 +8,7 @@ use App\Entity\Job;
 use App\Entity\Employer;
 use App\Entity\JobseekerResume;
 use App\Entity\MasterCategory;
+use App\Entity\MasterJobType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -28,11 +29,13 @@ class HomeController extends Controller {
 		$error          = $authenticationUtils->getLastAuthenticationError();
 		$lastUsername   = $authenticationUtils->getLastUsername();
 		$category       = $this->getDoctrine()->getRepository( MasterCategory::class )->findAll();
+		$jobtype        = $this->getDoctrine()->getRepository( MasterJobType::class )->findAll();
 		$jobfeatured    = $this->getDoctrine()->getRepository( Job::class )->getJobRecommendationsfeatured();
 		$jobrecent      = $this->getDoctrine()->getRepository( Job::class )->getJobRecommendationsrecent();
 		$jobtop         = $this->getDoctrine()->getRepository( Job::class )->getJobRecommendationstop();
 		$jobmostapplied = $this->getDoctrine()->getRepository( Job::class )->getJobRecommendationsmostapplied();
 		$rss            = simplexml_load_file( 'https://skillsfarm.in/blogs/rss/' );
+
 		return $this->render( 'home/index.html.twig', array(
 			'last_username'  => $lastUsername,
 			'sent'           => $sent,
@@ -42,7 +45,8 @@ class HomeController extends Controller {
 			'jobrecent'      => $jobrecent,
 			'jobtop'         => $jobtop,
 			'jobmostapplied' => $jobmostapplied,
-			'rss'            => $rss
+			'rss'            => $rss,
+			'jobtype'        => $jobtype
 		) );
 
 	}
@@ -91,7 +95,7 @@ class HomeController extends Controller {
 			$file             = $request->files->get( 'fileupload' );
 			$fileName         = $file->getClientOriginalName();
 			$file->move( $uploadsDirectory, $fileName );
-			$request = $request->request->all();
+			$request       = $request->request->all();
 			$message       = " SkillsFarm Update" . PHP_EOL . "Name = " . $request['name'] . PHP_EOL .
 			                 "Email = " . $request['Email'] . PHP_EOL .
 			                 "Phone number = " . $request['number'] . PHP_EOL .
@@ -111,6 +115,7 @@ class HomeController extends Controller {
 			$sent          = $mailer->send( $messagetosend );
 		}
 		$category = $this->getDoctrine()->getRepository( MasterCategory::class )->findAll();
+
 		return $this->render( 'home/generalform.html.twig', array(
 			'sent'     => $sent,
 			'category' => $category
@@ -251,15 +256,18 @@ class HomeController extends Controller {
 			var_dump( $e->getMessage() );
 			die;
 		}
+		dump($jobSearchQuery);
 		$query      = $em->createQuery( $jobSearchQuery );
 		$pagination = $paginator->paginate( $query, $request->query->getInt( 'page', 1 ), 10 );
 		$category   = $this->getDoctrine()->getRepository( MasterCategory::class )->findAll();
+		$jobtype    = $this->getDoctrine()->getRepository( MasterJobType::class )->findAll();
 
 		return $this->render( 'home/jobsearch.html.twig', array(
 			'pagination'       => $pagination,
 			'sent'             => 0,
 			'searchparameters' => $requestResult,
-			'category'         => $category
+			'category'         => $category,
+			'jobtype'          => $jobtype
 		) );
 	}
 
@@ -275,6 +283,7 @@ class HomeController extends Controller {
 			'enddate'   => $request['enddate'],
 			'isCountry' => $request['isCountry'],
 			'category'  => $request['category'],
+			'type'      => $request['type'],
 			'radius'    => $request['radius']
 		);
 

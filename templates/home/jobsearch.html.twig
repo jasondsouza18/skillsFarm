@@ -19,7 +19,7 @@
                     <div class="job-search-content text-center brd-style">
                         <form action="{{ path('_job_search') }}" method="post" id="search_form">
                             <div class="form-container">
-                                <div class="box-select">
+                                <div class="box-select" style="width: 111%;right: 44px;">
                                     <div class="select">
                                         <input type="text" placeholder="Job title/keywords" name="keyword" id="keyword"
                                                style="height: 60px;background-color: white;"
@@ -45,15 +45,27 @@
                                     <div class="select">
                                         <div class="select">
                                             <select name="category" class="form-control" id="category">
-                                                <option value="default">Select Job Category</option>
+                                                <option value="default">Job Category</option>
                                                 {% for cat in category %}
                                                     <option value="{{ cat.id }}">{{ cat.vccategoryname }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="select">
+                                        <div class="select">
+                                            <select name="type" class="form-control" id="type">
+                                                <option value="default">Job Type</option>
+                                                {% for type in jobtype %}
+                                                    <option value="{{ type.id }}">{{ type.vctype }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
                                     <script>
                                         document.getElementById('category').value = {% if searchparameters is defined %}'{{ searchparameters['category'] }}'
+                                        {% else %}'default' {% endif %};
+                                        document.getElementById('type').value = {% if searchparameters is defined %}'{{ searchparameters['type'] }}'
                                         {% else %}'default' {% endif %};
                                     </script>
                                     <div style="display: none">
