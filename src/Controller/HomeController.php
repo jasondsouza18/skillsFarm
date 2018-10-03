@@ -256,7 +256,7 @@ class HomeController extends Controller {
 			var_dump( $e->getMessage() );
 			die;
 		}
-		dump($jobSearchQuery);
+
 		$query      = $em->createQuery( $jobSearchQuery );
 		$pagination = $paginator->paginate( $query, $request->query->getInt( 'page', 1 ), 10 );
 		$category   = $this->getDoctrine()->getRepository( MasterCategory::class )->findAll();

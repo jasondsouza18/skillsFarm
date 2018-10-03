@@ -33,6 +33,7 @@ class JobRepository extends ServiceEntityRepository {
 		$query = preg_replace( '!\s+!', ' ', $query );
 		$query = str_replace( " WHERE AND", " WHERE ", $query );
 		$query = str_replace( " WHERE  AND", " WHERE ", $query );
+		$query = str_replace( " WHERE  ORDER", " ORDER ", $query );
 		return $query;
 	}
 
