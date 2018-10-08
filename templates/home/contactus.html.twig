@@ -50,9 +50,9 @@
                                 <i class="zmdi zmdi-phone"></i>
                             </div>
                             <div class="single-contact-text">
-                                <span class="block">+91 9945594954
+                                <span class="block">+91 8848920235
                                 </span>
-                                <span class="block">+91 9945594954
+                                <span class="block">+91 8095708180
                                 </span>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                                 <i class="zmdi zmdi-pin"></i>
                             </div>
                             <div class="single-contact-text">
-                                <span class="block">Plankala Kripa, Jp Nagar 8th Phase</span>
+                                <span class="block">#7, hycinth, JP Nagar 8th Phase</span>
                                 <span class="block">Karnataka, Bangalore - 560083</span>
                             </div>
                         </div>
@@ -72,17 +72,17 @@
                             <a href="https://www.facebook.com/Skillsfarm-1544344945813691">
                                 <i class="zmdi zmdi-facebook"></i>
                             </a>
-                            <a href="#">
-                                <i class="zmdi zmdi-rss"></i>
+                            <a href="https://www.instagram.com/skillsfarm/">
+                                <i class="zmdi zmdi-instagram"></i>
                             </a>
-                            <a href="#">
+                            <a href="https://plus.google.com/101772530506782576069">
                                 <i class="zmdi zmdi-google-plus"></i>
                             </a>
-                            <a href="#">
-                                <i class="zmdi zmdi-pinterest"></i>
+                            <a href="www.linkedin.com/in/skills-farm-033535172">
+                                <i class="zmdi zmdi-linkedin"></i>
                             </a>
-                            <a href="#">
-                                <i class="zmdi zmdi-instagram"></i>
+                            <a href="https://twitter.com/skillsfarm2">
+                                <i class="zmdi zmdi-twitter"></i>
                             </a>
                         </div>
                     </div>
@@ -91,22 +91,22 @@
                     <div class="contact-form pt-60 pb-30 fix">
                         <h4>Get In Touch</h4>
                         {{ form_start(form) }}
-                            <div class="col-5 pr-6">
-                             {{ form_widget(form.vc_name, {'value' : '', 'class':'pl-20','attr': {'placeholder': 'Name'} }) }}
-                            </div>
-                            <div class="col-5 pl-6">
-                             {{ form_widget(form.vc_email, { 'value' : '','class':'pl-20','attr': {'placeholder': 'Email'} }) }}
-                            </div>
-                            <div class="col-10">
+                        <div class="col-5 pr-6">
+                            {{ form_widget(form.vc_name, {'value' : '', 'class':'pl-20','attr': {'placeholder': 'Name'} }) }}
+                        </div>
+                        <div class="col-5 pl-6">
+                            {{ form_widget(form.vc_email, { 'value' : '','class':'pl-20','attr': {'placeholder': 'Email'} }) }}
+                        </div>
+                        <div class="col-10">
                             {{ form_widget(form.vc_subject, { 'value' : '','class':'pl-20','attr': {'placeholder': 'Subject'} }) }}
-                            </div>
-                            <div class="col-10">
-                             {{ form_widget(form.vc_message, { 'value' : '','class':'mb-10','attr': {'placeholder': 'Message'} }) }}
-                            </div>
-                            <div class="col-10 fix">
-                                <button type="submit" class="button submit-btn">SUBMIT</button>
-                            </div>
-                            <p class="form-messege"></p>
+                        </div>
+                        <div class="col-10">
+                            {{ form_widget(form.vc_message, { 'value' : '','class':'mb-10','attr': {'placeholder': 'Message'} }) }}
+                        </div>
+                        <div class="col-10 fix">
+                            <button type="submit" class="button submit-btn">SUBMIT</button>
+                        </div>
+                        <p class="form-messege"></p>
                         {{ form_end(form) }}
                     </div>
                 </div>
@@ -115,6 +115,7 @@
     </div>
     <script>
         google.maps.event.addDomListener(window, 'load', init);
+
         function init() {
             var mapOptions = {
                 zoom: 11,
@@ -224,7 +225,9 @@
         $('#snackbar').html("Your message has been successfully sent to skillsfarm team.");
         showtoast();
         {% endif %}
-        $('form').each(function() { this.reset() });
+        $('form').each(function () {
+            this.reset()
+        });
     </script>
 
 {% endblock %}
