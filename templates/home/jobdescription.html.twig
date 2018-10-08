@@ -35,8 +35,8 @@
                         <div class="single-job-form">
                             <div class="single-info mb-14">
                                 {% if job.vcexperience is not null %}
-                                <span class="mark-icon block pl-27">{{ job.vcexperience }}</span>
-                                {%  endif %}
+                                    <span class="mark-icon block pl-27">{{ job.vcexperience }}</span>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -68,16 +68,17 @@
         </div>
     </div>
     </div>
-
-
-
     {% include "login.html.twig" %}
     {% include "register.html.twig" %}
 {% endblock %}
 {% block javascripts %}
     <script>
-        {% if sent != 0 %}
+        {% if sent != '' %}
+        {% if sent == 'emailsent' %}
+        $('#snackbar').html("Job Applied Successfully");
+        {% else %}
         $('#snackbar').html("Your message has been successfully sent to skillsfarm team.");
+        {% endif %}
         showtoast();
         {% endif %}
     </script>

@@ -198,7 +198,7 @@ class HomeController extends Controller {
 				return $this->redirectToRoute( '_home', array( 'sent' => $sent ) );
 			}
 			$rand          = self::generateRandomString( 10 );
-			$link          = "http://127.0.0.3/changepassword/" . $jobseeker->getId() . "/$rand";
+			$link          = "https://skillsfarm.in/changepassword/" . $jobseeker->getId() . "/$rand";
 			$messagetosend = ( new \Swift_Message( 'Skills Farm' ) )
 				->setSubject( 'Forgot Password - Skillsfarm' )
 				->setFrom( 'skillsfarmindia@gmail.com' )
@@ -295,6 +295,7 @@ class HomeController extends Controller {
 	 */
 	public function description( Request $request, $id ) {
 		try {
+			$sent      = $request->query->get( 'sent' );
 			$job = $this->getDoctrine()->getRepository( Job::class )->find( $id );
 			if ( ! $job ) {
 				throw $this->createNotFoundException( 'No Job found for id ' . $id );
@@ -308,7 +309,7 @@ class HomeController extends Controller {
 		return $this->render( 'home/jobdescription.html.twig', array(
 			'job'      => $job,
 			'employer' => $employer,
-			'sent'     => 0
+			'sent'     => $sent
 		) );
 	}
 
@@ -317,6 +318,7 @@ class HomeController extends Controller {
 	 */
 	public function apply( Request $request, $id, \Swift_Mailer $mailer ) {
 		$job      = $this->getDoctrine()->getRepository( Job::class )->find( $id );
+		$sent     = 0;
 		$employer = $this->getDoctrine()->getRepository( Employer::class )->find( $job->getEmployerId() );
 		if ( $request->getMethod() == 'POST' ) {
 			$entityManager = $this->getDoctrine()->getManager();
@@ -349,16 +351,18 @@ class HomeController extends Controller {
 			                 "Resume name = " . $fileName . PHP_EOL;
 			$messagetosend = ( new \Swift_Message( 'Skills Farm' ) )
 				->setFrom( 'skillsfarmindia@gmail.com' )
-				->setTo( $request['Email'] )
-				->setBcc( [ '20angelgeo@gmail.com', 'jasondsouza717@gmail.com' ] )
+				->setTo( $employer->getVcEmail() )
+				->setBcc( [ '20angelgeo@gmail.com', 'skillsfarmindia@gmail.com', 'shyjunair2018@gmail.com' ] )
 				->setBody( $message )
 				->attach( \Swift_Attachment::fromPath( $uploadsDirectory . $fileName ) );
-			//  $sent = $mailer->send($messagetosend);
+			//$sent          = $mailer->send( $messagetosend );
+			$sent          = "emailsent";
+			return $this->redirectToRoute( '_job_description', array( 'id' => $id,'sent'=> $sent ) );
 		}
 
 		return $this->render( 'home/applyjob.html.twig', array(
 			'job'  => $job,
-			'sent' => 0
+			'sent' => $sent
 		) );
 	}
 

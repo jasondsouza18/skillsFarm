@@ -107,7 +107,7 @@
                                 {% endfor %}
                             </select>
                             <script>
-                                document.getElementById("category").value ='{{ jobcategory }}';
+                                document.getElementById("category").value = '{{ jobcategory }}';
                             </script>
                         </div>
                         <div class="form-group">
@@ -119,12 +119,12 @@
                                 {% endfor %}
                             </select>
                             <script>
-                                document.getElementById("jobtype").value ='{{ jobtype }}';
+                                document.getElementById("jobtype").value = '{{ jobtype }}';
                             </script>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-round btn-b">Save and Exit</button> &nbsp;&nbsp;
-                            <button type="button" onclick="javascript:location.href='/employer/dashboard'" class="btn btn-round btn-b">Cancel</button>
+                            <button type="submit" class="btn btn-round btn-b">Save</button> &nbsp;&nbsp;
+                            <button type="button" onclick="exitfromJob()" class="btn btn-round btn-b">Exit</button>
                         </div>
                     </form>
                 </div>
@@ -138,5 +138,9 @@
         $('#snackbar').html('{{ message }}');
         showtoast();
         {% endif %}
+
+        function exitfromJob() {
+            location.href = "/employer/dashboard";
+        }
     </script>
 {% endblock %}

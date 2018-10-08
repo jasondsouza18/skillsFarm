@@ -34,6 +34,8 @@ class JobRepository extends ServiceEntityRepository {
 		$query = str_replace( " WHERE AND", " WHERE ", $query );
 		$query = str_replace( " WHERE  AND", " WHERE ", $query );
 		$query = str_replace( " WHERE  ORDER", " ORDER ", $query );
+		$query = str_replace( " AND AND", " AND ", $query );
+		$query = str_replace( " AND ORDER", " ORDER ", $query );
 		return $query;
 	}
 
@@ -128,7 +130,7 @@ class JobRepository extends ServiceEntityRepository {
 	}
 
 	public function getJobInitialSearchQuery() {
-		return "select DISTINCT j.id,j.vc_shortheadline,j.vc_locationdetails,j.db_latitude,j.db_longitude,j.vc_salarydescription ,j.created_at FROM App\Entity\Job j inner join  App\Entity\JobCategory jc inner join App\Entity\JobType jt  WHERE ";
+		return "select DISTINCT j.id,j.vc_shortheadline,j.vc_locationdetails,j.db_latitude,j.db_longitude,j.vc_salarydescription ,j.created_at FROM App\Entity\Job j inner join  App\Entity\JobCategory jc inner join App\Entity\JobType jt  WHERE j.it_status = 1";
 	}
 
 	public function getJobRecommendationsfeatured() {

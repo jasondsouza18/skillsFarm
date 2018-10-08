@@ -222,5 +222,20 @@ class EmployerController extends AbstractController
         ));
     }
 
+	/**
+	 * @Route("/delete/job/{id}", name="_employer_deletejob")
+	 */
+	public function deletejob(Request $request, $id = 0)
+	{
+		if ($id != 0) {
+			$entityManager = $this->getDoctrine()->getManager();
+			$job = $this->getDoctrine()->getRepository( Job::class )->find( $id );
+			$job->setItStatus(0);
+			$entityManager->persist($job);
+			$entityManager->flush($job);
+			return $this->redirectToRoute('_employer_index');
+		}
+	}
+
 
 }

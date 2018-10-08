@@ -19,13 +19,13 @@
                             <ul class="nav nav-tabs font-alt" role="tablist">
                                 <li class="active"><a href="#jobs" data-toggle="tab"><span
                                                 class="icon-attachment"></span>JOBS</a></li>
-                                <li><a href="#history" data-toggle="tab"><span class="icon-anchor"></span>APPLICATION
-                                        HISTORY</a></li>
+                                {#<li><a href="#history" data-toggle="tab"><span class="icon-anchor"></span>APPLICATION#}
+                                {#HISTORY</a></li>#}
                                 <li><a href="#company" data-toggle="tab"><span class="icon-alarmclock"></span>COMPANY
                                         PROFILE</a>
                                 </li>
-                                <li><a href="#profile" data-toggle="tab"><span class="icon-profile-male"></span>PROFILE</a>
-                                </li>
+                                {#<li><a href="#profile" data-toggle="tab"><span class="icon-profile-male"></span>PROFILE</a>#}
+                                {#</li>#}
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="jobs">
@@ -39,11 +39,12 @@
                                         <div class="panel-group" id="accordion">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <h4 class="panel-title font-alt"><label
-                                                                style="float: left;    margin-top: 3px;"
-                                                                onclick="javascript:location.href='/employer/add/job/{{ job.id }}'"><i
-                                                                    class="fa fa-edit"></i></label><a
-                                                                style="padding-left: 5%;position: initial"
+                                                    <h4 class="panel-title font-alt"><i onclick="javascript:location.href='/employer/add/job/{{ job.id }}'"
+                                                            class="fa fa-edit"></i><label><i
+                                                                    class="fa fa-remove"
+                                                                    onclick="javascript:location.href='/employer/delete/job/{{ job.id }}'"></i>
+                                                        </label><a
+                                                                style="padding-left: 5%;position: initial;    float: right;"
                                                                 data-toggle="collapse"
                                                                 data-parent="#accordion"
                                                                 href="#jobin{{ job.id }}">{{ job.vcshortheadline }}</a>
@@ -144,8 +145,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="profile">To achieve this, it would be necessary to have
-                                    uniform grammar, pronunciation and more common words.
+                                <div class="tab-pane" id="profile">
                                 </div>
                             </div>
                         </div>
