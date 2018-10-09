@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74436a97-1066-4195-894b-3796dd851956" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/custom_pages/courses.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/custom_pages/courses.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/employer/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employer/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/employerbase.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employerbase.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/employerheader.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employerheader.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,10 +65,10 @@
           <entry key="jpg" value="10" />
           <entry key="js" value="6" />
           <entry key="json" value="2" />
-          <entry key="php" value="184" />
+          <entry key="php" value="185" />
           <entry key="png" value="2" />
           <entry key="rnc" value="1" />
-          <entry key="twig" value="325" />
+          <entry key="twig" value="330" />
           <entry key="txt" value="2" />
           <entry key="yaml" value="17" />
         </counts>
@@ -80,10 +80,10 @@
           <entry key="Image" value="14" />
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="6" />
-          <entry key="PHP" value="184" />
+          <entry key="PHP" value="185" />
           <entry key="PLAIN_TEXT" value="8" />
           <entry key="RNG Compact" value="1" />
-          <entry key="Twig" value="325" />
+          <entry key="Twig" value="330" />
           <entry key="YAML" value="17" />
           <entry key="htaccess" value="2" />
         </counts>
@@ -96,7 +96,7 @@
           <entry key="js" value="4" />
           <entry key="json" value="1" />
           <entry key="php" value="11147" />
-          <entry key="twig" value="17485" />
+          <entry key="twig" value="17560" />
           <entry key="yaml" value="158" />
         </counts>
       </usages-collector>
@@ -107,7 +107,7 @@
           <entry key="JavaScript" value="4" />
           <entry key="PHP" value="11147" />
           <entry key="PLAIN_TEXT" value="53" />
-          <entry key="Twig" value="17485" />
+          <entry key="Twig" value="17560" />
           <entry key="YAML" value="158" />
           <entry key="htaccess" value="1" />
         </counts>
@@ -116,47 +116,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/employerbase.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="139" column="17" selection-start-line="139" selection-start-column="17" selection-end-line="139" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/employerfooter.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/employer/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="365" column="28" selection-start-line="365" selection-start-column="28" selection-end-line="365" selection-end-column="28" />
+            <state relative-caret-position="463">
+              <caret line="336" column="75" selection-start-line="336" selection-start-column="75" selection-end-line="336" selection-end-column="75" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/footer.html.twig">
+        <entry file="file://$PROJECT_DIR$/templates/home/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="91" selection-start-line="15" selection-start-column="78" selection-end-line="15" selection-end-column="91" />
+            <state relative-caret-position="217">
+              <caret line="422" column="85" selection-start-line="422" selection-start-column="74" selection-end-line="422" selection-end-column="85" />
             </state>
           </provider>
         </entry>
@@ -240,7 +213,6 @@
         <option value="$PROJECT_DIR$/templates/employerfooter.html.twig" />
         <option value="$PROJECT_DIR$/templates/home/aboutus.html.twig" />
         <option value="$PROJECT_DIR$/src/Form/ContactUsType.php" />
-        <option value="$PROJECT_DIR$/templates/home/index.html.twig" />
         <option value="$PROJECT_DIR$/public/style.css" />
         <option value="$PROJECT_DIR$/templates/custom_pages/careercounselling.html.twig" />
         <option value="$PROJECT_DIR$/templates/custom_pages/communicationskills.html.twig" />
@@ -262,11 +234,12 @@
         <option value="$PROJECT_DIR$/templates/home/jobdescription.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/CustomPagesController.php" />
         <option value="$PROJECT_DIR$/templates/custom_pages/studyabroad.html.twig" />
-        <option value="$PROJECT_DIR$/templates/custom_pages/courses.html.twig" />
-        <option value="$PROJECT_DIR$/templates/header.html.twig" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/templates/employerheader.html.twig" />
         <option value="$PROJECT_DIR$/templates/employerbase.html.twig" />
+        <option value="$PROJECT_DIR$/templates/custom_pages/courses.html.twig" />
+        <option value="$PROJECT_DIR$/templates/home/index.html.twig" />
+        <option value="$PROJECT_DIR$/templates/header.html.twig" />
         <option value="$PROJECT_DIR$/templates/employer/index.html.twig" />
       </list>
     </option>
@@ -579,12 +552,12 @@
       <workItem from="1538467677665" duration="23911000" />
       <workItem from="1538582406735" duration="203000" />
       <workItem from="1539021550517" duration="6110000" />
-      <workItem from="1539104884870" duration="1695000" />
+      <workItem from="1539104884870" duration="3324000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209157000" />
+    <option name="totallyTimeSpent" value="210786000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -890,38 +863,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="54" column="44" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/custom_pages/studyabroad.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="29" column="81" selection-start-line="29" selection-start-column="81" selection-end-line="29" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/custom_pages/courses.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-16">
-          <caret line="26" column="65" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="504" column="65" selection-start-line="504" selection-start-column="65" selection-end-line="504" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/header.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="163" column="76" selection-start-line="163" selection-start-column="76" selection-end-line="163" selection-end-column="76" />
         </state>
       </provider>
     </entry>
@@ -939,17 +884,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/employerbase.html.twig">
+    <entry file="file://$PROJECT_DIR$/templates/custom_pages/courses.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="139" column="17" selection-start-line="139" selection-start-column="17" selection-end-line="139" selection-end-column="17" />
+        <state relative-caret-position="68">
+          <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -967,10 +905,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="139" column="17" selection-start-line="139" selection-start-column="17" selection-end-line="139" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/employerbase.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="54" column="44" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/header.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="86" column="41" selection-start-line="86" selection-start-column="41" selection-end-line="86" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="422" column="85" selection-start-line="422" selection-start-column="74" selection-end-line="422" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/employer/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="365" column="28" selection-start-line="365" selection-start-column="28" selection-end-line="365" selection-end-column="28" />
+        <state relative-caret-position="463">
+          <caret line="336" column="75" selection-start-line="336" selection-start-column="75" selection-end-line="336" selection-end-column="75" />
         </state>
       </provider>
     </entry>
