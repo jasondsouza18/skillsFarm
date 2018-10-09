@@ -122,17 +122,23 @@
 <!--End of Zendesk Chat Script-->
 <script>
     function submitnotify() {
-        $('#notify-span').hide();
-        $('#notify-loader').show();
-        var email = document.getElementById('email').value;
-        $.post("{{ path('_notify') }}", {email: email, string: "a@3212's[]asdo[{&*^&*"}, function (data) {
-            if (data == '1') {
-                $('#snackbar').html("Your message has been successfully sent to skillsfarm team.");
-                showtoast();
-            }
-            $('#notify-span').show();
-            $('#notify-loader').hide();
-        });
+
+        var email = document.getElementById('emailtonotify').value;
+        if (email != "") {
+            $('#notify-span').hide();
+            $('#notify-loader').show();
+            $.post("{{ path('_notify') }}", {email: email, string: "a@3212's[]asdo[{&*^&*"}, function (data) {
+                if (data == '1') {
+                    $('#snackbar').html("Your message has been successfully sent to skillsfarm team.");
+                    showtoast();
+                }
+
+                $('#notify-span').show();
+                $('#notify-loader').hide();
+                document.getElementById('emailtonotify').value = "";
+            });
+        }
+        else alert("Please Enter the Email address");
     }
 </script>
 {% block javascripts %}{% endblock %}

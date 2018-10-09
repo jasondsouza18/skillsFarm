@@ -69,8 +69,8 @@
                 window.alert("No details available for input: '" + place.name + "'");
                 return;
             }
-            document.getElementById("isCountry").value="";
-            document.getElementById("county").value ="";
+            document.getElementById("isCountry").value = "";
+            document.getElementById("county").value = "";
             var isCountryLength = country.length;
             var countryValue = country['0']
             if ((isCountryLength == 1) && (countryValue.types[0] == "country") && (countryValue.types[1] == "political")) {
@@ -128,19 +128,23 @@
 </script>
 <script>
     function submitnotify() {
-        $('#notify-span').hide();
-        $('#notify-loader').show();
-        var email = document.getElementById('emailtonotify').value;
-        $.post("{{ path('_notify') }}", {email: email, string: "a@3212's[]asdo[{&*^&*"}, function (data) {
-            if (data == '1') {
-                $('#snackbar').html("Your message has been successfully sent to skillsfarm team.");
-                showtoast();
-            }
 
-            $('#notify-span').show();
-            $('#notify-loader').hide();
-            document.getElementById('emailtonotify').value="";
-        });
+        var email = document.getElementById('emailtonotify').value;
+        if (email != "") {
+            $('#notify-span').hide();
+            $('#notify-loader').show();
+            $.post("{{ path('_notify') }}", {email: email, string: "a@3212's[]asdo[{&*^&*"}, function (data) {
+                if (data == '1') {
+                    $('#snackbar').html("Your message has been successfully sent to skillsfarm team.");
+                    showtoast();
+                }
+
+                $('#notify-span').show();
+                $('#notify-loader').hide();
+                document.getElementById('emailtonotify').value = "";
+            });
+        }
+        else alert("Please Enter the Email address");
     }
 </script>
 {% block javascripts %}{% endblock %}
