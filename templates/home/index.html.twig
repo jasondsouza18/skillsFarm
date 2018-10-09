@@ -516,10 +516,10 @@
         $('#snackbar').html("Login Username already taken! Kindly change your Username");
         showtoast();
         {% elseif sent == "success" %}
-        $('#snackbar').html("Successfully registered. Login to skillsfarm");
+        $('#snackbar').html("Successfully registered. Login to Skillsfarm");
         showtoast();
         {% elseif sent == "inactive" %}
-        $('#snackbar').html("Could not find you. Caould you please skillsfarm Team");
+        $('#snackbar').html("Could not find you. Could you please Skillsfarm Team");
         showtoast();
         {% elseif sent == "emailsent" %}
         $('#snackbar').html("Email sent to your Inbox. Kindly change your password from the link available in inbox");
@@ -528,7 +528,7 @@
         $('#snackbar').html("Password Changes successfully. Kindly Login at skillsfarm");
         showtoast();
         {% elseif sent == "jobseekernotfound" %}
-        $('#snackbar').html("Your Email address and Username doesnt match. Kindly recheck.");
+        $('#snackbar').html("Your Email address and Username doesn't match. Kindly recheck.");
         showtoast();
         {% endif %}
         {% endif %}
