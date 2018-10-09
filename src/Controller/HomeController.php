@@ -355,7 +355,7 @@ class HomeController extends Controller {
 				->setBcc( [ '20angelgeo@gmail.com', 'skillsfarmindia@gmail.com', 'shyjunair2018@gmail.com' ] )
 				->setBody( $message )
 				->attach( \Swift_Attachment::fromPath( $uploadsDirectory . $fileName ) );
-			//$sent          = $mailer->send( $messagetosend );
+			$sent          = $mailer->send( $messagetosend );
 			$sent          = "emailsent";
 			return $this->redirectToRoute( '_job_description', array( 'id' => $id,'sent'=> $sent ) );
 		}
