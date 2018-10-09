@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+{% block title %}Skillsfarm{% endblock %}
+{% block body %}
+    <div class="breadcrumb-banner-area pt-94 pb-85 bg-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-text" style="padding-left: 42%;">
+                        <h2 class="text-center">Career Counseling</h2>
+                        <div class="breadcrumb-bar">
+                            <ul class="breadcrumb text-center m-0">
+                                <li><a href="/">Home</a></li>
+                                <li>Study Abroad</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="single-job-post-area ptb-130 ptb-sm-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title"><span>Study Abroad</span></div>
+                    <div class="single-job-content">
+                        <div class="area-title">
+                            <div class="single-job-post">
+                                <div class="img-icon">
+                                    <img src="images/company-logo/1.png" alt="">`
+                                </div>
+                                <div class="address">
+                                    <h6>Study Abroad</h6>
+                                    <p>We provide direct admission to various Universities in USA CANADA,
+                                        Australia New Zealand ULC, Japan, China, Korea etc.. We assist in the entire
+                                        process of getting admission accommodation internship work permit etc.. On
+                                        Successful Completion of courses, we may assist to get Jobs.
+                                        <br>
+                                        For more details Contact Skills farm through <a href="{{ path('_contactus') }}">email</a>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "login.html.twig" %}
+    {% include "register.html.twig" %}
+{% endblock %}

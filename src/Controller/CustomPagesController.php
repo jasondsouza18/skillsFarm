@@ -66,4 +66,21 @@ class CustomPagesController extends Controller
     {
         return $this->render('custom_pages/schoolaffiliation.html.twig');
     }
+
+	/**
+	 * @Route("/courses", name="custom_courses")
+	 */
+	public function courses()
+	{
+		return $this->render('custom_pages/courses.html.twig');
+	}
+
+
+	/**
+	 * @Route("/studyabroad", name="custom_studyabroad")
+	 */
+	public function studyabroad()
+	{
+		return $this->render('custom_pages/studyabroad.html.twig');
+	}
 }

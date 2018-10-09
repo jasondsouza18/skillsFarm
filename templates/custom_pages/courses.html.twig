@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+{% block title %}Skillsfarm{% endblock %}
+{% block body %}
+    <div class="breadcrumb-banner-area pt-94 pb-85 bg-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-text" style="padding-left: 42%;">
+                        <h2 class="text-center">Career Counseling</h2>
+                        <div class="breadcrumb-bar">
+                            <ul class="breadcrumb text-center m-0">
+                                <li><a href="/">Home</a></li>
+                                <li>Courses</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Breadcrumb Banner Area-->
+    <!--Start of Single Job Post Area-->
+    <div class="single-job-post-area ptb-130 ptb-sm-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title"><span>Courses</span></div>
+                    <div class="single-job-content">
+                        <div class="area-title">
+                            <div class="single-job-post">
+                                <div class="img-icon">
+                                    <img src="images/company-logo/1.png" alt="">
+                                </div>
+                                <div class="address">
+                                    <h6>Courses</h6>
+                                    <p>At Skills Farm you can find many courses for.<br>
+                                        Working executives students and house wives and whoever wants to update their
+                                        qualification and
+                                        skills. We have find up with many universities Collages and institutes in India
+                                        and Abroad .
+                                        You Can find Variety of courses like hardware software courses, MBA MCA, Mooch
+                                        courses
+                                        Networking, Web designing Animation , Video gaming .
+                                        <br>
+
+                                        For more details Contact Skills farm through <a href="{{ path('_contactus') }}">email</a>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "login.html.twig" %}
+    {% include "register.html.twig" %}
+{% endblock %}
