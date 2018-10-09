@@ -1180,7 +1180,7 @@ p.panel-title {
 }
 
 .address:hover {
-  cursor: pointer;
+  cursor: default;
 }
 
 .option{

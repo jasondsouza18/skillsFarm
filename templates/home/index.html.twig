@@ -86,7 +86,7 @@
                                         <input type="hidden" name="radius" id="radius" value="10"/>
                                     </div>
                                     <div class="select">
-                                        <select name="category" class="form-control" id="category">
+                                        <select name="category" class="form-control" id="category" style="overflow: scroll">
                                             <option value="default">Job Category</option>
                                             {% for cat in category %}
                                                 <option value="{{ cat.id }}">{{ cat.vccategoryname }}</option>
