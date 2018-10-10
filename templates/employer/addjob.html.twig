@@ -153,6 +153,11 @@
                 alert("Select Job Type");
                 return false;
             }
+            if(document.getElementById('latitude').value === '')
+            {
+                alert("Please select locations from options provided");
+                return false;
+            }
             return true;
         }
     </script>
