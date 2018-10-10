@@ -16,7 +16,7 @@
                 <div class=" col-sm-offset-1 mb-sm-40">
                     <h4 class="font-alt">Add a new Job</h4>
                     <hr class="divider-w mb-10">
-                    <form action="{{ path('_employer_addjob') }}" method="post">
+                    <form action="{{ path('_employer_addjob') }}" method="post" onsubmit="return validateselect();">
                         <div class="form-group">
                             <input type="hidden" id="idjob" class="form-control" name="idjob"
                                    value="{% if job.id is defined %}{{ job.id }}{% else %}0{% endif %}">
@@ -141,6 +141,19 @@
 
         function exitfromJob() {
             location.href = "/employer/dashboard";
+        }
+
+        function validateselect()
+        {
+            if (document.getElementById('category').value === 'default') {
+                alert("Select Job Category");
+                return false;
+            }
+            if (document.getElementById('jobtype').value === 'default') {
+                alert("Select Job Type");
+                return false;
+            }
+            return true;
         }
     </script>
 {% endblock %}

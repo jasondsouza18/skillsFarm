@@ -21,7 +21,7 @@
             {% set locationdetails_data = education.masterEducation.vclocationdetails %}
             {% set idedu = education.masterEducation.id %}
         {% endif %}
-        <form method="post" action="{{ path('_jobseeker_profile_edit_education') }}">
+        <form method="post" action="{{ path('_jobseeker_profile_edit_education') }}"  onsubmit="return validateselect{{ i }}();">
             <div class="single-job-form">
                 <h4>
                     <b>
@@ -65,8 +65,11 @@
                     <label for="l_name" class="uppercase m-0">Passout Year</label>
                     <span style="float: right;width: 79%;">
                         <select name="passoutyear" id="passoutyear_{{ i }}" style="width: 50%;">
-                            <option disabled="disabled" selected="selected" value="default">
+                            <option disabled="disabled" value="default">
                                 -- select an option --</option>
+                            <option value="1990">1987</option>
+                            <option value="1990">1998</option>
+                            <option value="1990">1989</option>
                             <option value="1990">1990</option>
                             <option value="1991">1991</option>
                             <option value="1992">1992</option>
@@ -96,6 +99,10 @@
                             <option value="2016">2016</option>
                             <option value="2017">2017</option>
                             <option value="2018">2018</option>
+                            <option value="2015">2019</option>
+                            <option value="2016">2020</option>
+                            <option value="2017">2021</option>
+                            <option value="2018">2022</option>
                         </select>
                           </span>
                 </div>
@@ -141,6 +148,14 @@
             }
 
             initAutocomplete();
+            function validateselect{{ i }}()
+            {
+                if (document.getElementById('passoutyear_{{ i }}').value === 'default') {
+                    alert("Select Passout year");
+                    return false;
+                }
+                return true;
+            }
         </script>
     {% endmacro %}
     <!--Breadcrumb Banner Area Start-->
@@ -149,7 +164,7 @@
             <div class="row">
                 <div class="col-md-12">
                  <div class="breadcrumb-text" style="padding-left: 42%;">
-                        <h2 class="text-center">Create Resume</h2>
+                        <h2 class="text-center">Create Profile</h2>
                         <div class="breadcrumb-bar">
                             <ul class="breadcrumb text-center m-0">
                                 <li>
