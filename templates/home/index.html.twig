@@ -86,7 +86,8 @@
                                         <input type="hidden" name="radius" id="radius" value="10"/>
                                     </div>
                                     <div class="select">
-                                        <select name="category" class="form-control" id="category" style="overflow: scroll">
+                                        <select name="category" class="form-control" id="category"
+                                                style="overflow: scroll">
                                             <option value="default">Job Category</option>
                                             {% for cat in category %}
                                                 <option value="{{ cat.id }}">{{ cat.vccategoryname }}</option>
@@ -382,7 +383,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="work-item">
-                        <div class="img-icon">
+                        <div class="img-icon" id="pointercursor" onclick="javascript:location.href='/search'">>
                             <img src="images/icons/wrk2.png" alt="">
                         </div>
                         <h5>Search Desired Job</h5>
@@ -391,7 +392,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="work-item">
-                        <div class="img-icon">
+                        <div class="img-icon" id="pointercursor" onclick="javascript:location.href='/general'">
                             <img src="images/icons/wrk3.png" alt="">
                         </div>
                         <h5>Send Your Resume</h5>
@@ -428,7 +429,8 @@
                                 <p class="text-white p-0">Really helped me out a lot. And the fact that they are open
                                     every day of the week ensured that I did'nt have to wait for my doubts to be
                                     cleared. They are the reason I got a great score in SAT examination and admission
-                                    offers from most places I applied to. I would recommend Skillsfarm to anyone who wants
+                                    offers from most places I applied to. I would recommend Skillsfarm to anyone who
+                                    wants
                                     to take SAT classes and study abroad.</p>
                             </div>
                             <div class="testimonial-info">

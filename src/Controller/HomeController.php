@@ -365,5 +365,4 @@ class HomeController extends Controller {
 			'sent' => $sent
 		) );
 	}
-
 }

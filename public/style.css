@@ -1187,3 +1187,8 @@ p.panel-title {
   z-index: 1000;
   display: block;
 }
+
+#pointercursor
+{
+  cursor: pointer;
+}
