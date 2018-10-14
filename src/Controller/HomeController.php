@@ -64,7 +64,7 @@ class HomeController extends Controller {
 				->setSubject( 'Contact me  - Skillsfarm' )
 				->setFrom( 'skillsfarmindia@gmail.com' )
 				->setTo( 'shyjunair2018@gmail.com' )
-				->setCc( [ '20angelgeo@gmail.com', 'jasondsouza717@gmail.com' ] )
+				->setCc( [ '20angelgeo@gmail.com', 'johnsonjose135@gmail.com','josephjeffry2@gmail.com' ] )
 				->setBody( "Name - " . $data['vc_name'] . PHP_EOL . "Email - " . $data['vc_email'] . PHP_EOL
 				           . "Subject -" . $data['vc_subject'] . PHP_EOL . " Message - " . PHP_EOL . $data['vc_message'] . PHP_EOL
 				);
@@ -109,7 +109,7 @@ class HomeController extends Controller {
 				->setSubject( "General Form - Skillsfarm" )
 				->setFrom( 'skillsfarmindia@gmail.com' )
 				->setTo( 'shyjunair2018@gmail.com' )
-				->setCc( [ '20angelgeo@gmail.com', 'jasondsouza717@gmail.com' ] )
+				->setCc( [ '20angelgeo@gmail.com', 'josephjeffry2@gmail.com','johnsonjose135@gmail.com' ] )
 				->setBody( $message )
 				->attach( \Swift_Attachment::fromPath( $uploadsDirectory . $fileName ) );
 			$sent          = $mailer->send( $messagetosend );
@@ -134,7 +134,7 @@ class HomeController extends Controller {
 					->setSubject( "Contact me - Skillsfarm" )
 					->setFrom( 'skillsfarmindia@gmail.com' )
 					->setTo( 'shyjunair2018@gmail.com' )
-					->setCc( [ '20angelgeo@gmail.com', 'jasondsouza717@gmail.com' ] )
+					->setCc( [ '20angelgeo@gmail.com', 'josephjeffry2@gmail.com','johnsonjose135@gmail.com' ] )
 					->setBody( $message );
 				$sent          = $mailer->send( $messagetosend );
 			}
@@ -203,7 +203,6 @@ class HomeController extends Controller {
 				->setSubject( 'Forgot Password - Skillsfarm' )
 				->setFrom( 'skillsfarmindia@gmail.com' )
 				->setTo( $email )
-				->setBcc( [ '20angelgeo@gmail.com', 'jasondsouza717@gmail.com' ] )
 				->setBody(
 					$this->renderView(
 					// templates/emails/registration.html.twig
@@ -352,7 +351,7 @@ class HomeController extends Controller {
 			$messagetosend = ( new \Swift_Message( 'Skills Farm' ) )
 				->setFrom( 'skillsfarmindia@gmail.com' )
 				->setTo( $employer->getVcEmail() )
-				->setBcc( [ '20angelgeo@gmail.com', 'skillsfarmindia@gmail.com', 'shyjunair2018@gmail.com' ] )
+				->setBcc( [ '20angelgeo@gmail.com', 'skillsfarmindia@gmail.com', 'josephjeffry2@gmail.com','johnsonjose135@gmail.com' ] )
 				->setBody( $message )
 				->attach( \Swift_Attachment::fromPath( $uploadsDirectory . $fileName ) );
 			$sent          = $mailer->send( $messagetosend );
